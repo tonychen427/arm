@@ -1,0 +1,79 @@
+/**
+ * o-core - components - overrides - news - coveo
+ *
+ * @name _components.overrides.news.coveo.scss
+ */
+/**
+ * TODO: add docs
+ */
+.c-news .CoveoResultList {
+  margin-left: auto; }
+  .c-news .CoveoResultList .CoveoResult:last-child {
+    float: left; }
+  .c-news .CoveoResultList.listview .column {
+    margin-bottom: 30px; }
+    .c-news .CoveoResultList.listview .column .c-news__summary__image img {
+      height: 150px;
+      width: 225px; }
+    .c-news .CoveoResultList.listview .column .c-news__summary__info__title {
+      color: #11809F;
+      font-size: 22px !important;
+      line-height: 31px;
+      margin: 15px 0px 26px 0px; }
+    .c-news .CoveoResultList.listview .column .c-news__summary__info__date {
+      color: #6F777C;
+      font-size: 18px;
+      line-height: 26px; }
+    .c-news .CoveoResultList.listview .column > div:first-child {
+      float: left;
+      margin-right: 20px; }
+    .c-news .CoveoResultList.listview .column > div:last-child {
+      border-bottom: 1px solid #E5ECEB;
+      height: 150px;
+      overflow: hidden; }
+    @media only screen and (max-width: 992px) and (min-width: 768px) {
+      .c-news .CoveoResultList.listview .column .c-news__summary__image img {
+        height: 210px;
+        width: 225px; }
+      .c-news .CoveoResultList.listview .column > div:last-child {
+        height: 210px; } }
+    @media only screen and (max-width: 768px) {
+      .c-news .CoveoResultList.listview .column .c-news__summary__image {
+        display: none; }
+      .c-news .CoveoResultList.listview .column > div:last-child {
+        height: inherit; }
+      .c-news .CoveoResultList.listview .column .c-news__summary__info {
+        display: flex;
+        flex-direction: column; }
+        .c-news .CoveoResultList.listview .column .c-news__summary__info > .c-news__summary__info__title {
+          order: 2; }
+        .c-news .CoveoResultList.listview .column .c-news__summary__info > .c-news__summary__info__date {
+          order: 1; } }
+  .c-news .CoveoResultList.Events .row {
+    padding-bottom: 50px !important;
+    width: 300px; }
+    @media screen and (max-width: 1025px) {
+      .c-news .CoveoResultList.Events .row {
+        width: inherit; } }
+  .c-news .CoveoResultList.Events a {
+    border-bottom-color: #ffc700 !important;
+    border-bottom-style: solid;
+    border-bottom-width: 3px;
+    bottom: 0;
+    color: #002f6c !important;
+    display: table-cell;
+    font-size: 20px !important;
+    padding: 18px 40px 0 40px;
+    position: absolute;
+    text-decoration: none; }
+    .c-news .CoveoResultList.Events a:hover {
+      border-bottom-color: #ffc700;
+      color: inherit; }
+  .c-news .CoveoResultList.Events .column {
+    margin-bottom: 20px; }
+  .c-news .CoveoResultList.Events .c-image-above-text-card__cta {
+    margin: 0 !important;
+    padding: 0 !important; }
+  @media screen and (max-width: 767px) {
+    .c-news .CoveoResultList.Events .c-image-above-text-card__primary {
+      line-height: 39px; } }

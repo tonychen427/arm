@@ -1,0 +1,353 @@
+/**
+ * o-core - components - masthead slider
+ *
+ * @name _components.masthead-slider.scss
+ */
+
+/**
+ * masthead slider / indicators
+ */
+@mixin oCoreComponentsMastheadSlider {
+
+    $c-masthead-color-white: #fff;
+    $c-masthead-indicator-color-default: #b1b4b4;
+    $c-masthead-indicator-color-active: #11809f;
+
+    .c-header {
+        &--medium {
+            .c-masthead {
+                &__slider__item__content {
+                    &__main {
+                        &__subtitle {
+                            bottom: inherit;
+                            display: flex;
+                            justify-content: center;
+                            flex-direction: column;
+                            height: 100%;
+             
+
+                            @media only screen and (max-width: 992px) and (min-width: 768px) {
+                                padding: 0 15px;
+                            }
+
+                            @media only screen and (max-width: 767px) {
+                                padding: 0 10px;
+                            }
+                        }
+                    }
+
+                    &__fadebox {
+                        display: none;
+                    }
+                }
+
+                .c-masthead__indicators {
+                    top: 310px;
+
+                    @media only screen and (max-width: 992px) and (min-width: 768px) {
+                        top: 400px;
+                    }
+
+                    @media only screen and (min-width: 992px) {
+                        top: 500px;
+                    }
+                }
+            }
+        }
+
+        &--small {
+            .c-masthead {
+                &__slider__item__content {
+                    &__main {
+                        &__subtitle {
+                            bottom: inherit;
+                            display: flex;
+                            justify-content: center;
+                            flex-direction: column;
+                            height: 100%;
+                           
+                            @media only screen and (max-width: 992px) and (min-width: 768px) {
+                                padding: 0 15px;
+                            }
+
+                            @media only screen and (max-width: 767px) {
+                                padding: 0 10px;
+                            }
+                        }
+                    }
+
+                    &__fadebox {
+                        display: none;
+                    }
+                }
+
+                .c-masthead__indicators {
+                    top: 250px;
+
+                    @media only screen and (max-width: 992px) and (min-width: 768px) {
+                        top: 320px;
+                    }
+
+                    @media only screen and (min-width: 992px) {
+                        top: 340px;
+                    }
+                }
+            }
+        }
+
+    }
+
+
+    .c-masthead {
+        width: 100%;
+        margin: 0;
+
+        &__slider {
+            height: 100%;
+            width: 100%;
+
+            &__item {
+                height: 100%;
+                overflow: hidden;
+                position: absolute;
+                width: 100%;
+                z-index: -1;
+
+                &__content {
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    height: 100%;
+
+                    &__main {
+                        font-family: 'Futura PT W01 Demi';
+                        font-size: 55px;
+                        height: 100%;
+                        line-height: 52px;
+                        position: relative;
+                        text-transform: uppercase;
+
+                        &__subtitle {
+                            bottom: 272px;
+                            color: $c-masthead-color-white;
+                            padding: 0 70px;
+                            position: absolute;
+                            width: 100%;
+                        }
+
+                        .title {
+                            font-family: 'Futura PT W01 Book';
+                            font-size: 34px;
+                        }
+                    }
+
+                    &__fadebox {
+                        bottom: 0;
+                        color: $c-masthead-color-white;
+                        display: flex;
+                        flex-direction: column;
+                        font-family: 'Futura PT W01 Light';
+                        font-size: 24px;
+                        height: 200px;
+                        justify-content: center;
+                        line-height: 27px;
+                        padding: 25px 70px;
+                        position: absolute;
+                        text-transform: uppercase;
+                        width: 100%;
+
+                        &__description {
+                            margin-bottom: 20px;
+                        }
+                    }
+
+                    &__fadebox.has-opacity75 {
+                        background-color: rgba(51, 51, 51, 0.75);
+                    }
+
+                    &__fadebox.has-opacity60 {
+                        background-color: rgba(51, 51, 51, 0.60);
+                    }
+
+                    &__fadebox.has-opacity45 {
+                        background-color: rgba(51, 51, 51, 0.45);
+                    }
+
+                }
+            }
+
+            @media only screen and (min-width: 1024px) {
+                margin: auto;
+            }
+        }
+
+        @media only screen and (max-width: 992px) and (min-width: 768px) {
+            &__slider {
+                &__item {
+                    &__content {
+                        &__fadebox {
+                            height: 225px !important;
+                            font-size: 22px !important;
+                            padding: 20px 15px;
+                            text-align: center;
+                        }
+
+                        &__main {
+                            font-size: 40px;
+                            line-height: 37px;
+                            position: relative;
+                        }
+
+                        &__main .title {
+                            font-size: 24px;
+                        }
+
+                        &__main__subtitle {
+                            bottom: 280px;
+                            color: $c-masthead-color-white;
+                            padding: 0 50px;
+                            position: absolute;
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+        }
+
+        @media only screen and (max-width: 767px) {
+            &__slider {
+                &__item {
+                    &__content {
+                        &__fadebox {
+                            font-size: 20px;
+                            height: 225px;
+                            line-height: 22px;
+                            padding: 15px;
+                            text-align: center;
+                        }
+
+                        &__main {
+                            font-size: 32px;
+                            line-height: 30px;
+                            position: relative;
+
+                            &__subtitle {
+                                bottom: 430px;
+                                height: 0;
+                                text-align: center;
+                            }
+
+                        }
+
+                        &__main .title {
+                            font-size: 22px;
+                        }
+                    }
+                }
+            }
+        }
+
+        @media only screen and (max-device-width: 736px) {
+            &__slider {
+                &__item {
+                    &__content {
+                        background-repeat: inherit;
+                        background-size: inherit;
+
+                        &__main {
+                            font-size: 32px;
+                            line-height: 30px;
+                            position: relative;
+
+                            &__subtitle {
+                                bottom: 430px;
+                                height: 0;
+                                text-align: center;
+                            }
+
+                        }
+
+                        &__main .title {
+                            font-size: 22px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &__indicators {
+            left: 50%;
+            list-style: none;
+            margin-left: -30%;
+            padding-left: 0;
+            position: absolute;
+            text-align: center;
+            top: 575px;
+            width: 55%;
+            z-index: 15;
+
+            @media only screen and (max-width: 992px) and (min-width: 768px) {
+                top: 475px;
+            }
+
+            @media only screen and (max-width: 767px) {
+                top: 480px;
+            }
+
+            @media only screen and (max-device-width: 736px) {
+                top: 480px;
+            }
+
+            &__action {
+                color: $c-masthead-color-white;
+                display: inline-block;
+                list-style: none;
+
+                > div {
+                    margin: -4px -10px; 
+                }
+                &__play {
+                    border-bottom: 5px solid transparent;
+                    border-left: 8px solid $c-masthead-indicator-color-default;
+                    border-top: 5px solid transparent;
+                    height: 0;
+                    margin: -2px -8px;
+                    position: absolute;
+                    width: 0;
+                }
+
+                &__pause {
+                    border-left: 2.5px solid $c-masthead-indicator-color-default;
+                    border-right: 2.5px solid $c-masthead-indicator-color-default;
+                    height: 10px;
+                    margin: -2px -9px;
+                    position: absolute;
+                    width: 8px;
+                }
+            }
+
+            &__dot {
+                &.active {
+                    background-color: $c-masthead-indicator-color-active;
+                }
+
+                background-color: $c-masthead-indicator-color-default;
+                border-radius: 10px;
+                cursor: pointer;
+                display: inline-block;
+                height: 10px;
+                margin: 3px;
+                text-indent: -999px;
+                width: 10px;
+            }
+
+            li {
+                &::before {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@include oCoreComponentsMastheadSlider;
