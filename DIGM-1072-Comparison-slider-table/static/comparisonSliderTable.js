@@ -3,9 +3,12 @@ var comparisonSliderTable = (function () {
     var CLASSNAME_IS_ARROW_END = 'is-arrow-end';
     var CLASSNAME_IS_HIGHLIGHTED = 'is-highlighted';
     var CLASSNAME_IS_HIDDEN = 'is-hidden';
+    var CLASSNAME_GROUP_TITLE = 'c-comparison-slider-table__group-title';
     var CLASSNAME_NO_BORDER_ON_LAST_CELL = 'no-border-on-last-cell';
+    var CLASSNAME_NO_BORDER = 'c-comparison-slider-table__no-border';
     var CLASSNAME_SEPARATOR = 'c-comparison-slider-table__separator';
-    var CLASSNAME_SCROLLBAR = 'c-comparison-slider-table__scrollbar'
+    var CLASSNAME_SCROLLBAR = 'c-comparison-slider-table__scrollbar';
+    
 
     function comparisonSliderTable(id, responsive) {
         if (id === null) return;
@@ -24,6 +27,7 @@ var comparisonSliderTable = (function () {
         this.buildResponsiveListener();
         this.buildScrollBar();
         this.buildScrollBarListener();
+        this.buildMobileDropdownSelector();
     }
 
     comparisonSliderTable.prototype = {
@@ -50,24 +54,24 @@ var comparisonSliderTable = (function () {
         setColumnWidth: function (index, width) {
             var elements = this.getColumnElementsByIndex(index);
             for (var i = 0; i < elements.length; i++) {
-                if (elements[i].className === CLASSNAME_SEPARATOR) continue;
-                if (elements[i].className === CLASSNAME_SCROLLBAR) continue;
+                if (elements[i].className.includes(CLASSNAME_SEPARATOR)) continue;
+                if (elements[i].className.includes(CLASSNAME_SCROLLBAR)) continue;
                 elements[i].style = 'width: '+ width + '%';
             }
         },
         addClassNameToColumn: function (index, className) {
             var elements = this.getColumnElementsByIndex(index);
             for (var i = 0; i < elements.length; i++) {
-                if (elements[i].className === CLASSNAME_SEPARATOR) continue;
-                if (elements[i].className === CLASSNAME_SCROLLBAR) continue;
+                if (elements[i].className.includes(CLASSNAME_SEPARATOR)) continue;
+                if (elements[i].className.includes(CLASSNAME_SCROLLBAR)) continue;
                 elements[i].classList.add(className);
             }
         },
         removeClassNameFromColumn: function (index, className) {
             var elements = this.getColumnElementsByIndex(index);
             for (var i = 0; i < elements.length; i++) {
-                if (elements[i].className === CLASSNAME_SEPARATOR) continue;
-                if (elements[i].className === CLASSNAME_SCROLLBAR) continue;
+                if (elements[i].className.includes(CLASSNAME_SEPARATOR)) continue;
+                if (elements[i].className.includes(CLASSNAME_SCROLLBAR)) continue;
                 elements[i].classList.remove(className);
             }
         },
@@ -79,6 +83,14 @@ var comparisonSliderTable = (function () {
             Array.prototype.forEach.call(elements, function (item) {
                 item.setAttribute(key, value);
             });
+        },
+        buildElement: function(el, attributes) {
+            var element = document.createElement(el);
+            var elementAttributes = Object.entries(attributes);
+            for (var i = 0; i < elementAttributes.length; i++) {
+                element.setAttribute(elementAttributes[i][0], elementAttributes[i][1]);
+            }
+            return element;
         },
         buildColumn: function (size) {
             for (var x = 1; x <= this.numberTotalColumn; x++) {
@@ -102,9 +114,10 @@ var comparisonSliderTable = (function () {
             for (var i = 0; i < elements.length; i++) {
                 var element = elements[i];
                 element.addEventListener('mouseover', function () {
-                    if (this.className === '' || 
-                        this.className === CLASSNAME_SEPARATOR || 
-                        this.className === CLASSNAME_SCROLLBAR) return;
+                    if (this.className.includes(CLASSNAME_SEPARATOR) || 
+                        this.className.includes(CLASSNAME_SCROLLBAR) ||
+                        this.className.includes(CLASSNAME_NO_BORDER) ||
+                        this.className.includes(CLASSNAME_GROUP_TITLE)) return;
                     self.addClassNameToColumn(self.getColumnIndex(this), CLASSNAME_IS_HIGHLIGHTED);
                 });
                 element.addEventListener('mouseout', function () {
@@ -216,11 +229,22 @@ var comparisonSliderTable = (function () {
             }))
         },
         buildScrollBar: function() {
+            var scrollbarEl = document.querySelector('.c-comparison-slider-table__scrollbar');
+            var scrollbarNoBorder = document.querySelector('.c-comparison-slider-table__scrollbar__no-border');
             var numberOfScrollClick = this.numberTotalColumn -  (this.maxNumberColumn - 1);
-            var datalist = document.createElement("datalist");
-            var scrollBarHTML = '<input id="comparisonTableScrollBar" max="' + numberOfScrollClick +'" min="1" step="1" name="question_three" type="range" list="question_three_list" value="1">' + 
-                                '<datalist id="question_three_list"></datalist>';
-            document.querySelector('.c-comparison-slider-table__scrollbar').innerHTML = scrollBarHTML;
+            var inputComparisonScrollBar = this.buildElement('input', { id: 'comparisonTableScrollBar', max: numberOfScrollClick, min: '1', step: '1', name: 'scrollbar', type: 'range', list: 'question_three_list',value: '1' });
+            var datalistComparisonScrollBar = this.buildElement('datalist', { id: 'question_three_list' });
+
+            while (scrollbarEl.firstChild) {
+                scrollbarEl.removeChild(scrollbarEl.firstChild);
+            }
+              
+            scrollbarEl.appendChild(inputComparisonScrollBar);
+            scrollbarEl.appendChild(datalistComparisonScrollBar);
+
+            var offsetHeight = document.querySelectorAll(this.id + " table tr td")[0].offsetHeight
+            scrollbarEl.setAttribute("style", "top: " + offsetHeight + "px");
+            scrollbarNoBorder.setAttribute("style", "top: " + offsetHeight + "px");
         },
         buildScrollBarListener: function() {
             var self = this;
@@ -239,6 +263,29 @@ var comparisonSliderTable = (function () {
                     }
                 }
             });
+        },
+        buildMobileDropdownSelector: function() {
+            var sliderTable = document.querySelector(this.id + ' .c-comparison-slider-table__slider table');
+            var sliderTableHead = document.createElement('thead');
+            var sliderTableHeadTr = document.createElement('tr');
+            sliderTableHeadTr.appendChild(document.createElement('th'));
+            sliderTableHeadTr.appendChild(document.createElement('th'));
+            sliderTableHeadTr.appendChild(document.createElement('th'));
+
+
+            sliderTableHead.appendChild(sliderTableHeadTr);
+            sliderTable.insertAdjacentElement('afterbegin',sliderTableHead);
+
+
+            // var select1 = document.querySelector("#select1");
+            // var select2 = document.querySelector("#select2");
+
+            // select1.addEventListener('change', function() {
+            //     console.log(this);
+            // });
+            // select2.addEventListener('change', function() {
+            //     console.log(this);
+            // })
         }
     }
 

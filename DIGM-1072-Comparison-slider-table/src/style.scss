@@ -24,6 +24,7 @@
         position: sticky;
         background-color: #fff;
     }
+    
     .c-comparison-slider-table {
         margin-top: 100px;
 
@@ -67,8 +68,11 @@
                 }
             }
         }
-
-
+        &__header-title {
+            font-weight: bold;
+            font-size: 20px;
+            padding: 16px 0;
+        }
         table {
             border-collapse: inherit;
             margin: inherit;
@@ -76,7 +80,17 @@
             width: 100%;
 
             tr td {
+                    border-bottom: 1px solid $comparison-table-default-border-color;
 
+                &:first-child{
+                    border-right: none;
+                    font-weight: bold;
+                    font-size: 20px;
+                    @media (max-width: 767px) {
+                        display: none;
+                    }
+
+                }
                 &:last-child, &.no-border-on-last-cell {
                     border-right: none;
                 }
@@ -95,6 +109,9 @@
                     text-align: left;
                     vertical-align: top;
 
+                    &.c-comparison-slider-table__no-border {
+                        border: none;
+                    }
                     &.c-comparison-slider-table__no-border-center {
                         border: none;
                         font-size: 16px;
