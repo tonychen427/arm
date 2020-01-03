@@ -13,6 +13,8 @@ var comparisonSliderTable = (function () {
     function comparisonSliderTable(id, responsive) {
         if (id === null) return;
         this.id = '#c-c90a40e7-fc69-49c3-860c-5d8e6f2a46b8';
+        this.myTable = document.querySelector(this.id + ' .c-comparison-slider-table__slider table');
+        this.myClone = this.myTable.cloneNode(true);
         this.maxNumberColumn = 3;
         this.scrollPosition = 1;
 
@@ -27,6 +29,7 @@ var comparisonSliderTable = (function () {
         this.buildResponsiveListener();
         this.buildScrollBar();
         this.buildScrollBarListener();
+        this.buildMobileDropdown();
         this.buildMobileDropdownSelector();
     }
 
@@ -84,11 +87,37 @@ var comparisonSliderTable = (function () {
                 item.setAttribute(key, value);
             });
         },
-        buildElement: function(el, attributes) {
+        moveColumnTo: function(firstIndexFrom, firstIndexTo, secondIndexFrom, secondIndexTo) {
+            this.myTable.innerHTML = this.myClone.innerHTML;
+            var table = document.querySelector(this.id + ' table');
+            var rows = table.rows;
+            for (var i = 0; i < rows.length; i++) {
+                col = rows[i].children;    
+                for (var j = 0; j < col.length; j++) {
+                    if (col[j].className.includes(CLASSNAME_SCROLLBAR)) continue;
+                    col[j].classList.remove(CLASSNAME_IS_HIDDEN);
+                }
+
+                if (col[i].className.includes(CLASSNAME_SCROLLBAR)) continue;
+
+                col[firstIndexFrom].parentNode.insertBefore(col[firstIndexFrom], col[firstIndexTo]);
+                col[secondIndexFrom].parentNode.insertBefore(col[secondIndexFrom], col[secondIndexTo]);
+
+                for (var j = 3; j < col.length; j++) {
+                    if (col[j].className.includes(CLASSNAME_SCROLLBAR)) continue;
+                    col[j].classList.add(CLASSNAME_IS_HIDDEN);
+                }
+            }
+            this.buildHoverListener();
+        },
+        buildElement: function(el, attributes, text) {
             var element = document.createElement(el);
             var elementAttributes = Object.entries(attributes);
             for (var i = 0; i < elementAttributes.length; i++) {
                 element.setAttribute(elementAttributes[i][0], elementAttributes[i][1]);
+            }
+            if (text !== undefined || text !== '') {
+                element.innerHTML = text;
             }
             return element;
         },
@@ -129,8 +158,9 @@ var comparisonSliderTable = (function () {
             var arrowNav = document.querySelectorAll(this.id + ' .c-comparison-slider-table__arrow-nav')[0];
             var arrowNavLeft = document.querySelectorAll(this.id + ' .c-comparison-slider-table__arrow-nav__left')[0];
             var arrowNavRight = document.querySelectorAll(this.id + ' .c-comparison-slider-table__arrow-nav__right')[0];
-
-            if (arrowNavLeft === undefined || arrowNavRight === undefined) {
+ 
+            if (arrowNav === undefined ) return;
+            if (arrowNavLeft === undefined|| arrowNavRight === undefined) {
                 arrowNav.classList.add(CLASSNAME_IS_HIDDEN);
                 return;
             }
@@ -150,6 +180,7 @@ var comparisonSliderTable = (function () {
             var arrowNavLeft = document.querySelectorAll(this.id + ' .c-comparison-slider-table__arrow-nav__left')[0];
             var arrowNavRight = document.querySelectorAll(this.id + ' .c-comparison-slider-table__arrow-nav__right')[0];
 
+            if (arrowNav === undefined ) return;
             if (arrowNavLeft === undefined || arrowNavRight === undefined) {
                 arrowNav.classList.add(CLASSNAME_IS_HIDDEN);
                 return;
@@ -200,9 +231,6 @@ var comparisonSliderTable = (function () {
             for (let i = 0; i < this.responsive.length; i++) {
                 const size = this.responsive[i];
                 if (width >= size.breakpoint) {
-                    // var tableElement = document.querySelectorAll(this.id + ' table')[0]
-                    // tableElement.setAttribute('style', size.settings.slidesToShow === 1 ? 'width:' + (width - 210) + 'px' : '');
-                    // tableElement.setAttribute('style', size.settings.slidesToShow === 1 ? 'width:' + (width - 210) + 'px' : '');
                     this.setAttributeByClassName(CLASSNAME_SEPARATOR, 'colspan', size.settings.slidesToShow);
                     this.setAttributeByClassName(CLASSNAME_SCROLLBAR, 'colspan', size.settings.slidesToShow);
                     this.maxNumberColumn = size.settings.slidesToShow;
@@ -220,8 +248,14 @@ var comparisonSliderTable = (function () {
         },
         buildResponsiveListener: function () {
             var self = this;
-
+   
             window.addEventListener('resize', self.debounced(100, function () {
+                self.myTable.innerHTML = self.myClone.innerHTML;
+
+                self.buildHoverListener();
+                self.buildNavigation();
+                self.buildNavigationListener();
+
                 self.buildResponsive();
                 self.buildNavigation();
                 self.buildScrollBar();
@@ -264,28 +298,32 @@ var comparisonSliderTable = (function () {
                 }
             });
         },
-        buildMobileDropdownSelector: function() {
-            var sliderTable = document.querySelector(this.id + ' .c-comparison-slider-table__slider table');
-            var sliderTableHead = document.createElement('thead');
-            var sliderTableHeadTr = document.createElement('tr');
-            sliderTableHeadTr.appendChild(document.createElement('th'));
-            sliderTableHeadTr.appendChild(document.createElement('th'));
-            sliderTableHeadTr.appendChild(document.createElement('th'));
+        buildMobileDropdown: function() {
+           var select1 = document.querySelector("#select1");
+           var select2 = document.querySelector("#select2");
+           var headerTitleList = document.querySelectorAll('.c-comparison-slider-table__header-title');
 
+           for (var i = 0; i < headerTitleList.length; i++ ) {
+                select1.add(this.buildElement('option', { value: i + 1}, headerTitleList[i].innerHTML ));
+                select2.add(this.buildElement('option', { value: i + 1}, headerTitleList[i].innerHTML ));
+           }
+        },
+        buildMobileDropdownSelector: function() {   
+            var self = this;
+            var select1 = document.querySelector("#select1");
+            var select2 = document.querySelector("#select2");
+            var index1 = 1;
+            var index2 = 2;
 
-            sliderTableHead.appendChild(sliderTableHeadTr);
-            sliderTable.insertAdjacentElement('afterbegin',sliderTableHead);
+            select1.addEventListener('change', function() {
+                index1 = this.value;
+                self.moveColumnTo(index1 , 1, index2, 2)
+            });
 
-
-            // var select1 = document.querySelector("#select1");
-            // var select2 = document.querySelector("#select2");
-
-            // select1.addEventListener('change', function() {
-            //     console.log(this);
-            // });
-            // select2.addEventListener('change', function() {
-            //     console.log(this);
-            // })
+            select2.addEventListener('change', function() {
+                index2 = this.value;
+                self.moveColumnTo(index1 , 1, index2, 2)
+            });
         }
     }
 
@@ -303,25 +341,25 @@ var responsive = [
     {
         breakpoint: 1024,
         settings: {
-            slidesToShow: 4,
+            slidesToShow: 3,
         }
     },
     {
-        breakpoint: 888,
+        breakpoint: 924,
         settings: {
             slidesToShow: 3,
         }
     },
     {
-        breakpoint: 650,
+        breakpoint: 767,
         settings: {
-            slidesToShow: 2,
+            slidesToShow: 3,
         }
     },
     {
         breakpoint: 370,
         settings: {
-            slidesToShow: 2,
+            slidesToShow: 3,
         }
     }
 ];

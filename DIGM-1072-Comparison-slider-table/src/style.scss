@@ -73,20 +73,35 @@
             font-size: 20px;
             padding: 16px 0;
         }
+        &__mobile-dropdown {
+            display: table;
+            width: 100%;
+
+            > span {
+                display: table-cell;
+                padding: 5px;
+            }
+            @media (min-width: 1024px) {
+                display: none;
+            }
+        }
         table {
             border-collapse: inherit;
             margin: inherit;
-            // margin-top: -100px;
             width: 100%;
 
-            tr td {
+            tr th, tr td {
                     border-bottom: 1px solid $comparison-table-default-border-color;
+                
 
                 &:first-child{
                     border-right: none;
                     font-weight: bold;
                     font-size: 20px;
-                    @media (max-width: 767px) {
+                    @media only screen and (max-device-width: 736px) {
+                        display: none;
+                    }
+                    @media (max-width: 1024px) {
                         display: none;
                     }
 
@@ -95,7 +110,13 @@
                     border-right: none;
                 }
             }
-
+            thead tr {
+                th {
+                    &.is-hidden {
+                        display: none !important;
+                    }
+                }
+            }
             tbody tr {
                 &:nth-child(odd) {
                     background-color: transparent;
@@ -103,6 +124,7 @@
 
                 td {
                     border-right: 1px solid $comparison-table-default-border-color;
+                    display: table-cell;
                     font-size: 16px;
                     height: auto;
                     min-height: 44px;
@@ -135,6 +157,8 @@
 
                     &.c-comparison-slider-table__card {
                         border: 0;
+                        
+                        
                     }
 
                     &.c-comparison-slider-table__card > div {
@@ -166,15 +190,29 @@
         }
     }
 
-    @media (max-width: 767px) {
-        .c-comparison-slider-table table {
-            tbody tr td {
-                align-items: inherit;
-            }
+    @media (max-width: 1024px) {
+        .c-comparison-slider-table {
+            &__scrollbar {
+                display: none !important;
 
-            thead tr:not(:last-child), tbody tr:not(:last-child) {
-                display: block;
-                margin-bottom: inherit;
+                &__no-border {
+                    display: none !important;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        .c-comparison-slider-table {
+
+            table {
+                thead tr, tbody tr {
+                    display: inherit !important;
+                }
+                thead tr:not(:last-child), tbody tr:not(:last-child) {
+                    display: block;
+                    margin-bottom: inherit;
+                }
             }
         }
     }
