@@ -263,9 +263,11 @@ var comparisonSliderTable = (function () {
             }))
         },
         buildScrollBar: function() {
+            var numberOfScrollClick = this.numberTotalColumn -  (this.maxNumberColumn - 1);
+            if (numberOfScrollClick === 1) return;
             var scrollbarEl = document.querySelector('.c-comparison-slider-table__scrollbar');
             var scrollbarNoBorder = document.querySelector('.c-comparison-slider-table__scrollbar__no-border');
-            var numberOfScrollClick = this.numberTotalColumn -  (this.maxNumberColumn - 1);
+            
             var inputComparisonScrollBar = this.buildElement('input', { id: 'comparisonTableScrollBar', max: numberOfScrollClick, min: '1', step: '1', name: 'scrollbar', type: 'range', list: 'question_three_list',value: '1' });
             var datalistComparisonScrollBar = this.buildElement('datalist', { id: 'question_three_list' });
 
@@ -276,13 +278,14 @@ var comparisonSliderTable = (function () {
             scrollbarEl.appendChild(inputComparisonScrollBar);
             scrollbarEl.appendChild(datalistComparisonScrollBar);
 
-            var offsetHeight = document.querySelectorAll(this.id + " table tr td")[0].offsetHeight
-            scrollbarEl.setAttribute("style", "top: " + offsetHeight + "px");
-            scrollbarNoBorder.setAttribute("style", "top: " + offsetHeight + "px");
+            var offsetHeight = document.querySelectorAll(this.id + ' table tr td')[0].offsetHeight
+            scrollbarEl.setAttribute('style', 'top: ' + offsetHeight + 'px');
+            scrollbarNoBorder.setAttribute('style', 'top: ' + offsetHeight + 'px');
         },
         buildScrollBarListener: function() {
             var self = this;
             var scrollBar = document.getElementById('comparisonTableScrollBar');
+            if (scrollBar === null) return;
             scrollBar.addEventListener('change', function () {
                 self.scrollPosition = this.value;
                 for (var i = 2; i <= self.numberTotalColumn; i++) {
@@ -299,8 +302,8 @@ var comparisonSliderTable = (function () {
             });
         },
         buildMobileDropdown: function() {
-           var select1 = document.querySelector("#select1");
-           var select2 = document.querySelector("#select2");
+           var select1 = document.querySelector('#select1');
+           var select2 = document.querySelector('#select2');
            var headerTitleList = document.querySelectorAll('.c-comparison-slider-table__header-title');
 
            for (var i = 0; i < headerTitleList.length; i++ ) {
@@ -310,8 +313,8 @@ var comparisonSliderTable = (function () {
         },
         buildMobileDropdownSelector: function() {   
             var self = this;
-            var select1 = document.querySelector("#select1");
-            var select2 = document.querySelector("#select2");
+            var select1 = document.querySelector('#select1');
+            var select2 = document.querySelector('#select2');
             var index1 = 1;
             var index2 = 2;
 
