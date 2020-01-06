@@ -7,7 +7,7 @@
 /**
  * masthead slider / indicators
  */
-@mixin oCoreComponentsMastheadSlider {
+ @mixin oCoreComponentsMastheadSlider {
 
     $c-masthead-color-white: #fff;
     $c-masthead-indicator-color-default: #b1b4b4;
@@ -24,7 +24,7 @@
                             justify-content: center;
                             flex-direction: column;
                             height: 100%;
-             
+
 
                             @media only screen and (max-width: 992px) and (min-width: 768px) {
                                 padding: 0 15px;
@@ -65,7 +65,7 @@
                             justify-content: center;
                             flex-direction: column;
                             height: 100%;
-                           
+
                             @media only screen and (max-width: 992px) and (min-width: 768px) {
                                 padding: 0 15px;
                             }
@@ -94,7 +94,6 @@
                 }
             }
         }
-
     }
 
 
@@ -158,6 +157,11 @@
 
                         &__description {
                             margin-bottom: 20px;
+                            color: $c-masthead-color-white !important;
+
+                            p {
+                                color: $c-masthead-color-white !important;
+                            }
                         }
                     }
 
@@ -172,7 +176,6 @@
                     &__fadebox.has-opacity45 {
                         background-color: rgba(51, 51, 51, 0.45);
                     }
-
                 }
             }
 
@@ -232,11 +235,10 @@
                             position: relative;
 
                             &__subtitle {
-                                bottom: 430px;
+                                bottom: 410px;
                                 height: 0;
                                 text-align: center;
                             }
-
                         }
 
                         &__main .title {
@@ -254,17 +256,20 @@
                         background-repeat: inherit;
                         background-size: inherit;
 
+                        &__fadebox__description {
+                            margin-bottom: 0;
+                        }
                         &__main {
                             font-size: 32px;
                             line-height: 30px;
                             position: relative;
 
                             &__subtitle {
-                                bottom: 430px;
+                                bottom: 400px;
                                 height: 0;
+                                padding: 0 10px;
                                 text-align: center;
                             }
-
                         }
 
                         &__main .title {
@@ -304,8 +309,9 @@
                 list-style: none;
 
                 > div {
-                    margin: -4px -10px; 
+                    margin: -4px -10px;
                 }
+
                 &__play {
                     border-bottom: 5px solid transparent;
                     border-left: 8px solid $c-masthead-indicator-color-default;
@@ -344,6 +350,27 @@
             li {
                 &::before {
                     display: none;
+                }
+            }
+        }
+    }
+
+    /**
+     * Experience editor overrides
+     *
+     * TODO: create individual spreadsheet for experience editor overrides
+     */
+    .is-experience-editor {
+
+        .c-masthead {
+            height: auto;
+            /* Elements */
+            &__slider__item {
+                background-color: rgba(225, 225, 225, .85);
+                height: 100vh;
+
+                @media (min-width: 1024px) {
+                    height: 767px;
                 }
             }
         }

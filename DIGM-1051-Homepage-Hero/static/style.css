@@ -104,7 +104,10 @@
           text-transform: uppercase;
           width: 100%; }
           .c-masthead__slider__item__content__fadebox__description {
-            margin-bottom: 20px; }
+            margin-bottom: 20px;
+            color: #fff !important; }
+            .c-masthead__slider__item__content__fadebox__description p {
+              color: #fff !important; }
         .c-masthead__slider__item__content__fadebox.has-opacity75 {
           background-color: rgba(51, 51, 51, 0.75); }
         .c-masthead__slider__item__content__fadebox.has-opacity60 {
@@ -144,7 +147,7 @@
       line-height: 30px;
       position: relative; }
       .c-masthead__slider__item__content__main__subtitle {
-        bottom: 430px;
+        bottom: 410px;
         height: 0;
         text-align: center; }
     .c-masthead__slider__item__content__main .title {
@@ -153,13 +156,16 @@
     .c-masthead__slider__item__content {
       background-repeat: inherit;
       background-size: inherit; }
+      .c-masthead__slider__item__content__fadebox__description {
+        margin-bottom: 0; }
       .c-masthead__slider__item__content__main {
         font-size: 32px;
         line-height: 30px;
         position: relative; }
         .c-masthead__slider__item__content__main__subtitle {
-          bottom: 430px;
+          bottom: 400px;
           height: 0;
+          padding: 0 10px;
           text-align: center; }
       .c-masthead__slider__item__content__main .title {
         font-size: 22px; } }
@@ -216,3 +222,18 @@
         background-color: #11809f; }
     .c-masthead__indicators li::before {
       display: none; }
+
+/**
+     * Experience editor overrides
+     *
+     * TODO: create individual spreadsheet for experience editor overrides
+     */
+.is-experience-editor .c-masthead {
+  height: auto;
+  /* Elements */ }
+  .is-experience-editor .c-masthead__slider__item {
+    background-color: rgba(225, 225, 225, 0.85);
+    height: 100vh; }
+    @media (min-width: 1024px) {
+      .is-experience-editor .c-masthead__slider__item {
+        height: 767px; } }
