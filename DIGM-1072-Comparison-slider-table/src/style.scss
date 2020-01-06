@@ -18,6 +18,9 @@
     $comparison-table-separator-font-color: #333e48;
     $comparison-table-default-border-color: #e5eceb;
 
+    $comparison-table-trank-runnable-color: #F0F0F0;// #a6b365;
+    $comparison-table-track-range-bg-color: #F0F0F0;// #a4b162;
+    $comparison-table-track-thumb-bg-color: #11809f;
 
     .is-sticky {
         top:0;
@@ -226,102 +229,101 @@
     }
 
     input[type=range] {
-            -webkit-appearance: none;
-            width: 100%;
-            margin: 4px 0;
-    }
-    
-    input[type=range]:focus {
-            outline: none;
-    }
-    
-    input[type=range]::-webkit-slider-runnable-track {
-            width: 100%;
-            height: 8px;
-            cursor: pointer;
-            box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
-            background: #a4b162;
-            border-radius: 0px;
-            border: 1px solid rgba(0, 0, 0, 0);
-    }
-    
-    input[type=range]::-webkit-slider-thumb {
-            box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-            border: 1px solid #000000;
-            height: 16px;
-            width: 100px;
-            border-radius: 0px;
-            background: #48530d;
-            cursor: pointer;
-            -webkit-appearance: none;
-            margin-top: -5px;
-    }
-    
-    input[type=range]:focus::-webkit-slider-runnable-track {
-            background: #a6b365;
-    }
-    
-    input[type=range]::-moz-range-track {
-            width: 100%;
-            height: 8px;
-            cursor: pointer;
-            box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
-            background: #a4b162;
-            border-radius: 0px;
-            border: 1px solid rgba(0, 0, 0, 0);
-    }
-    
-    input[type=range]::-moz-range-thumb {
-            box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-            border: 1px solid #000000;
-            height: 16px;
-            width: 100px;
-            border-radius: 0px;
-            background: #48530d;
-            cursor: pointer;
-    }
-    
-    input[type=range]::-ms-track {
-            width: 100%;
-            height: 8px;
-            cursor: pointer;
-            background: transparent;
-            border-color: transparent;
-            color: transparent;
-    }
-    
-    input[type=range]::-ms-fill-lower {
-            background: #a2af5f;
-            border: 1px solid rgba(0, 0, 0, 0);
-            border-radius: 0px;
-            box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
-    }
-    
-    input[type=range]::-ms-fill-upper {
-            background: #a4b162;
-            border: 1px solid rgba(0, 0, 0, 0);
-            border-radius: 0px;
-            box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
-    }
-    
-    input[type=range]::-ms-thumb {
-            box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-            border: 1px solid #000000;
-            height: 16px;
-            width: 100px;
-            border-radius: 0px;
-            background: #48530d;
-            cursor: pointer;
-            height: 8px;
-    }
-    
-    input[type=range]:focus::-ms-fill-lower {
-            background: #a4b162;
-    }
-    
-    input[type=range]:focus::-ms-fill-upper {
-        background: #a6b365;
-    }
+        -webkit-appearance: none;
+        width: 100%;
+        margin: 4px 0;
+}
+
+input[type=range]:focus {
+        outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 16px;
+        cursor: pointer;
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+        background: $comparison-table-track-range-bg-color;
+        border-radius: 0px;
+        border: 1px solid rgba(0, 0, 0, 0);
+}
+
+input[type=range]::-webkit-slider-thumb {
+        box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+        border: 1px solid #000000;
+        height: 16px;
+        width: 100px;
+        border-radius: 8px;
+        background: $comparison-table-track-thumb-bg-color;
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -1px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+        background: $comparison-table-trank-runnable-color;
+}
+
+input[type=range]::-moz-range-track {
+        width: 100%;
+        height: 16px;
+        cursor: pointer;
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+        background: $comparison-table-track-range-bg-color;
+        border-radius: 0px;
+        border: 1px solid rgba(0, 0, 0, 0);
+}
+
+input[type=range]::-moz-range-thumb {
+        box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+        border: 1px solid #000000;
+        height: 16px;
+        width: 100px;
+        border-radius: 8px;
+        background: $comparison-table-track-thumb-bg-color;
+        cursor: pointer;
+}
+
+input[type=range]::-ms-track {
+        width: 100%;
+        height: 16px;
+        cursor: pointer;
+        background: transparent;
+        border-color: transparent;
+        color: transparent;
+}
+
+input[type=range]::-ms-fill-lower {
+        background: #a2af5f;
+        border: 1px solid rgba(0, 0, 0, 0);
+        border-radius: 0px;
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+}
+
+input[type=range]::-ms-fill-upper {
+        background: $comparison-table-track-range-bg-color;
+        border: 1px solid rgba(0, 0, 0, 0);
+        border-radius: 0px;
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+}
+
+input[type=range]::-ms-thumb {
+        box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+        border: 1px solid #000000;
+        height: 16px;
+        width: 100px;
+        border-radius: 8px;
+        background: $comparison-table-track-thumb-bg-color;
+        cursor: pointer;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+        background: $comparison-table-track-range-bg-color;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+    background: $comparison-table-trank-runnable-color;
+}
 }
 
 @include oCoreComponentsComparisonSliderTable;

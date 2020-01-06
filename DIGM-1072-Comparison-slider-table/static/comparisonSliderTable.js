@@ -269,14 +269,14 @@ var comparisonSliderTable = (function () {
             var scrollbarNoBorder = document.querySelector('.c-comparison-slider-table__scrollbar__no-border');
             
             var inputComparisonScrollBar = this.buildElement('input', { id: 'comparisonTableScrollBar', max: numberOfScrollClick, min: '1', step: '1', name: 'scrollbar', type: 'range', list: 'question_three_list',value: '1' });
-            var datalistComparisonScrollBar = this.buildElement('datalist', { id: 'question_three_list' });
+            //var datalistComparisonScrollBar = this.buildElement('datalist', { id: 'question_three_list' });
 
             while (scrollbarEl.firstChild) {
                 scrollbarEl.removeChild(scrollbarEl.firstChild);
             }
               
             scrollbarEl.appendChild(inputComparisonScrollBar);
-            scrollbarEl.appendChild(datalistComparisonScrollBar);
+            //scrollbarEl.appendChild(datalistComparisonScrollBar);
 
             var offsetHeight = document.querySelectorAll(this.id + ' table tr td')[0].offsetHeight
             scrollbarEl.setAttribute('style', 'top: ' + offsetHeight + 'px');
