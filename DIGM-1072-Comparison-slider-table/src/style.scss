@@ -301,7 +301,7 @@
 
     input[type=range]::-webkit-slider-runnable-track {
         background: $comparison-table-track-range-bg-color;
-        border-radius: 0px;
+        border-radius: 0;
         cursor: pointer;
         height: 28px;
         width: 100%;
@@ -326,7 +326,7 @@
 
     input[type=range]::-moz-range-track {
         background: $comparison-table-track-range-bg-color;
-        border-radius: 0px;
+        border-radius: 0;
         cursor: pointer;
         height: 28px;
         width: 100%;
@@ -351,12 +351,12 @@
 
     input[type=range]::-ms-fill-lower {
         background: $comparison-table-track-range-bg-color;
-        border-radius: 0px;
+        border-radius: 0;
     }
 
     input[type=range]::-ms-fill-upper {
         background: $comparison-table-track-range-bg-color;
-        border-radius: 0px;
+        border-radius: 0;
     }
 
     input[type=range]::-ms-thumb {
@@ -364,7 +364,7 @@
         border-radius: 8px;
         cursor: pointer;
         height: 14px;
-        margin-top: 0px;
+        margin-top: 0;
         width: 150px;
     }
 

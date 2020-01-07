@@ -10,7 +10,7 @@ var comparisonSliderTable = (function () {
     var CLASSNAME_SCROLLBAR = 'c-comparison-slider-table__scrollbar';
     var CLASSNAME_MOBILE_SEPARATOR = 'c-comparison-slider-table__mobile-separator';
     var CLASSNAME_MOBILE_SEPARATOR_HIDDEN = 'c-comparison-slider-table__mobile-separator-hidden';
-    
+
 
     function comparisonSliderTable(id, responsive) {
         if (id === null) return;
@@ -21,12 +21,14 @@ var comparisonSliderTable = (function () {
         this.scrollPosition = 1;
 
         this.numberTotalColumn = document.querySelectorAll(this.id + ' table')[0].rows[0].cells.length;
-        this.responsive = responsive.sort(function (a, b) { return b.breakpoint - a.breakpoint; });
+        this.responsive = responsive.sort(function (a, b) {
+            return b.breakpoint - a.breakpoint;
+        });
 
         this.buildHoverListener();
         this.buildNavigation();
         this.buildNavigationListener();
- 
+
         this.buildResponsive();
         this.buildResponsiveListener();
         this.buildScrollBar();
@@ -63,7 +65,7 @@ var comparisonSliderTable = (function () {
                 if (elements[i].className.includes(CLASSNAME_SCROLLBAR)) continue;
                 if (elements[i].className.includes(CLASSNAME_MOBILE_SEPARATOR)) continue;
                 if (elements[i].className.includes(CLASSNAME_MOBILE_SEPARATOR_HIDDEN)) continue;
-                elements[i].style = 'width: '+ width + '%';
+                elements[i].style = 'width: ' + width + '%';
             }
         },
         addClassNameToColumn: function (index, className) {
@@ -95,7 +97,7 @@ var comparisonSliderTable = (function () {
                 item.setAttribute(key, value);
             });
         },
-        moveColumnTo: function(firstIndexFrom, firstIndexTo, secondIndexFrom, secondIndexTo) {
+        moveColumnTo: function (firstIndexFrom, firstIndexTo, secondIndexFrom, secondIndexTo) {
             this.myTable.innerHTML = this.myClone.innerHTML;
             var table = document.querySelector(this.id + ' table');
             var rows = table.rows;
@@ -105,16 +107,16 @@ var comparisonSliderTable = (function () {
                     if (col[j].className.includes(CLASSNAME_SCROLLBAR)) continue;
                     col[j].classList.remove(CLASSNAME_IS_HIDDEN);
                 }
-                  
-                if (col[1].className.includes(CLASSNAME_SCROLLBAR) || 
+
+                if (col[1].className.includes(CLASSNAME_SCROLLBAR) ||
                     col[1].className.includes(CLASSNAME_MOBILE_SEPARATOR)) continue;
-         
+
                 var temp1 = col[firstIndexFrom];
-                var temp2 = col[secondIndexFrom];    
+                var temp2 = col[secondIndexFrom];
 
                 col[firstIndexFrom].parentNode.insertBefore(temp1, col[firstIndexTo]);
                 col[secondIndexFrom].parentNode.insertBefore(temp2, col[secondIndexTo]);
- 
+
                 for (var j = 3; j < col.length; j++) {
                     if (col[j].className.includes(CLASSNAME_SCROLLBAR)) continue;
                     col[j].classList.add(CLASSNAME_IS_HIDDEN);
@@ -122,7 +124,7 @@ var comparisonSliderTable = (function () {
             }
             this.buildHoverListener();
         },
-        buildElement: function(el, attributes, text) {
+        buildElement: function (el, attributes, text) {
             var element = document.createElement(el);
             var elementAttributes = Object.entries(attributes);
             for (var i = 0; i < elementAttributes.length; i++) {
@@ -155,11 +157,11 @@ var comparisonSliderTable = (function () {
             for (var i = 0; i < elements.length; i++) {
                 var element = elements[i];
                 element.addEventListener('mouseover', function () {
-                    if (this.className.includes(CLASSNAME_SEPARATOR) || 
+                    if (this.className.includes(CLASSNAME_SEPARATOR) ||
                         this.className.includes(CLASSNAME_SCROLLBAR) ||
                         this.className.includes(CLASSNAME_NO_BORDER) ||
-                        this.className.includes(CLASSNAME_GROUP_TITLE) || 
-                        this.className.includes( CLASSNAME_MOBILE_SEPARATOR) || 
+                        this.className.includes(CLASSNAME_GROUP_TITLE) ||
+                        this.className.includes(CLASSNAME_MOBILE_SEPARATOR) ||
                         this.className.includes(CLASSNAME_MOBILE_SEPARATOR_HIDDEN)) return;
                     self.addClassNameToColumn(self.getColumnIndex(this), CLASSNAME_IS_HIGHLIGHTED);
                 });
@@ -172,9 +174,9 @@ var comparisonSliderTable = (function () {
             var arrowNav = document.querySelectorAll(this.id + ' .c-comparison-slider-table__arrow-nav')[0];
             var arrowNavLeft = document.querySelectorAll(this.id + ' .c-comparison-slider-table__arrow-nav__left')[0];
             var arrowNavRight = document.querySelectorAll(this.id + ' .c-comparison-slider-table__arrow-nav__right')[0];
- 
-            if (arrowNav === undefined ) return;
-            if (arrowNavLeft === undefined|| arrowNavRight === undefined) {
+
+            if (arrowNav === undefined) return;
+            if (arrowNavLeft === undefined || arrowNavRight === undefined) {
                 arrowNav.classList.add(CLASSNAME_IS_HIDDEN);
                 return;
             }
@@ -194,7 +196,7 @@ var comparisonSliderTable = (function () {
             var arrowNavLeft = document.querySelectorAll(this.id + ' .c-comparison-slider-table__arrow-nav__left')[0];
             var arrowNavRight = document.querySelectorAll(this.id + ' .c-comparison-slider-table__arrow-nav__right')[0];
 
-            if (arrowNav === undefined ) return;
+            if (arrowNav === undefined) return;
             if (arrowNavLeft === undefined || arrowNavRight === undefined) {
                 arrowNav.classList.add(CLASSNAME_IS_HIDDEN);
                 return;
@@ -234,9 +236,9 @@ var comparisonSliderTable = (function () {
             });
         },
         buildResponsive: function () {
-            var width = window.innerWidth
-                || document.documentElement.clientWidth
-                || document.body.clientWidth;
+            var width = window.innerWidth ||
+                document.documentElement.clientWidth ||
+                document.body.clientWidth;
 
             if (width === null || width === undefined) return;
 
@@ -262,7 +264,7 @@ var comparisonSliderTable = (function () {
         },
         buildResponsiveListener: function () {
             var self = this;
-   
+
             window.addEventListener('resize', self.debounced(100, function () {
                 self.myTable.innerHTML = self.myClone.innerHTML;
 
@@ -278,25 +280,34 @@ var comparisonSliderTable = (function () {
                 self.buildMobileDropdown();
             }))
         },
-        buildScrollBar: function() {
-            var numberOfScrollClick = this.numberTotalColumn -  (this.maxNumberColumn - 1);
+        buildScrollBar: function () {
+            var numberOfScrollClick = this.numberTotalColumn - (this.maxNumberColumn - 1);
             if (numberOfScrollClick === 1) return;
             var scrollbarEl = document.querySelector('.c-comparison-slider-table__scrollbar');
             var scrollbarNoBorder = document.querySelector('.c-comparison-slider-table__scrollbar__no-border');
-            
-            var inputComparisonScrollBar = this.buildElement('input', { id: 'comparisonTableScrollBar', max: numberOfScrollClick, min: '1', step: '1', name: 'scrollbar', type: 'range', list: 'question_three_list',value: '1' });
+
+            var inputComparisonScrollBar = this.buildElement('input', {
+                id: 'comparisonTableScrollBar',
+                max: numberOfScrollClick,
+                min: '1',
+                step: '1',
+                name: 'scrollbar',
+                type: 'range',
+                list: 'question_three_list',
+                value: '1'
+            });
 
             while (scrollbarEl.firstChild) {
                 scrollbarEl.removeChild(scrollbarEl.firstChild);
             }
-              
+
             scrollbarEl.appendChild(inputComparisonScrollBar);
 
             var offsetHeight = document.querySelectorAll(this.id + ' table tr td')[0].offsetHeight
             scrollbarEl.setAttribute('style', 'top: ' + offsetHeight + 'px');
             scrollbarNoBorder.setAttribute('style', 'top: ' + offsetHeight + 'px');
         },
-        buildScrollBarListener: function() {
+        buildScrollBarListener: function () {
             var self = this;
             var scrollBar = document.getElementById('comparisonTableScrollBar');
             if (scrollBar === null) return;
@@ -315,33 +326,43 @@ var comparisonSliderTable = (function () {
                 }
             });
         },
-        buildMobileDropdown: function() {
-           var select1 = document.querySelector('#select1');
-           var select2 = document.querySelector('#select2');
-           select1.innerHTML = '';
-           select2.innerHTML = '';
-           var headerTitleList = document.querySelectorAll('.c-comparison-slider-table__header-title');
+        buildMobileDropdown: function () {
+            var select1 = document.querySelector('#select1');
+            var select2 = document.querySelector('#select2');
+            select1.innerHTML = '';
+            select2.innerHTML = '';
+            var headerTitleList = document.querySelectorAll('.c-comparison-slider-table__header-title');
 
-           for (var i = 0; i < headerTitleList.length; i++ ) {
-                select1.add(this.buildElement('option', i === 0 ? { value: i + 1, selected: 'selected' } : { value: i + 1 }, headerTitleList[i].innerHTML ));
-                select2.add(this.buildElement('option', i === 1 ? { value: i + 1, selected: 'selected' } : { value: i + 1 }, headerTitleList[i].innerHTML ));
-           }
+            for (var i = 0; i < headerTitleList.length; i++) {
+                select1.add(this.buildElement('option', i === 0 ? {
+                    value: i + 1,
+                    selected: 'selected'
+                } : {
+                    value: i + 1
+                }, headerTitleList[i].innerHTML));
+                select2.add(this.buildElement('option', i === 1 ? {
+                    value: i + 1,
+                    selected: 'selected'
+                } : {
+                    value: i + 1
+                }, headerTitleList[i].innerHTML));
+            }
         },
-        buildMobileDropdownListener: function() {   
+        buildMobileDropdownListener: function () {
             var self = this;
             var select1 = document.querySelector('#select1');
             var select2 = document.querySelector('#select2');
             var index1 = 1;
             var index2 = 2;
 
-            select1.addEventListener('change', function() {
+            select1.addEventListener('change', function () {
                 index1 = this.value;
-                self.moveColumnTo(index1 , 1, index2, 2)
+                self.moveColumnTo(index1, 1, index2, 2)
             });
 
-            select2.addEventListener('change', function() {
+            select2.addEventListener('change', function () {
                 index2 = this.value;
-                self.moveColumnTo(index1 , 1, index2, 2)
+                self.moveColumnTo(index1, 1, index2, 2)
             });
         }
     }
@@ -350,8 +371,7 @@ var comparisonSliderTable = (function () {
 })();
 
 
-var responsive = [
-    {
+var responsive = [{
         breakpoint: 1230, // screens greater than >= 1024px
         settings: {
             slidesToShow: 4,
@@ -383,9 +403,36 @@ var responsive = [
     }
 ];
 
+// Polyfill for ie 11 - string.includes
+if (!String.prototype.includes) {
+    String.prototype.includes = function (search, start) {
+        'use strict';
+
+        if (search instanceof RegExp) {
+            throw TypeError('first argument must not be a RegExp');
+        }
+        if (start === undefined) {
+            start = 0;
+        }
+        return this.indexOf(search, start) !== -1;
+    };
+}
+
+// Polyfill for ie 11 - Object.entries
+if (!Object.entries) {
+    Object.entries = function (obj) {
+        var ownProps = Object.keys(obj),
+            i = ownProps.length,
+            resArray = new Array(i); // preallocate the Array
+        while (i--)
+            resArray[i] = [ownProps[i], obj[ownProps[i]]];
+
+        return resArray;
+    };
+}
 if (typeof document !== 'undefined') {
 
-    document.currentScript = document.currentScript || (function() {
+    document.currentScript = document.currentScript || (function () {
         var scripts = document.getElementsByTagName('script');
         return scripts[scripts.length - 1];
     })();
@@ -394,11 +441,11 @@ if (typeof document !== 'undefined') {
     document.addEventListener('DOMContentLoaded', function () {
         var id = componentId
         var c = new comparisonSliderTable(id, responsive);
-    
+
         var elements = document.querySelectorAll('.c-comparison-slider-table__arrow-nav');
         Stickyfill.add(elements);
     });
-    
+
 }
 
 var _export = typeof module !== 'undefined' ? module.exports : {};
