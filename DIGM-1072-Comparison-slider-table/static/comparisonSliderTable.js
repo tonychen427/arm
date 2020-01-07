@@ -109,9 +109,12 @@ var comparisonSliderTable = (function () {
                 if (col[1].className.includes(CLASSNAME_SCROLLBAR) || 
                     col[1].className.includes(CLASSNAME_MOBILE_SEPARATOR)) continue;
          
-                col[firstIndexFrom].parentNode.insertBefore(col[firstIndexFrom], col[firstIndexTo]);
-                col[secondIndexFrom].parentNode.insertBefore(col[secondIndexFrom], col[secondIndexTo]);
+                var temp1 = col[firstIndexFrom];
+                var temp2 = col[secondIndexFrom];    
 
+                col[firstIndexFrom].parentNode.insertBefore(temp1, col[firstIndexTo]);
+                col[secondIndexFrom].parentNode.insertBefore(temp2, col[secondIndexTo]);
+ 
                 for (var j = 3; j < col.length; j++) {
                     if (col[j].className.includes(CLASSNAME_SCROLLBAR)) continue;
                     col[j].classList.add(CLASSNAME_IS_HIDDEN);
