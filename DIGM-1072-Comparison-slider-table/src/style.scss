@@ -8,7 +8,7 @@
 /**
  * TODO: add docs
  */
- @mixin oCoreComponentsComparisonSliderTable {
+@mixin oCoreComponentsComparisonSliderTable {
 
     $comparison-table-arrow-color: #11809f;
     $comparison-table-arrow-disable-color: #ececec;
@@ -17,23 +17,25 @@
     $comparison-table-separator-bg-color: #e5eceb;
     $comparison-table-separator-font-color: #333e48;
     $comparison-table-default-border-color: #e5eceb;
+    $comparison-table-border-color: #7D868c;
 
-    $comparison-table-trank-runnable-color: #F0F0F0;// #a6b365;
-    $comparison-table-track-range-bg-color: #F0F0F0;// #a4b162;
-    $comparison-table-track-thumb-bg-color: #11809f;
+    $comparison-table-trank-runnable-color: #EFEFEF; // #a6b365;
+    $comparison-table-track-range-bg-color: #E5ECEB; // #a4b162;
+    $comparison-table-track-thumb-bg-color: #11809F;
 
     .is-sticky {
-        top:0;
+        top: 0;
         position: sticky;
         background-color: #fff;
     }
-    
+
     .c-comparison-slider-table {
         margin-top: 100px;
 
         &__slider {
-            padding: 35px;;
+            padding: 35px;
         }
+
         &__arrow-nav {
             color: $comparison-table-arrow-color;
             padding: 0 10px;
@@ -49,7 +51,8 @@
             float: right;
         }
 
-        &__arrow-nav__left, &__arrow-nav__right {
+        &__arrow-nav__left,
+        &__arrow-nav__right {
             cursor: pointer;
             display: inline-block;
             font-size: 35px;
@@ -71,48 +74,80 @@
                 }
             }
         }
+
         &__header-title {
             font-weight: bold;
             font-size: 20px;
             padding: 16px 0;
+
+            @media (max-width: 1024px) {
+                display: none;
+            }
         }
+
+        &__mobile-separator {
+            border-bottom: 1px solid $comparison-table-border-color !important;
+            font-weight: bold;
+            font-size: 16px;
+
+            &-hidden {
+                display: none !important;
+                ;
+            }
+
+            @media (min-width: 1024px) {
+                display: none !important;
+            }
+        }
+
         &__mobile-dropdown {
             display: table;
             width: 100%;
 
-            > span {
+            >span {
                 display: table-cell;
                 padding: 5px;
             }
+
             @media (min-width: 1024px) {
                 display: none;
             }
         }
+
         table {
             border-collapse: inherit;
             margin: inherit;
             width: 100%;
 
-            tr th, tr td {
-                    border-bottom: 1px solid $comparison-table-default-border-color;
-                
+            tr th,
+            tr td {
+                border-bottom: 1px solid $comparison-table-default-border-color;
 
-                &:first-child{
+                @media (max-width: 1024px) {
+                    border-bottom: none;
+                }
+
+                &:first-child {
                     border-right: none;
                     font-weight: bold;
                     font-size: 20px;
+
                     @media only screen and (max-device-width: 736px) {
                         display: none;
                     }
+
                     @media (max-width: 1024px) {
                         display: none;
                     }
 
                 }
-                &:last-child, &.no-border-on-last-cell {
+
+                &:last-child,
+                &.no-border-on-last-cell {
                     border-right: none;
                 }
             }
+
             thead tr {
                 th {
                     &.is-hidden {
@@ -120,6 +155,7 @@
                     }
                 }
             }
+
             tbody tr {
                 &:nth-child(odd) {
                     background-color: transparent;
@@ -137,6 +173,7 @@
                     &.c-comparison-slider-table__no-border {
                         border: none;
                     }
+
                     &.c-comparison-slider-table__no-border-center {
                         border: none;
                         font-size: 16px;
@@ -159,25 +196,43 @@
                     }
 
                     &.c-comparison-slider-table__card {
-                        border: 0;
-                        
-                        
+
+                        >div {
+                            border: 0;
+                            text-align: left;
+                        }
+
+
+                        @media (max-width: 1024px) {
+
+                            >div {
+                                margin-left: auto;
+                                margin-right: auto;
+                                text-align: center;
+                            }
+
+
+                            img {
+                                margin-bottom: 16px;
+                            }
+                        }
+
                     }
 
-                    &.c-comparison-slider-table__card > div {
+                    &.c-comparison-slider-table__card>div {
                         border-style: solid;
                         border-width: 2px;
                         -webkit-border-image: -webkit-gradient(linear, 0 100%, 0 0, from(#e5eceb), to(rgba(0, 0, 0, 0))) 1 100%;
-                        -webkit-border-image: -webkit-linear-gradient(bottom,#e5eceb, rgba(0,0,0,0)) 1 100%;
-                        -moz-border-image: -moz-linear-gradient(bottom, #e5eceb, rgba(0,0,0,0)) 1 100%;
-                        -o-border-image: -o-linear-gradient(bottom, #e5eceb, rgba(0,0,0,0)) 1 100%;
-                        border-image: linear-gradient(to top, #e5eceb, rgba(0,0,0,0)) 1 100%;
+                        -webkit-border-image: -webkit-linear-gradient(bottom, #e5eceb, rgba(0, 0, 0, 0)) 1 100%;
+                        -moz-border-image: -moz-linear-gradient(bottom, #e5eceb, rgba(0, 0, 0, 0)) 1 100%;
+                        -o-border-image: -o-linear-gradient(bottom, #e5eceb, rgba(0, 0, 0, 0)) 1 100%;
+                        border-image: linear-gradient(to top, #e5eceb, rgba(0, 0, 0, 0)) 1 100%;
                         border-left: 0;
                         margin: -15px;
                         padding: 15px;
                     }
 
-                    &.c-comparison-slider-table__card.no-border-on-last-cell > div {
+                    &.c-comparison-slider-table__card.no-border-on-last-cell>div {
                         border-width: 0;
                     }
 
@@ -209,10 +264,14 @@
         .c-comparison-slider-table {
 
             table {
-                thead tr, tbody tr {
+
+                thead tr,
+                tbody tr {
                     display: inherit !important;
                 }
-                thead tr:not(:last-child), tbody tr:not(:last-child) {
+
+                thead tr:not(:last-child),
+                tbody tr:not(:last-child) {
                     display: block;
                     margin-bottom: inherit;
                 }
@@ -222,7 +281,9 @@
 
     @media (min-width: 768px) {
         .c-comparison-slider-table table tr {
-            th:not(:first-child), td:not(:first-child) {
+
+            th:not(:first-child),
+            td:not(:first-child) {
                 border-left: none;
             }
         }
@@ -230,100 +291,90 @@
 
     input[type=range] {
         -webkit-appearance: none;
-        width: 100%;
         margin: 4px 0;
-}
+        width: 100%;
+    }
 
-input[type=range]:focus {
+    input[type=range]:focus {
         outline: none;
-}
+    }
 
-input[type=range]::-webkit-slider-runnable-track {
-        width: 100%;
-        height: 16px;
-        cursor: pointer;
-        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+    input[type=range]::-webkit-slider-runnable-track {
         background: $comparison-table-track-range-bg-color;
         border-radius: 0px;
-        border: 1px solid rgba(0, 0, 0, 0);
-}
-
-input[type=range]::-webkit-slider-thumb {
-        box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-        border: 1px solid #000000;
-        height: 16px;
-        width: 100px;
-        border-radius: 8px;
-        background: $comparison-table-track-thumb-bg-color;
         cursor: pointer;
+        height: 28px;
+        width: 100%;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
         -webkit-appearance: none;
-        margin-top: -1px;
-}
-
-input[type=range]:focus::-webkit-slider-runnable-track {
-        background: $comparison-table-trank-runnable-color;
-}
-
-input[type=range]::-moz-range-track {
-        width: 100%;
-        height: 16px;
+        background: $comparison-table-track-thumb-bg-color url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVgAAAFYCAYAAAAWbORAAAAABmJLR0QA/wD/AP+gvaeTAAAJTUlEQVR4nO3dzatcdx3H8U8ebozaUjchaBpTxIAtbXTrxopFqC1JRaH2ARf1L1CoirYglG7E1opWmwpCG11Ii2B9QEGhRUG3NrZFUs0DtdEkO22Sa2tuXJy7uISckTDznd/MOa8X/OCEuYXv+c2cdy7nnt4kAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABXbFPrAQZsc5IPJrk2yc71Py+ri0lOJfl7kheTXGg7TjNbknwoya507+kyXz9r6d7T15IcXv8zLLzdSb6b7sN7cYDrdJKDSfbMasOWwHVJnkxyJu33v2L9M8nj6f7igIW0KcmXk5xL+wtmHms1yYNZ7u/i/p9NSb6W7lxb7/c81tkk989k52CGtiT5UdpfIC3Ws0lWpt/ChbOS5Cdpv78t1qF0n2lYCN9K+4ui5frB9Fu4cA6m/b62XI9Mv4UwvdvT/mJYhPWpaTdygdyZ9vu5COvWaTcSprElyUtpfyEswjqSYdwqWEny17Tfz0VYh7PcT780N+QfUMzDR5M8P+H11SQ/SxfhN+cxUJGVJDckuSPJOyZ83W1JfjWXiercnuQXE14/l+S5JK8keWsuE9XYluTGJAeSbJ/wdTcn+d1cJoJLPJb+v/1fT/KBdqOVeH+SE+k/54PtRpuZ76f//I6n24MhuT7JyfSf86PtRmPsfpv+D+ZdDeeqdEf6z/kPDeealT+m//wONJyr0t3pP+ffNJyLkXs5/R/MHQ3nqnR1uv+Tq+87vGV3PJc/twtJrmo3Vqkd6f8cv9xwrqXnBvZ03jnhtTNzm2K+/p3u3vLlTNqPZdF3DqtJ3pjnIHM06bM6hPe0GYEFKCKwAEUEFqCIwAIUEViAIgLL7vXFcOyJ3+26EAR23O5KcizJ0SSfaTwLs3FfuvfzWJL9jWcZPYEdt7vT/cKarUnuaTwLs3Fvuut6Jd7T5gR23Lb1HLO8vKcLRGABiggsQBGBHbdXNxwfaTYFDNTW1gPQ1IPpfktU0v3rqcAMCey4/SvJF1oPAUPlFgFAEYEFKCKwAEUEFqCIwAIU8RTBuG1Ocme6f9zu2SRrbceBYRHYcXsgyUPrx3uTPNxwFhgctwjG7cM9x8AMCOy4bdpw7LMAM+aiAigisABFBBagiMACFBFYgCICC1BEYAGKCCxAEYEFKCKwAEUEFqCIwAIUEViAIgILUERgAYoI7Litbjg+32wKGCiBHbenk1xYX4cazwKD49/kGrefJtm1fnyq5SAwRAKLsEIRtwgAiggsQBGBBSgisABFBBagiMCO274kh5O8mOSmxrPA4AjsuH01XVj3rR8DMySw43bNhuN3NZsCBkpgAYoILEARgQUoIrAARQQWoIjAAhQRWIAiAgtQRGABiggsQBGBBSgisABFBBagiMACFBFYgCICC1BEYAGKCCxAEYEFKCKwAEUEFqCIwAIUEViAIgILUERgAYoILEARgQUoIrAARQQWoIjAAhQRWIAiAgtQRGABiggsQBGBBSgisABFBBagiMACFBFYgCICC1BEYAGKCCxAEYEFKCKwAEUEFqCIwAIUEViAIgILUERgAYoILEARgQUoIrAARQQWoIjAAhQRWIAiAgtQRGABiggsQBGBBSgisABFBBagiMACFBFYgCICC1BEYAGKCCxAEYEFKCKwAEUEFqCIwAIUEViAIgILUERgAYoILEARgQUoIrAARQQWoIjAAhQRWIAiAgtQRGABiggsQBGBBSgisABFBBagiMACFBFYgCICC1BEYAGKCCxAEYEFKCKwAEUEFqCIwAIUEViAIgILUERgAYoILEARgQUoIrAARQQWoIjAAhQRWBiWoxuO/9ZsCpIkW1sPAMzUl5KsJVlN8nDjWUZPYGFYTif5XOsh6LhFAFBEYAGKCCxAEYEFKCKwAEUEFqCIwAIUEViAIgILUERgAYoILEARgQUoIrAARQQWoIjAAhQRWIAiAgtQRGABiggsQBGBBSgisABFBBagiMDC8OxJsqv1EAgsDM19SY4mOZZkf+NZRk9gYVjuTXddryS5p/EsoyewMCzbeo5pQGABiggsQBGBBSgisABFBBagiMACFBFYgCICC1BEYAGKCCxAEYEFKCKwAEUEFqCIwAIUEViAIgILw7LWc0wDAgvD8sKG4+dbDUFna+sBgJl6KMkrSf6T5LnGs4yewMKwrCV5pvUQdNwiACgisABFBBagiMACFBFYgCICC8OyM8nBJI8luabxLKPnMS0Ylm8k+ez68X+TfLHhLKPnO1gYlus2HL+v1RB0BBagiMACFBHYcVvdcHy+2RTM0vmeYxoQ2HF7OsmF9XWo8SzMxlNJLqb7AdcP244C0zme7sN8ubUsdq6vK3E2lz/nM7MdrYkzufy5nW051BV6d5IdV/jf9H2Oj890spHxmBanWg/AzP2j9QB03CIAKCKwAEUEFqCIwAIUEViAIgI7nUmP7lzpYzLL4uok23teW6ZHmfr0ncP2JFfNc5A5mvRZHcJ72ozATmfS4zC3zG2K+bol/Z+b1+c5SJG+93Rzko/Nc5A5+viE14bwnrKkvpn+B7RPJrm+3Wgl9iY5kf5zfqLdaDPzZCY/dL+32WQ1bkj3We0750fajbb8NrUeYMndnOSFCa+vJvl5kj8neXMeAxVZSXJjkgNJ3j7h6z6R5NdzmajObUl+OeH1c+ne05eSvDWXiWpsS7Ivyf4kb5vwdR9J8vu5TASX2JzkcPr/9h/T+ku6EC+7lSRH0n4/F2H9KW4j0titaX8hLML65LQbuUA+nfb7uQhr0r1ZmJtH0/5iaLken34LF84Tab+vLdfXp99CmI0t6X7dX+uLosX6cYZxa+BSK0meSfv9bbGeSveZhoVyf/p/ld/Q1rkkX8mwf1C6KckD6X5xdev9nsd6I8nnZ7JzUGRXku+ke56y9QVTsU4l+V6S3bPasCXw3nS3DE6n/f5XrJNJvp3kPbPaMDpD/u6jtc1Jbkp3ce7Mcv80di1dWF9L98jZhbbjNLMl3aNN12Y47+mJdI+crbUdBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAdf8DEYrgrSQHmsQAAAAASUVORK5CYII%3D);
+        background-size: 5%;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 8px;
         cursor: pointer;
-        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+        height: 14px;
+        margin-top: 8px;
+        width: 150px;
+    }
+
+    input[type=range]:focus::-webkit-slider-runnable-track {
+        background: $comparison-table-trank-runnable-color;
+    }
+
+    input[type=range]::-moz-range-track {
         background: $comparison-table-track-range-bg-color;
         border-radius: 0px;
-        border: 1px solid rgba(0, 0, 0, 0);
-}
-
-input[type=range]::-moz-range-thumb {
-        box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-        border: 1px solid #000000;
-        height: 16px;
-        width: 100px;
-        border-radius: 8px;
-        background: $comparison-table-track-thumb-bg-color;
         cursor: pointer;
-}
-
-input[type=range]::-ms-track {
+        height: 28px;
         width: 100%;
-        height: 16px;
+    }
+
+    input[type=range]::-moz-range-thumb {
+        background: $comparison-table-track-thumb-bg-color;
+        border-radius: 8px;
         cursor: pointer;
+        height: 14px;
+        width: 150px;
+    }
+
+    input[type=range]::-ms-track {
         background: transparent;
         border-color: transparent;
         color: transparent;
-}
-
-input[type=range]::-ms-fill-lower {
-        background: #a2af5f;
-        border: 1px solid rgba(0, 0, 0, 0);
-        border-radius: 0px;
-        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
-}
-
-input[type=range]::-ms-fill-upper {
-        background: $comparison-table-track-range-bg-color;
-        border: 1px solid rgba(0, 0, 0, 0);
-        border-radius: 0px;
-        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
-}
-
-input[type=range]::-ms-thumb {
-        box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-        border: 1px solid #000000;
-        height: 16px;
-        width: 100px;
-        border-radius: 8px;
-        background: $comparison-table-track-thumb-bg-color;
         cursor: pointer;
-}
+        height: 28px;
+        width: 100%;
+    }
 
-input[type=range]:focus::-ms-fill-lower {
+    input[type=range]::-ms-fill-lower {
         background: $comparison-table-track-range-bg-color;
-}
+        border-radius: 0px;
+    }
 
-input[type=range]:focus::-ms-fill-upper {
-    background: $comparison-table-trank-runnable-color;
-}
+    input[type=range]::-ms-fill-upper {
+        background: $comparison-table-track-range-bg-color;
+        border-radius: 0px;
+    }
+
+    input[type=range]::-ms-thumb {
+        background: $comparison-table-track-thumb-bg-color;
+        border-radius: 8px;
+        cursor: pointer;
+        height: 14px;
+        margin-top: 0px;
+        width: 150px;
+    }
+
+    input[type=range]:focus::-ms-fill-lower {
+        background: $comparison-table-track-range-bg-color;
+    }
+
+    input[type=range]:focus::-ms-fill-upper {
+        background: $comparison-table-trank-runnable-color;
+    }
 }
 
 @include oCoreComponentsComparisonSliderTable;
