@@ -105,11 +105,10 @@ var comparisonSliderTable = (function () {
                     if (col[j].className.includes(CLASSNAME_SCROLLBAR)) continue;
                     col[j].classList.remove(CLASSNAME_IS_HIDDEN);
                 }
-            
-               
-                if (col[1].className.includes(CLASSNAME_SCROLLBAR)) continue;
-                if (col[1].className.includes(CLASSNAME_MOBILE_SEPARATOR)) continue;
-
+                  
+                if (col[1].className.includes(CLASSNAME_SCROLLBAR) || 
+                    col[1].className.includes(CLASSNAME_MOBILE_SEPARATOR)) continue;
+         
                 col[firstIndexFrom].parentNode.insertBefore(col[firstIndexFrom], col[firstIndexTo]);
                 col[secondIndexFrom].parentNode.insertBefore(col[secondIndexFrom], col[secondIndexTo]);
 
