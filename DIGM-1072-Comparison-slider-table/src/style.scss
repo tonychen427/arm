@@ -8,6 +8,15 @@
 /**
  * TODO: add docs
  */
+
+ @mixin sticky {
+    top: 0;
+    position: sticky;
+    background-color: #fff;
+    @media (max-width: 1024px) {
+        top: 60px;
+    } 
+}
 @mixin oCoreComponentsComparisonSliderTable {
 
     $comparison-table-arrow-color: #11809f;
@@ -22,15 +31,6 @@
     $comparison-table-trank-runnable-color: #EFEFEF; // #a6b365;
     $comparison-table-track-range-bg-color: #E5ECEB; // #a4b162;
     $comparison-table-track-thumb-bg-color: #11809F;
-
-    .is-sticky {
-        top: 0;
-        position: sticky;
-        background-color: #fff;
-        @media (max-width: 1024px) {
-            top: 60px;
-        }
-    }
 
     .c-comparison-slider-table {
         margin-top: 100px;
@@ -104,8 +104,9 @@
         }
 
         &__mobile-dropdown {
+            @include sticky();
             display: table;
-            top: 0;
+            top: 0 !important;
             width: 100%;
 
             >span {
@@ -175,6 +176,7 @@
                     vertical-align: top;
 
                     &.c-comparison-slider-table__no-border {
+                        @include sticky();
                         border: none;
                     }
 
@@ -187,7 +189,12 @@
                     }
 
                     &.c-comparison-slider-table__scrollbar {
+                        @include sticky();
                         padding: 0;
+
+                        &__no-border {
+                            @include sticky();
+                        }
                     }
 
                     &.c-comparison-slider-table__separator {
@@ -200,6 +207,7 @@
                     }
 
                     &.c-comparison-slider-table__card {
+                        @include sticky();
 
                         >div {
                             border: 0;
