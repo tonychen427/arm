@@ -10,6 +10,9 @@
   top: 0;
   position: sticky;
   background-color: #fff; }
+  @media (max-width: 1024px) {
+    .is-sticky {
+      top: 60px; } }
 
 .c-comparison-slider-table {
   margin-top: 100px; }
@@ -55,11 +58,12 @@
         display: none !important; } }
   .c-comparison-slider-table__mobile-dropdown {
     display: table;
+    top: 0;
     width: 100%; }
     .c-comparison-slider-table__mobile-dropdown > span {
       display: table-cell;
       padding: 5px; }
-    @media (min-width: 1024px) {
+    @media (min-width: 1025px) {
       .c-comparison-slider-table__mobile-dropdown {
         display: none; } }
   .c-comparison-slider-table table {
