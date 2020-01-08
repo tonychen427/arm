@@ -1,0 +1,24 @@
+/**
+ * o-core - components - Comparison Slider Table
+ *
+ * @name _components.comparison-slider-table.scss
+ */
+
+
+/**
+ * TODO: add docs
+ */
+ @mixin oCoreComponentsComparisonSliderTable {
+    ads-dropdown {
+        border: 1px solid green;
+    }
+
+    ads-dropdown-item {
+        border: 1px solid blue;
+    }
+    .c-dropdown__item {
+        color: red;
+    }
+}
+
+@include oCoreComponentsComparisonSliderTable;
