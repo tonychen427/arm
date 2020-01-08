@@ -14,12 +14,45 @@
 </head>
 
 <body>
-    <ads-dropdown>
-        <ads-dropdown-item value="en" icon="far fa-globe-americas">English</ads-dropdown-item>
-        <ads-dropdown-item value="de" icon="far fa-globe-americas">Deutsch</ads-dropdown-item>
-        <ads-dropdown-item value="fr" icon="far fa-globe-americas" selected="true">français</ads-dropdown-item>
-        <ads-dropdown-item href="http://www.arm.com">More...</ads-dropdown-item>
-      </ads-dropdown>
+    <ads-dropdown id="footer-language-dropdown"></ads-dropdown>
+    <script src="./static/dropdown.js"></script>
+    <ads-dropdown class="is-primary" id="primary"></ads-dropdown>
+    <script>
+        (function () {
+            var data = {
+                "default": {
+                    "label": "English",
+                    "value": "en",
+                    "icon": "fas fa-globe",
+                },
+                "items": [{
+                        "label": "Japanese",
+                        "value": "jp",
+                        "icon": ""
+                    },
+                    {
+                        "label": "Chinese",
+                        "value": "cn",
+                        "icon": ""
+                    },
+                    {
+                        "label": "English",
+                        "value": "en",
+                        "icon": ""
+                    },
+                    {
+                        "label": "German",
+                        "value": "de",
+                        "icon": ""
+                    }
+                ]
+            };
+
+            document.querySelector('#primary').data = data;
+        })();
+    </script>
+
+
 </body>
 
 </html>
