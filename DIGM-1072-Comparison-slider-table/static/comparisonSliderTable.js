@@ -14,7 +14,7 @@ var comparisonSliderTable = (function () {
 
     function comparisonSliderTable(id, responsive) {
         if (id === null) return;
-        this.id = '#c-c90a40e7-fc69-49c3-860c-5d8e6f2a46b8';
+        this.id = "#" + id;
         this.myTable = document.querySelector(this.id + ' .c-comparison-slider-table__slider table');
         this.myClone = this.myTable.cloneNode(true);
         this.maxNumberColumn = 3;

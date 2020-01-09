@@ -19,34 +19,34 @@
     <ads-dropdown class="is-primary" id="primary"></ads-dropdown>
     <script>
         (function () {
-            var data = {
-                "default": {
-                    "label": "English",
-                    "value": "en",
-                    "icon": "fas fa-globe",
-                },
-                "items": [{
-                        "label": "Japanese",
-                        "value": "jp",
-                        "icon": ""
-                    },
-                    {
-                        "label": "Chinese",
-                        "value": "cn",
-                        "icon": ""
-                    },
-                    {
-                        "label": "English",
-                        "value": "en",
-                        "icon": ""
-                    },
-                    {
-                        "label": "German",
-                        "value": "de",
-                        "icon": ""
-                    }
-                ]
-            };
+            var data =  [
+        {
+          "label": "Japanese",
+          "value": "jp",
+          "icon": "far fa-globe-americas",
+        },
+        {
+          "label": "Chinese",
+          "value": "cn",
+          "icon": "far fa-globe-americas",
+          "selected": true // This is the new way of setting the default option
+        },
+        {
+          "label": "English",
+          "value": "en",
+          "icon": "far fa-globe-americas"
+        },
+        {
+          "label": "German",
+          "value": "de",
+          "icon": "far fa-globe-americas"
+        },
+        {
+          "label": "More...",
+          "icon": "far fa-globe-americas",
+          "href": "https://www.arm.com"
+        }
+      ];
 
             document.querySelector('#primary').data = data;
         })();

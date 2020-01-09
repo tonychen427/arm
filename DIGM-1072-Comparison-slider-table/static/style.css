@@ -173,7 +173,6 @@
 
 input[type=range] {
   -webkit-appearance: none;
-  margin: 4px 0;
   width: 100%; }
 
 input[type=range]:focus {
