@@ -1,3 +1,4 @@
+
 /**
  * o-core - components - Comparison Slider Table
  *
@@ -6,15 +7,15 @@
 
 
 /**
- * TODO: add docs
- */
+* Comparison Slider Table
+*/
 
- @mixin sticky {
+@mixin sticky {
     top: 0;
     position: sticky;
     background-color: #fff;
     @media (max-width: 1024px) {
-        top: 60px;
+        top: 110px;
     } 
 }
 @mixin oCoreComponentsComparisonSliderTable {
@@ -33,7 +34,11 @@
     $comparison-table-track-thumb-bg-color: #11809F;
 
     .c-comparison-slider-table {
-        margin-top: 100px;
+        margin-top: 50px;
+
+        .is-hidden {
+            display: none !important;
+        }
 
         &__slider {
             padding: 35px;
@@ -46,7 +51,7 @@
             top: 250px;
 
             &.is-hidden {
-                visibility: hidden;
+                visibility: hidden !important;
             }
         }
 
@@ -65,9 +70,6 @@
                 color: $comparison-table-arrow-hover-color;
             }
 
-            &.is-hidden {
-                display: none !important;
-            }
 
             &.is-arrow-end {
                 color: $comparison-table-arrow-disable-color;
@@ -106,7 +108,7 @@
         &__mobile-dropdown {
             @include sticky();
             display: table;
-            top: 0 !important;
+            top: 50px !important;
             width: 100%;
 
             >span {
@@ -153,13 +155,6 @@
                 }
             }
 
-            thead tr {
-                th {
-                    &.is-hidden {
-                        display: none !important;
-                    }
-                }
-            }
 
             tbody tr {
                 &:nth-child(odd) {
@@ -209,6 +204,9 @@
                     &.c-comparison-slider-table__card {
                         @include sticky();
 
+                        &.is-offset-top {
+                            top: 60px;
+                        }
                         >div {
                             border: 0;
                             text-align: left;
@@ -252,9 +250,6 @@
                         background-color: $comparison-table-highlighted-color;
                     }
 
-                    &.is-hidden {
-                        display: none !important;
-                    }
                 }
             }
         }
@@ -274,6 +269,10 @@
 
     @media (max-width: 767px) {
         .c-comparison-slider-table {
+
+            &__slider {
+                padding: 0;
+            }
 
             table {
 
@@ -387,5 +386,7 @@
         background: $comparison-table-trank-runnable-color;
     }
 }
+
+
 
 @include oCoreComponentsComparisonSliderTable;

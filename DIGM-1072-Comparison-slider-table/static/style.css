@@ -4,10 +4,12 @@
  * @name _components.comparison-slider-table.scss
  */
 /**
- * TODO: add docs
- */
+* Comparison Slider Table
+*/
 .c-comparison-slider-table {
-  margin-top: 100px; }
+  margin-top: 50px; }
+  .c-comparison-slider-table .is-hidden {
+    display: none !important; }
   .c-comparison-slider-table__slider {
     padding: 35px; }
   .c-comparison-slider-table__arrow-nav {
@@ -16,7 +18,7 @@
     position: sticky;
     top: 250px; }
     .c-comparison-slider-table__arrow-nav.is-hidden {
-      visibility: hidden; }
+      visibility: hidden !important; }
   .c-comparison-slider-table__arrow-nav__right {
     float: right; }
   .c-comparison-slider-table__arrow-nav__left, .c-comparison-slider-table__arrow-nav__right {
@@ -26,8 +28,6 @@
     font-weight: normal; }
     .c-comparison-slider-table__arrow-nav__left:hover, .c-comparison-slider-table__arrow-nav__right:hover {
       color: #ff6b00; }
-    .c-comparison-slider-table__arrow-nav__left.is-hidden, .c-comparison-slider-table__arrow-nav__right.is-hidden {
-      display: none !important; }
     .c-comparison-slider-table__arrow-nav__left.is-arrow-end, .c-comparison-slider-table__arrow-nav__right.is-arrow-end {
       color: #ececec; }
       .c-comparison-slider-table__arrow-nav__left.is-arrow-end:hover, .c-comparison-slider-table__arrow-nav__right.is-arrow-end:hover {
@@ -53,11 +53,11 @@
     position: sticky;
     background-color: #fff;
     display: table;
-    top: 0 !important;
+    top: 50px !important;
     width: 100%; }
     @media (max-width: 1024px) {
       .c-comparison-slider-table__mobile-dropdown {
-        top: 60px; } }
+        top: 110px; } }
     .c-comparison-slider-table__mobile-dropdown > span {
       display: table-cell;
       padding: 5px; }
@@ -92,8 +92,6 @@
       .c-comparison-slider-table table tr td:last-child,
       .c-comparison-slider-table table tr td.no-border-on-last-cell {
         border-right: none; }
-    .c-comparison-slider-table table thead tr th.is-hidden {
-      display: none !important; }
     .c-comparison-slider-table table tbody tr:nth-child(odd) {
       background-color: transparent; }
     .c-comparison-slider-table table tbody tr td {
@@ -111,7 +109,7 @@
         border: none; }
         @media (max-width: 1024px) {
           .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__no-border {
-            top: 60px; } }
+            top: 110px; } }
       .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__no-border-center {
         border: none;
         font-size: 16px;
@@ -125,14 +123,14 @@
         padding: 0; }
         @media (max-width: 1024px) {
           .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__scrollbar {
-            top: 60px; } }
+            top: 110px; } }
         .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__scrollbar__no-border {
           top: 0;
           position: sticky;
           background-color: #fff; }
           @media (max-width: 1024px) {
             .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__scrollbar__no-border {
-              top: 60px; } }
+              top: 110px; } }
       .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__separator {
         background: #e5eceb;
         color: #333e48;
@@ -146,7 +144,9 @@
         background-color: #fff; }
         @media (max-width: 1024px) {
           .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__card {
-            top: 60px; } }
+            top: 110px; } }
+        .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__card.is-offset-top {
+          top: 60px; }
         .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__card > div {
           border: 0;
           text-align: left; }
@@ -172,8 +172,6 @@
         border-width: 0; }
       .c-comparison-slider-table table tbody tr td.is-highlighted {
         background-color: #F8F8F8; }
-      .c-comparison-slider-table table tbody tr td.is-hidden {
-        display: none !important; }
 
 @media (max-width: 1024px) {
   .c-comparison-slider-table__scrollbar {
@@ -182,6 +180,8 @@
       display: none !important; } }
 
 @media (max-width: 767px) {
+  .c-comparison-slider-table__slider {
+    padding: 0; }
   .c-comparison-slider-table table thead tr,
   .c-comparison-slider-table table tbody tr {
     display: inherit !important; }
