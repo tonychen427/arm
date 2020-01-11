@@ -14,6 +14,8 @@
     top: 0;
     position: sticky;
     background-color: #fff;
+    z-index: 9;
+    
     @media (max-width: 1024px) {
         top: 110px;
     } 
@@ -386,7 +388,5 @@
         background: $comparison-table-trank-runnable-color;
     }
 }
-
-
 
 @include oCoreComponentsComparisonSliderTable;

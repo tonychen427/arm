@@ -52,6 +52,7 @@
     top: 0;
     position: sticky;
     background-color: #fff;
+    z-index: 9;
     display: table;
     top: 50px !important;
     width: 100%; }
@@ -106,6 +107,7 @@
         top: 0;
         position: sticky;
         background-color: #fff;
+        z-index: 9;
         border: none; }
         @media (max-width: 1024px) {
           .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__no-border {
@@ -120,6 +122,7 @@
         top: 0;
         position: sticky;
         background-color: #fff;
+        z-index: 9;
         padding: 0; }
         @media (max-width: 1024px) {
           .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__scrollbar {
@@ -127,7 +130,8 @@
         .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__scrollbar__no-border {
           top: 0;
           position: sticky;
-          background-color: #fff; }
+          background-color: #fff;
+          z-index: 9; }
           @media (max-width: 1024px) {
             .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__scrollbar__no-border {
               top: 110px; } }
@@ -141,7 +145,8 @@
       .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__card {
         top: 0;
         position: sticky;
-        background-color: #fff; }
+        background-color: #fff;
+        z-index: 9; }
         @media (max-width: 1024px) {
           .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__card {
             top: 110px; } }

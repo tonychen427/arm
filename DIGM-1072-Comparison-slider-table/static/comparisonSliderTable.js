@@ -280,10 +280,15 @@ var comparisonSliderTable = (function () {
             }))
         },
         buildScrollBar: function () {
-            var numberOfScrollClick = this.numberTotalColumn - (this.maxNumberColumn - 1);
-            if (numberOfScrollClick === 1) return;
             var scrollbarEl = document.querySelector('.c-comparison-slider-table__scrollbar');
             var scrollbarNoBorder = document.querySelector('.c-comparison-slider-table__scrollbar__no-border');
+
+            var numberOfScrollClick = this.numberTotalColumn - (this.maxNumberColumn - 1);
+            if (numberOfScrollClick === 1) {
+                scrollbarEl.classList.add(CLASSNAME_IS_HIDDEN);
+                scrollbarNoBorder.classList.add(CLASSNAME_IS_HIDDEN);
+                return;
+            }
 
             var inputComparisonScrollBar = this.buildElement('input', {
                 id: 'comparisonTableScrollBar',
