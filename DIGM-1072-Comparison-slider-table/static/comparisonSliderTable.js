@@ -454,9 +454,9 @@ if (typeof document !== 'undefined') {
         return scripts[scripts.length - 1];
     })();
 
-    var componentId = document.currentScript.getAttribute('id');
+    var comparisonSliderTableId = document.currentScript.getAttribute('id');
     document.addEventListener('DOMContentLoaded', function () {
-        var id = componentId
+        var id = comparisonSliderTableId
         var c = new comparisonSliderTable(id, responsive);
 
         var elements = document.querySelectorAll('.c-comparison-slider-table__arrow-nav');
