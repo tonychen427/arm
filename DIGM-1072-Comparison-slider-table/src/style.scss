@@ -21,28 +21,9 @@
     } 
 }
 
-@mixin mobileSliderCard {
+@mixin mobileView {
     .c-comparison-slider-table {
-
-        table {
-
-            thead tr,
-            tbody tr {
-                display: inherit !important;
-            }
-
-            thead tr:not(:last-child),
-            tbody tr:not(:last-child) {
-                display: block;
-                margin-bottom: inherit;
-            }
-        }
-
         &__card {
-
-            img {
-                display: none;
-            }
 
             .c-button {
                 background: none;
@@ -69,19 +50,12 @@
             }
 
             > div {
-                height: 100px;
+                height: 105px !important;
+                text-align: center !important;
             }
-            
-            &__button {
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                right: 0;
+            img {
+                display: none;
             }
-        }
-        
-        &__slider {
-            padding: 0;
         }
     }
 }
@@ -170,14 +144,11 @@
             font-weight: bold;
             font-size: 20px;
             padding: 16px 0;
-
-            @media (max-width: 1024px) {
-                display: none;
-            }
         }
 
         &__mobile-separator {
             border-top: 1px solid $comparison-table-default-border-color !important;
+            display: none !important;
             font-size: 18px !important;
             font-weight: bold;
             padding: 10px 15px 0;
@@ -185,15 +156,11 @@
             &-hidden {
                 display: none !important;
             }
-
-            @media (min-width: 1024px) {
-                display: none !important;
-            }
         }
 
         &__mobile-dropdown {
             @include sticky();
-            display: table;
+            display: none;
             top: 50px !important;
             width: 100%;
 
@@ -201,10 +168,6 @@
                 display: table-cell;
                 padding: 5px;
                 width: 50%;
-            }
-
-            @media (min-width: 1025px){
-                display: none;
             }
         }
 
@@ -216,22 +179,10 @@
             tr td {
                 border-bottom: 1px solid $comparison-table-default-border-color;
 
-                @media (max-width: 1024px) {
-                    border-bottom: none;
-                }
-
                 &:first-child {
                     border-right: none;
                     font-weight: bold;
                     font-size: 20px;
-
-                    @media only screen and (max-device-width: 736px) {
-                        display: none;
-                    }
-
-                    @media (max-width: 1024px) {
-                        display: none;
-                    }
 
                 }
 
@@ -299,20 +250,6 @@
                             text-align: left;
                         }
 
-                        @media (max-width: 1024px) {
-
-                            >div {
-                                margin-left: auto;
-                                margin-right: auto;
-                                text-align: center;
-                            }
-
-
-                            img {
-                                margin-bottom: 16px;
-                            }
-                        }
-
                     }
 
                     &.c-comparison-slider-table__card>div {
@@ -341,19 +278,56 @@
         }
     }
 
-    @media (max-width: 1024px) {
-        .c-comparison-slider-table {
+    @media only screen and (max-device-width: 736px) {
+        @include mobileView();
+    }
 
+    @media only screen and (max-device-height: 375px) { 
+        @include mobileView();
+    }
+    
+    @media only screen and (max-device-height: 768px)  {
+        .c-comparison-slider-table {
+            &__card {
+                .c-button {
+                    margin: 25px 0 !important;
+                }
+            }
+            &__scrollbar {
+                top: 380px !important;
+
+                &__no-border {
+                    top: 380px !important;
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 550px) {
+        @include mobileView();
+    }
+
+    @media only all and (max-width: 1023px) {
+        
+        .c-comparison-slider-table {
             &__card {
                 > div {
-                    height: 225px;
+                    height: 230px;
+                    text-align: center !important;
                 }
-                &__button {
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
+                img {
+                    margin-bottom: 8px;
                 }
+            }
+            &__header-title {
+                display: none;
+            }
+
+            &__mobile-dropdown {
+                display: table;
+            }
+
+            &__mobile-separator {
+                display: table-cell !important;
             }
 
             &__scrollbar {
@@ -363,28 +337,29 @@
                     display: none !important;
                 }
             }
-        }
-    }
 
-    @media only screen and (max-device-height: 375px) { 
-        @include mobileSliderCard();
-    }
+            table {
+                thead tr,
+                tbody tr {
+                    display: inherit !important;
+                }
+    
+                thead tr:not(:last-child),
+                tbody tr:not(:last-child) {
+                    display: block;
+                    margin-bottom: inherit;
+                }
+    
+                tr th,
+                tr td {
+                    border-bottom: none;
 
-    @media only screen and (max-device-width: 736px) { 
-        @include mobileSliderCard();
-    }
-
-    @media (max-width: 767px) {
-        @include mobileSliderCard();
-    }
-
-    @media (min-width: 768px) {
-        .c-comparison-slider-table table tr {
-
-            th:not(:first-child),
-            td:not(:first-child) {
-                border-left: none;
+                    &:first-child {
+                        display: none;
+                    }
+                }
             }
+
         }
     }
 
