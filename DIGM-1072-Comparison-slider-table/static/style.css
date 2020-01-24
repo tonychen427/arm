@@ -4,33 +4,17 @@
  * @name _components.comparison-slider-table.scss
  */
 /**
-* Comparison Slider Table
-*/
+ * TODO: add docs
+ */
 .c-comparison-slider-table {
-  margin-bottom: 95px;
-  margin-top: 45px;
-  padding: 10px; }
-  .c-comparison-slider-table select {
-    font-size: 16px;
-    padding: 0 10px; }
-  .c-comparison-slider-table .is-hidden {
-    display: none !important; }
-  .c-comparison-slider-table__card > div {
-    height: 290px; }
-  .c-comparison-slider-table__card__button {
-    position: absolute;
-    bottom: 0;
-    left: 15px;
-    right: 0; }
-  .c-comparison-slider-table__slider {
-    padding: 35px; }
+  margin-top: 100px; }
   .c-comparison-slider-table__arrow-nav {
     color: #11809f;
     padding: 0 10px;
     position: sticky;
     top: 250px; }
     .c-comparison-slider-table__arrow-nav.is-hidden {
-      visibility: hidden !important; }
+      visibility: hidden; }
   .c-comparison-slider-table__arrow-nav__right {
     float: right; }
   .c-comparison-slider-table__arrow-nav__left, .c-comparison-slider-table__arrow-nav__right {
@@ -40,94 +24,33 @@
     font-weight: normal; }
     .c-comparison-slider-table__arrow-nav__left:hover, .c-comparison-slider-table__arrow-nav__right:hover {
       color: #ff6b00; }
+    .c-comparison-slider-table__arrow-nav__left.is-hidden, .c-comparison-slider-table__arrow-nav__right.is-hidden {
+      display: none !important; }
     .c-comparison-slider-table__arrow-nav__left.is-arrow-end, .c-comparison-slider-table__arrow-nav__right.is-arrow-end {
       color: #ececec; }
       .c-comparison-slider-table__arrow-nav__left.is-arrow-end:hover, .c-comparison-slider-table__arrow-nav__right.is-arrow-end:hover {
         color: #ececec; }
-  .c-comparison-slider-table__header-title {
-    font-weight: bold;
-    font-size: 20px;
-    padding: 16px 0; }
-  .c-comparison-slider-table__mobile-separator {
-    border-top: 1px solid #e5eceb !important;
-    display: none !important;
-    font-size: 18px !important;
-    font-weight: bold;
-    padding: 10px 15px 0; }
-    .c-comparison-slider-table__mobile-separator-hidden {
-      display: none !important; }
-  .c-comparison-slider-table__mobile-dropdown {
-    top: 0;
-    position: sticky;
-    background-color: #fff;
-    z-index: 3;
-    display: none;
-    top: 50px !important;
-    width: 100%; }
-    @media (max-width: 1024px) {
-      .c-comparison-slider-table__mobile-dropdown {
-        top: 110px; } }
-    .c-comparison-slider-table__mobile-dropdown > span {
-      display: table-cell;
-      padding: 5px;
-      width: 50%; }
   .c-comparison-slider-table table {
-    margin: inherit;
-    width: 100%; }
-    .c-comparison-slider-table table tr th,
-    .c-comparison-slider-table table tr td {
-      border-bottom: 1px solid #e5eceb; }
-      .c-comparison-slider-table table tr th:first-child,
-      .c-comparison-slider-table table tr td:first-child {
-        border-right: none;
-        font-weight: bold;
-        font-size: 20px; }
-      .c-comparison-slider-table table tr th:last-child, .c-comparison-slider-table table tr th.no-border-on-last-cell,
-      .c-comparison-slider-table table tr td:last-child,
-      .c-comparison-slider-table table tr td.no-border-on-last-cell {
-        border-right: none; }
+    border-collapse: collapse;
+    margin: 50px;
+    margin-top: -100px; }
+    .c-comparison-slider-table table tr td:last-child, .c-comparison-slider-table table tr td.no-border-on-last-cell {
+      border-right: none; }
     .c-comparison-slider-table table tbody tr:nth-child(odd) {
       background-color: transparent; }
     .c-comparison-slider-table table tbody tr td {
       border-right: 1px solid #e5eceb;
-      display: table-cell;
-      font-size: 14px;
+      font-size: 16px;
       height: auto;
       min-height: 44px;
       text-align: left;
       vertical-align: top; }
-      .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__no-border {
-        top: 0;
-        position: sticky;
-        background-color: #fff;
-        z-index: 3;
-        border: none; }
-        @media (max-width: 1024px) {
-          .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__no-border {
-            top: 110px; } }
       .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__no-border-center {
         border: none;
         font-size: 16px;
         height: auto;
         text-align: center;
         vertical-align: top; }
-      .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__scrollbar {
-        top: 0;
-        position: sticky;
-        background-color: #fff;
-        z-index: 3;
-        padding: 0; }
-        @media (max-width: 1024px) {
-          .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__scrollbar {
-            top: 110px; } }
-        .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__scrollbar__no-border {
-          top: 0;
-          position: sticky;
-          background-color: #fff;
-          z-index: 3; }
-          @media (max-width: 1024px) {
-            .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__scrollbar__no-border {
-              top: 110px; } }
       .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__separator {
         background: #e5eceb;
         color: #333e48;
@@ -136,19 +59,7 @@
         padding: 10px 20px;
         text-align: left; }
       .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__card {
-        top: 0;
-        position: sticky;
-        background-color: #fff;
-        z-index: 3;
-        border-right: 0; }
-        @media (max-width: 1024px) {
-          .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__card {
-            top: 110px; } }
-        .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__card.is-offset-top {
-          top: 60px; }
-        .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__card > div {
-          border: 0;
-          text-align: left; }
+        border: 0; }
       .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__card > div {
         border-style: solid;
         border-width: 2px;
@@ -164,196 +75,16 @@
         border-width: 0; }
       .c-comparison-slider-table table tbody tr td.is-highlighted {
         background-color: #F8F8F8; }
+      .c-comparison-slider-table table tbody tr td.is-hidden {
+        display: none !important; }
 
-@media only screen and (max-device-width: 736px) {
-  .c-comparison-slider-table__card .c-button {
-    background: none;
-    border-color: transparent;
-    border-bottom-color: #11809f !important;
-    border-bottom-style: dotted !important;
-    border-width: 1px !important;
-    border-radius: 0;
-    color: #11809f !important;
-    cursor: pointer;
-    font-size: inherit;
-    height: 18px;
-    margin: 18px 0;
-    padding: 0;
-    text-decoration: none; }
-    .c-comparison-slider-table__card .c-button:hover {
-      border-color: transparent;
-      border-width: 0;
-      background: none;
-      margin: 18px 0;
-      padding: 0; }
-  .c-comparison-slider-table__card > div {
-    height: 105px !important;
-    text-align: center !important; }
-  .c-comparison-slider-table__card img {
-    display: none; } }
-
-@media only screen and (max-device-height: 375px) {
-  .c-comparison-slider-table__card .c-button {
-    background: none;
-    border-color: transparent;
-    border-bottom-color: #11809f !important;
-    border-bottom-style: dotted !important;
-    border-width: 1px !important;
-    border-radius: 0;
-    color: #11809f !important;
-    cursor: pointer;
-    font-size: inherit;
-    height: 18px;
-    margin: 18px 0;
-    padding: 0;
-    text-decoration: none; }
-    .c-comparison-slider-table__card .c-button:hover {
-      border-color: transparent;
-      border-width: 0;
-      background: none;
-      margin: 18px 0;
-      padding: 0; }
-  .c-comparison-slider-table__card > div {
-    height: 105px !important;
-    text-align: center !important; }
-  .c-comparison-slider-table__card img {
-    display: none; } }
-
-@media only screen and (max-device-height: 768px) {
-  .c-comparison-slider-table__card .c-button {
-    margin: 25px 0 !important; }
-  .c-comparison-slider-table__scrollbar {
-    top: 380px !important; }
-    .c-comparison-slider-table__scrollbar__no-border {
-      top: 380px !important; } }
-
-@media only screen and (max-width: 550px) {
-  .c-comparison-slider-table__card .c-button {
-    background: none;
-    border-color: transparent;
-    border-bottom-color: #11809f !important;
-    border-bottom-style: dotted !important;
-    border-width: 1px !important;
-    border-radius: 0;
-    color: #11809f !important;
-    cursor: pointer;
-    font-size: inherit;
-    height: 18px;
-    margin: 18px 0;
-    padding: 0;
-    text-decoration: none; }
-    .c-comparison-slider-table__card .c-button:hover {
-      border-color: transparent;
-      border-width: 0;
-      background: none;
-      margin: 18px 0;
-      padding: 0; }
-  .c-comparison-slider-table__card > div {
-    height: 105px !important;
-    text-align: center !important; }
-  .c-comparison-slider-table__card img {
-    display: none; } }
-
-@media only all and (max-width: 1023px) {
-  .c-comparison-slider-table__card > div {
-    height: 230px;
-    text-align: center !important; }
-  .c-comparison-slider-table__card img {
-    margin-bottom: 8px; }
-  .c-comparison-slider-table__header-title {
-    display: none; }
-  .c-comparison-slider-table__mobile-dropdown {
-    display: table; }
-  .c-comparison-slider-table__mobile-separator {
-    display: table-cell !important; }
-  .c-comparison-slider-table__scrollbar {
-    display: none !important; }
-    .c-comparison-slider-table__scrollbar__no-border {
-      display: none !important; }
-  .c-comparison-slider-table table thead tr,
-  .c-comparison-slider-table table tbody tr {
-    display: inherit !important; }
-  .c-comparison-slider-table table thead tr:not(:last-child),
-  .c-comparison-slider-table table tbody tr:not(:last-child) {
+@media (max-width: 767px) {
+  .c-comparison-slider-table table tbody tr td {
+    align-items: inherit; }
+  .c-comparison-slider-table table thead tr:not(:last-child), .c-comparison-slider-table table tbody tr:not(:last-child) {
     display: block;
-    margin-bottom: inherit; }
-  .c-comparison-slider-table table tr th,
-  .c-comparison-slider-table table tr td {
-    border-bottom: none; }
-    .c-comparison-slider-table table tr th:first-child,
-    .c-comparison-slider-table table tr td:first-child {
-      display: none; } }
+    margin-bottom: inherit; } }
 
-input[type=range] {
-  -webkit-appearance: none;
-  margin-bottom: 0;
-  width: 100%; }
-
-input[type=range]:focus {
-  outline: none; }
-
-input[type=range]::-webkit-slider-runnable-track {
-  background: #E5ECEB;
-  border-radius: 0;
-  cursor: pointer;
-  height: 28px;
-  width: 100%; }
-
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  background: #11809F url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVgAAAFYCAYAAAAWbORAAAAABmJLR0QA/wD/AP+gvaeTAAAJTUlEQVR4nO3dzatcdx3H8U8ebozaUjchaBpTxIAtbXTrxopFqC1JRaH2ARf1L1CoirYglG7E1opWmwpCG11Ii2B9QEGhRUG3NrZFUs0DtdEkO22Sa2tuXJy7uISckTDznd/MOa8X/OCEuYXv+c2cdy7nnt4kAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABXbFPrAQZsc5IPJrk2yc71Py+ri0lOJfl7kheTXGg7TjNbknwoya507+kyXz9r6d7T15IcXv8zLLzdSb6b7sN7cYDrdJKDSfbMasOWwHVJnkxyJu33v2L9M8nj6f7igIW0KcmXk5xL+wtmHms1yYNZ7u/i/p9NSb6W7lxb7/c81tkk989k52CGtiT5UdpfIC3Ws0lWpt/ChbOS5Cdpv78t1qF0n2lYCN9K+4ui5frB9Fu4cA6m/b62XI9Mv4UwvdvT/mJYhPWpaTdygdyZ9vu5COvWaTcSprElyUtpfyEswjqSYdwqWEny17Tfz0VYh7PcT780N+QfUMzDR5M8P+H11SQ/SxfhN+cxUJGVJDckuSPJOyZ83W1JfjWXiercnuQXE14/l+S5JK8keWsuE9XYluTGJAeSbJ/wdTcn+d1cJoJLPJb+v/1fT/KBdqOVeH+SE+k/54PtRpuZ76f//I6n24MhuT7JyfSf86PtRmPsfpv+D+ZdDeeqdEf6z/kPDeealT+m//wONJyr0t3pP+ffNJyLkXs5/R/MHQ3nqnR1uv+Tq+87vGV3PJc/twtJrmo3Vqkd6f8cv9xwrqXnBvZ03jnhtTNzm2K+/p3u3vLlTNqPZdF3DqtJ3pjnIHM06bM6hPe0GYEFKCKwAEUEFqCIwAIUEViAIgLL7vXFcOyJ3+26EAR23O5KcizJ0SSfaTwLs3FfuvfzWJL9jWcZPYEdt7vT/cKarUnuaTwLs3Fvuut6Jd7T5gR23Lb1HLO8vKcLRGABiggsQBGBHbdXNxwfaTYFDNTW1gPQ1IPpfktU0v3rqcAMCey4/SvJF1oPAUPlFgFAEYEFKCKwAEUEFqCIwAIU8RTBuG1Ocme6f9zu2SRrbceBYRHYcXsgyUPrx3uTPNxwFhgctwjG7cM9x8AMCOy4bdpw7LMAM+aiAigisABFBBagiMACFBFYgCICC1BEYAGKCCxAEYEFKCKwAEUEFqCIwAIUEViAIgILUERgAYoI7Litbjg+32wKGCiBHbenk1xYX4cazwKD49/kGrefJtm1fnyq5SAwRAKLsEIRtwgAiggsQBGBBSgisABFBBagiMCO274kh5O8mOSmxrPA4AjsuH01XVj3rR8DMySw43bNhuN3NZsCBkpgAYoILEARgQUoIrAARQQWoIjAAhQRWIAiAgtQRGABiggsQBGBBSgisABFBBagiMACFBFYgCICC1BEYAGKCCxAEYEFKCKwAEUEFqCIwAIUEViAIgILUERgAYoILEARgQUoIrAARQQWoIjAAhQRWIAiAgtQRGABiggsQBGBBSgisABFBBagiMACFBFYgCICC1BEYAGKCCxAEYEFKCKwAEUEFqCIwAIUEViAIgILUERgAYoILEARgQUoIrAARQQWoIjAAhQRWIAiAgtQRGABiggsQBGBBSgisABFBBagiMACFBFYgCICC1BEYAGKCCxAEYEFKCKwAEUEFqCIwAIUEViAIgILUERgAYoILEARgQUoIrAARQQWoIjAAhQRWIAiAgtQRGABiggsQBGBBSgisABFBBagiMACFBFYgCICC1BEYAGKCCxAEYEFKCKwAEUEFqCIwAIUEViAIgILUERgAYoILEARgQUoIrAARQQWoIjAAhQRWBiWoxuO/9ZsCpIkW1sPAMzUl5KsJVlN8nDjWUZPYGFYTif5XOsh6LhFAFBEYAGKCCxAEYEFKCKwAEUEFqCIwAIUEViAIgILUERgAYoILEARgQUoIrAARQQWoIjAAhQRWIAiAgtQRGABiggsQBGBBSgisABFBBagiMDC8OxJsqv1EAgsDM19SY4mOZZkf+NZRk9gYVjuTXddryS5p/EsoyewMCzbeo5pQGABiggsQBGBBSgisABFBBagiMACFBFYgCICC1BEYAGKCCxAEYEFKCKwAEUEFqCIwAIUEViAIgILw7LWc0wDAgvD8sKG4+dbDUFna+sBgJl6KMkrSf6T5LnGs4yewMKwrCV5pvUQdNwiACgisABFBBagiMACFBFYgCICC8OyM8nBJI8luabxLKPnMS0Ylm8k+ez68X+TfLHhLKPnO1gYlus2HL+v1RB0BBagiMACFBHYcVvdcHy+2RTM0vmeYxoQ2HF7OsmF9XWo8SzMxlNJLqb7AdcP244C0zme7sN8ubUsdq6vK3E2lz/nM7MdrYkzufy5nW051BV6d5IdV/jf9H2Oj890spHxmBanWg/AzP2j9QB03CIAKCKwAEUEFqCIwAIUEViAIgI7nUmP7lzpYzLL4uok23teW6ZHmfr0ncP2JFfNc5A5mvRZHcJ72ozATmfS4zC3zG2K+bol/Z+b1+c5SJG+93Rzko/Nc5A5+viE14bwnrKkvpn+B7RPJrm+3Wgl9iY5kf5zfqLdaDPzZCY/dL+32WQ1bkj3We0750fajbb8NrUeYMndnOSFCa+vJvl5kj8neXMeAxVZSXJjkgNJ3j7h6z6R5NdzmajObUl+OeH1c+ne05eSvDWXiWpsS7Ivyf4kb5vwdR9J8vu5TASX2JzkcPr/9h/T+ku6EC+7lSRH0n4/F2H9KW4j0titaX8hLML65LQbuUA+nfb7uQhr0r1ZmJtH0/5iaLken34LF84Tab+vLdfXp99CmI0t6X7dX+uLosX6cYZxa+BSK0meSfv9bbGeSveZhoVyf/p/ld/Q1rkkX8mwf1C6KckD6X5xdev9nsd6I8nnZ7JzUGRXku+ke56y9QVTsU4l+V6S3bPasCXw3nS3DE6n/f5XrJNJvp3kPbPaMDpD/u6jtc1Jbkp3ce7Mcv80di1dWF9L98jZhbbjNLMl3aNN12Y47+mJdI+crbUdBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAdf8DEYrgrSQHmsQAAAAASUVORK5CYII%3D);
-  background-size: 5%;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 8px;
-  cursor: pointer;
-  height: 14px;
-  margin-top: 7px;
-  width: 150px; }
-
-input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #EFEFEF; }
-
-input[type=range]::-moz-range-track {
-  background: #E5ECEB;
-  border-radius: 0;
-  cursor: pointer;
-  height: 28px;
-  width: 100%; }
-
-input[type=range]::-moz-range-thumb {
-  background: #11809F;
-  border-radius: 8px;
-  cursor: pointer;
-  height: 14px;
-  width: 150px; }
-
-input[type=range]::-ms-track {
-  background: transparent;
-  border-color: transparent;
-  color: transparent;
-  cursor: pointer;
-  height: 28px;
-  width: 100%; }
-
-input[type=range]::-ms-fill-lower {
-  background: #E5ECEB;
-  border-radius: 0; }
-
-input[type=range]::-ms-fill-upper {
-  background: #E5ECEB;
-  border-radius: 0; }
-
-input[type=range]::-ms-thumb {
-  background: #11809F;
-  border-radius: 8px;
-  cursor: pointer;
-  height: 14px;
-  margin-top: 0;
-  width: 150px; }
-
-input[type=range]:focus::-ms-fill-lower {
-  background: #E5ECEB; }
-
-input[type=range]:focus::-ms-fill-upper {
-  background: #EFEFEF; }
+@media (min-width: 768px) {
+  .c-comparison-slider-table table tr th:not(:first-child), .c-comparison-slider-table table tr td:not(:first-child) {
+    border-left: none; } }
