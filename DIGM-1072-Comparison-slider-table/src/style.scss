@@ -7,9 +7,47 @@
 
 
 /**
- * TODO: add docs
- */
- @mixin oCoreComponentsComparisonSliderTable {
+* Comparison Slider Table
+*/
+
+@mixin sticky {
+    top: 0;
+    position: sticky;
+    background-color: #fff;
+    z-index: 3;
+    
+    @media (max-width: 1024px) {
+        top: 95px;
+    } 
+}
+
+@mixin mobileView {
+    .c-comparison-slider-table {
+        &__card {
+
+            > div {
+                height: 115px !important;
+                text-align: center !important;
+            }
+            img {
+                display: none;
+            }
+
+            &__link {
+                font-size: 16px;
+                &::after {
+                    height: 12px;
+                    width: 12px;
+                }
+            }
+            &__button {
+                margin: 0 15px 20px;
+            }
+        }
+    }
+}
+
+@mixin oCoreComponentsComparisonSliderTable {
 
     $comparison-table-arrow-color: #11809f;
     $comparison-table-arrow-disable-color: #ececec;
@@ -18,10 +56,57 @@
     $comparison-table-separator-bg-color: #e5eceb;
     $comparison-table-separator-font-color: #333e48;
     $comparison-table-default-border-color: #e5eceb;
+    $comparison-table-border-color: #7D868c;
 
+    $comparison-table-trank-runnable-color: #EFEFEF; // #a6b365;
+    $comparison-table-track-range-bg-color: #E5ECEB; // #a4b162;
+    $comparison-table-track-thumb-bg-color: #11809F;
 
     .c-comparison-slider-table {
-        margin-top: 100px;
+        margin-bottom: 95px;
+        margin-top: 45px;
+        padding: 10px;
+
+        &__card {
+            > div {
+                height: 310px;
+                font-size: 14px;
+                border-bottom: 1px solid $comparison-table-separator-bg-color !important;
+            }
+            &__button {
+                bottom: 0;
+                left: 0;
+                margin: 0 15px 35px;
+                position: absolute;
+                right: 0;
+            }
+
+            &__link {
+
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                border-bottom: none;
+                color: #11809f;
+                display: -webkit-inline-box;
+                display: -ms-inline-flexbox;
+                display: inline-flex;
+                font-size: 20px;
+                font-weight: 400;
+                white-space: nowrap;
+
+                &::after{
+                    border-right: 2px solid #ffc700;
+                    border-top: 2px solid #ffc700;
+                    content: '';
+                    display: block;
+                    height: 16px;
+                    margin-left: 5px;
+                    transform: rotate(45deg);
+                    width: 16px;
+                }
+            }
+        }
 
         &__arrow-nav {
             color: $comparison-table-arrow-color;
@@ -30,7 +115,7 @@
             top: 250px;
 
             &.is-hidden {
-                visibility: hidden;
+                visibility: hidden !important;
             }
         }
 
@@ -38,7 +123,8 @@
             float: right;
         }
 
-        &__arrow-nav__left, &__arrow-nav__right {
+        &__arrow-nav__left,
+        &__arrow-nav__right {
             cursor: pointer;
             display: inline-block;
             font-size: 35px;
@@ -48,9 +134,6 @@
                 color: $comparison-table-arrow-hover-color;
             }
 
-            &.is-hidden {
-                display: none !important;
-            }
 
             &.is-arrow-end {
                 color: $comparison-table-arrow-disable-color;
@@ -61,17 +144,62 @@
             }
         }
 
+        &__header-title {
+            font-weight: bold;
+            font-size: 20px;
+            padding: 16px 0;
+        }
+
+        &__mobile-separator {
+            border-top: 1px solid $comparison-table-default-border-color !important;
+            display: none !important;
+            font-size: 18px !important;
+            font-weight: bold;
+            padding: 10px 15px 0;
+
+            &-hidden {
+                display: none !important;
+            }
+        }
+
+        &__mobile-dropdown {
+            @include sticky();
+            display: none;
+            top: 50px !important;
+            width: 100%;
+
+            >span {
+                display: table-cell;
+                padding: 5px;
+                width: 50%;
+            }
+        }
+
+        .is-hidden {
+            display: none !important;
+        }
 
         table {
-            border-collapse: collapse;
-            margin: 50px;
-            margin-top: -100px;
+            margin: inherit;
+            width: 100%;
 
+            tr th,
             tr td {
-                &:last-child, &.no-border-on-last-cell {
+                border-bottom: 1px solid $comparison-table-default-border-color;
+
+                &:first-child {
+                    border-right: none;
+                    font-weight: bold;
+                    font-size: 20px;
+
+                }
+
+                &:last-child,
+                &.no-border-on-last-cell {
                     border-right: none;
                 }
             }
+
 
             tbody tr {
                 &:nth-child(odd) {
@@ -80,11 +208,17 @@
 
                 td {
                     border-right: 1px solid $comparison-table-default-border-color;
+                    display: table-cell;
                     font-size: 16px;
                     height: auto;
                     min-height: 44px;
                     text-align: left;
                     vertical-align: top;
+
+                    &.c-comparison-slider-table__no-border {
+                        @include sticky();
+                        border: none;
+                    }
 
                     &.c-comparison-slider-table__no-border-center {
                         border: none;
@@ -92,6 +226,15 @@
                         height: auto;
                         text-align: center;
                         vertical-align: top;
+                    }
+
+                    &.c-comparison-slider-table__scrollbar {
+                        @include sticky();
+                        padding: 0;
+
+                        &__no-border {
+                            @include sticky();
+                        }
                     }
 
                     &.c-comparison-slider-table__separator {
@@ -104,23 +247,33 @@
                     }
 
                     &.c-comparison-slider-table__card {
-                        border: 0;
+                        @include sticky();
+                        // border-right: 0;
+
+                        &.is-offset-top {
+                            top: 60px;
+                        }
+                        >div {
+                            border: 0;
+                            text-align: left;
+                        }
+
                     }
 
-                    &.c-comparison-slider-table__card > div {
-                        border-style: solid;
-                        border-width: 2px;
-                        -webkit-border-image: -webkit-gradient(linear, 0 100%, 0 0, from(#e5eceb), to(rgba(0, 0, 0, 0))) 1 100%;
-                        -webkit-border-image: -webkit-linear-gradient(bottom,#e5eceb, rgba(0,0,0,0)) 1 100%;
-                        -moz-border-image: -moz-linear-gradient(bottom, #e5eceb, rgba(0,0,0,0)) 1 100%;
-                        -o-border-image: -o-linear-gradient(bottom, #e5eceb, rgba(0,0,0,0)) 1 100%;
-                        border-image: linear-gradient(to top, #e5eceb, rgba(0,0,0,0)) 1 100%;
-                        border-left: 0;
+                    &.c-comparison-slider-table__card>div {
+                        // border-style: solid;
+                        // border-width: 2px;
+                        // -webkit-border-image: -webkit-gradient(linear, 0 100%, 0 0, from(#e5eceb), to(rgba(0, 0, 0, 0))) 1 100%;
+                        // -webkit-border-image: -webkit-linear-gradient(bottom, #e5eceb, rgba(0, 0, 0, 0)) 1 100%;
+                        // -moz-border-image: -moz-linear-gradient(bottom, #e5eceb, rgba(0, 0, 0, 0)) 1 100%;
+                        // -o-border-image: -o-linear-gradient(bottom, #e5eceb, rgba(0, 0, 0, 0)) 1 100%;
+                        // border-image: linear-gradient(to top, #e5eceb, rgba(0, 0, 0, 0)) 1 100%;
+                        // border-left: 0;
                         margin: -15px;
                         padding: 15px;
                     }
 
-                    &.c-comparison-slider-table__card.no-border-on-last-cell > div {
+                    &.c-comparison-slider-table__card.no-border-on-last-cell>div {
                         border-width: 0;
                     }
 
@@ -128,33 +281,210 @@
                         background-color: $comparison-table-highlighted-color;
                     }
 
-                    &.is-hidden {
-                        display: none !important;
-                    }
                 }
             }
         }
+
+        select {
+            background-image: url('data:image/png;base64,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');
+            font-size: 16px;
+            height: auto;
+            min-height: 36px;
+            margin-bottom: 0;
+            padding: 0 10px;
+        }
     }
 
-    @media (max-width: 767px) {
-        .c-comparison-slider-table table {
-            tbody tr td {
-                align-items: inherit;
+    @media only screen and (max-device-width: 736px) {
+        @include mobileView();
+    }
+
+    @media only screen and (max-device-height: 375px) { 
+        @include mobileView();
+    }
+
+    @media only screen and (max-width: 550px) {
+        @include mobileView();
+    }
+    
+    @media only screen and (min-device-width: 1024px) and (max-device-height: 768px)  {
+        .c-comparison-slider-table {
+            &__card {
+                .c-button {
+                    margin: 15px 0 !important;
+                }
+            }
+            &__scrollbar {
+                top: 305px !important;
+
+                &__no-border {
+                    top: 305px !important;
+                }
             }
 
-            thead tr:not(:last-child), tbody tr:not(:last-child) {
-                display: block;
-                margin-bottom: inherit;
+            table tbody tr td.c-comparison-slider-table__card {
+                top: 0;
+            }
+
+            table tbody tr td.c-comparison-slider-table__no-border {
+                top: 0;
             }
         }
     }
 
-    @media (min-width: 768px) {
-        .c-comparison-slider-table table tr {
-            th:not(:first-child), td:not(:first-child) {
-                border-left: none;
+    @media (min-width: 768px){
+        .c-comparison-slider-table {
+            table tr th:not(:first-child), 
+            table tr td:not(:first-child) {
+                border-left: 0;
             }
         }
+    }
+
+    @media only all and (max-width: 1023px) {
+        
+        .c-comparison-slider-table {
+            &__card {
+                > div {
+                    height: 250px;
+                    text-align: center !important;
+                }
+                img {
+                    margin-bottom: 8px;
+                }
+            }
+            &__header-title {
+                display: none;
+            }
+
+            &__mobile-dropdown {
+                display: table;
+            }
+
+            &__mobile-separator {
+                display: table-cell !important;
+            }
+
+            &__scrollbar {
+                display: none !important;
+
+                &__no-border {
+                    display: none !important;
+                }
+            }
+
+            table {
+                thead tr,
+                tbody tr {
+                    display: inherit !important;
+                }
+    
+                thead tr:not(:last-child),
+                tbody tr:not(:last-child) {
+                    display: block;
+                    margin-bottom: inherit;
+                }
+    
+                tr th,
+                tr td {
+                    border-bottom: none;
+
+                    &:first-child {
+                        display: none;
+                    }
+                }
+            }
+
+        }
+    }
+
+    input[type=range] {
+        -webkit-appearance: none;
+        border: 1px solid $comparison-table-track-range-bg-color;
+        margin: -1px;
+        position: absolute;
+        width: 100%;  
+    }
+
+    input[type=range]:focus {
+        outline: none;
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+        background: $comparison-table-track-range-bg-color;
+        border-radius: 0;
+        cursor: pointer;
+        height: 28px;
+        width: 100%;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        background: $comparison-table-track-thumb-bg-color url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVgAAAFYCAYAAAAWbORAAAAABmJLR0QA/wD/AP+gvaeTAAAJTUlEQVR4nO3dzatcdx3H8U8ebozaUjchaBpTxIAtbXTrxopFqC1JRaH2ARf1L1CoirYglG7E1opWmwpCG11Ii2B9QEGhRUG3NrZFUs0DtdEkO22Sa2tuXJy7uISckTDznd/MOa8X/OCEuYXv+c2cdy7nnt4kAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABXbFPrAQZsc5IPJrk2yc71Py+ri0lOJfl7kheTXGg7TjNbknwoya507+kyXz9r6d7T15IcXv8zLLzdSb6b7sN7cYDrdJKDSfbMasOWwHVJnkxyJu33v2L9M8nj6f7igIW0KcmXk5xL+wtmHms1yYNZ7u/i/p9NSb6W7lxb7/c81tkk989k52CGtiT5UdpfIC3Ws0lWpt/ChbOS5Cdpv78t1qF0n2lYCN9K+4ui5frB9Fu4cA6m/b62XI9Mv4UwvdvT/mJYhPWpaTdygdyZ9vu5COvWaTcSprElyUtpfyEswjqSYdwqWEny17Tfz0VYh7PcT780N+QfUMzDR5M8P+H11SQ/SxfhN+cxUJGVJDckuSPJOyZ83W1JfjWXiercnuQXE14/l+S5JK8keWsuE9XYluTGJAeSbJ/wdTcn+d1cJoJLPJb+v/1fT/KBdqOVeH+SE+k/54PtRpuZ76f//I6n24MhuT7JyfSf86PtRmPsfpv+D+ZdDeeqdEf6z/kPDeealT+m//wONJyr0t3pP+ffNJyLkXs5/R/MHQ3nqnR1uv+Tq+87vGV3PJc/twtJrmo3Vqkd6f8cv9xwrqXnBvZ03jnhtTNzm2K+/p3u3vLlTNqPZdF3DqtJ3pjnIHM06bM6hPe0GYEFKCKwAEUEFqCIwAIUEViAIgLL7vXFcOyJ3+26EAR23O5KcizJ0SSfaTwLs3FfuvfzWJL9jWcZPYEdt7vT/cKarUnuaTwLs3Fvuut6Jd7T5gR23Lb1HLO8vKcLRGABiggsQBGBHbdXNxwfaTYFDNTW1gPQ1IPpfktU0v3rqcAMCey4/SvJF1oPAUPlFgFAEYEFKCKwAEUEFqCIwAIU8RTBuG1Ocme6f9zu2SRrbceBYRHYcXsgyUPrx3uTPNxwFhgctwjG7cM9x8AMCOy4bdpw7LMAM+aiAigisABFBBagiMACFBFYgCICC1BEYAGKCCxAEYEFKCKwAEUEFqCIwAIUEViAIgILUERgAYoI7Litbjg+32wKGCiBHbenk1xYX4cazwKD49/kGrefJtm1fnyq5SAwRAKLsEIRtwgAiggsQBGBBSgisABFBBagiMCO274kh5O8mOSmxrPA4AjsuH01XVj3rR8DMySw43bNhuN3NZsCBkpgAYoILEARgQUoIrAARQQWoIjAAhQRWIAiAgtQRGABiggsQBGBBSgisABFBBagiMACFBFYgCICC1BEYAGKCCxAEYEFKCKwAEUEFqCIwAIUEViAIgILUERgAYoILEARgQUoIrAARQQWoIjAAhQRWIAiAgtQRGABiggsQBGBBSgisABFBBagiMACFBFYgCICC1BEYAGKCCxAEYEFKCKwAEUEFqCIwAIUEViAIgILUERgAYoILEARgQUoIrAARQQWoIjAAhQRWIAiAgtQRGABiggsQBGBBSgisABFBBagiMACFBFYgCICC1BEYAGKCCxAEYEFKCKwAEUEFqCIwAIUEViAIgILUERgAYoILEARgQUoIrAARQQWoIjAAhQRWIAiAgtQRGABiggsQBGBBSgisABFBBagiMACFBFYgCICC1BEYAGKCCxAEYEFKCKwAEUEFqCIwAIUEViAIgILUERgAYoILEARgQUoIrAARQQWoIjAAhQRWBiWoxuO/9ZsCpIkW1sPAMzUl5KsJVlN8nDjWUZPYGFYTif5XOsh6LhFAFBEYAGKCCxAEYEFKCKwAEUEFqCIwAIUEViAIgILUERgAYoILEARgQUoIrAARQQWoIjAAhQRWIAiAgtQRGABiggsQBGBBSgisABFBBagiMDC8OxJsqv1EAgsDM19SY4mOZZkf+NZRk9gYVjuTXddryS5p/EsoyewMCzbeo5pQGABiggsQBGBBSgisABFBBagiMACFBFYgCICC1BEYAGKCCxAEYEFKCKwAEUEFqCIwAIUEViAIgILw7LWc0wDAgvD8sKG4+dbDUFna+sBgJl6KMkrSf6T5LnGs4yewMKwrCV5pvUQdNwiACgisABFBBagiMACFBFYgCICC8OyM8nBJI8luabxLKPnMS0Ylm8k+ez68X+TfLHhLKPnO1gYlus2HL+v1RB0BBagiMACFBHYcVvdcHy+2RTM0vmeYxoQ2HF7OsmF9XWo8SzMxlNJLqb7AdcP244C0zme7sN8ubUsdq6vK3E2lz/nM7MdrYkzufy5nW051BV6d5IdV/jf9H2Oj890spHxmBanWg/AzP2j9QB03CIAKCKwAEUEFqCIwAIUEViAIgI7nUmP7lzpYzLL4uok23teW6ZHmfr0ncP2JFfNc5A5mvRZHcJ72ozATmfS4zC3zG2K+bol/Z+b1+c5SJG+93Rzko/Nc5A5+viE14bwnrKkvpn+B7RPJrm+3Wgl9iY5kf5zfqLdaDPzZCY/dL+32WQ1bkj3We0750fajbb8NrUeYMndnOSFCa+vJvl5kj8neXMeAxVZSXJjkgNJ3j7h6z6R5NdzmajObUl+OeH1c+ne05eSvDWXiWpsS7Ivyf4kb5vwdR9J8vu5TASX2JzkcPr/9h/T+ku6EC+7lSRH0n4/F2H9KW4j0titaX8hLML65LQbuUA+nfb7uQhr0r1ZmJtH0/5iaLken34LF84Tab+vLdfXp99CmI0t6X7dX+uLosX6cYZxa+BSK0meSfv9bbGeSveZhoVyf/p/ld/Q1rkkX8mwf1C6KckD6X5xdev9nsd6I8nnZ7JzUGRXku+ke56y9QVTsU4l+V6S3bPasCXw3nS3DE6n/f5XrJNJvp3kPbPaMDpD/u6jtc1Jbkp3ce7Mcv80di1dWF9L98jZhbbjNLMl3aNN12Y47+mJdI+crbUdBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAdf8DEYrgrSQHmsQAAAAASUVORK5CYII%3D);
+        background-size: 5%;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 8px;
+        cursor: pointer;
+        height: 14px;
+        margin-top: 7px;
+        width: 150px;
+    }
+
+    input[type=range]:focus::-webkit-slider-runnable-track {
+        background: $comparison-table-trank-runnable-color;
+    }
+
+    input[type=range]::-moz-range-track {
+        background: $comparison-table-track-range-bg-color;
+        border-radius: 0;
+        cursor: pointer;
+        height: 28px;
+        width: 100%;
+    }
+
+    input[type=range]::-moz-range-thumb {
+        background: $comparison-table-track-thumb-bg-color;
+        border-radius: 8px;
+        cursor: pointer;
+        height: 14px;
+        width: 150px;
+    }
+
+    input[type=range]::-ms-track {
+        background: transparent;
+        border-color: transparent;
+        color: transparent;
+        cursor: pointer;
+        height: 28px;
+        width: 100%;
+    }
+
+    input[type=range]::-ms-fill-lower {
+        background: $comparison-table-track-range-bg-color;
+        border-radius: 0;
+    }
+
+    input[type=range]::-ms-fill-upper {
+        background: $comparison-table-track-range-bg-color;
+        border-radius: 0;
+    }
+
+    input[type=range]::-ms-thumb {
+        background: $comparison-table-track-thumb-bg-color;
+        border-radius: 8px;
+        cursor: pointer;
+        height: 14px;
+        margin-top: 0;
+        width: 150px;
+    }
+
+    input[type=range]:focus::-ms-fill-lower {
+        background: $comparison-table-track-range-bg-color;
+    }
+
+    input[type=range]:focus::-ms-fill-upper {
+        background: $comparison-table-trank-runnable-color;
     }
 }
 
