@@ -201,7 +201,8 @@ var MastheadSlider = (function () {
             }
         }
 
-        document.addEventListener('visibilitychange', visibilityChange);
+        // The visibilitychange event is fired at the document when the content of its tab have become visible or have been hidden.
+        // document.addEventListener('visibilitychange', visibilityChange);
         reset();
 
         if (len(slides) > 1) {
@@ -210,30 +211,30 @@ var MastheadSlider = (function () {
 
         // indicator
 
-  
         var prefixes = 'c-masthead__indicators__action__';
         var indicatorPlay = prefixes + 'play';
         var indicatorPause = prefixes + 'pause';
         var indicatorActive = 'active';
 
-        var indicator = document.createElement("ol");
+        var indicator = document.createElement('ol');
         indicator.className = 'c-masthead__indicators';
 
-        var actionElem =  document.createElement("li");
+        var actionElem = document.createElement('li');
         actionElem.className = 'c-masthead__indicators__action';
         actionElem.setAttribute('data-slide-to', 0);
         actionElem.setAttribute('tabindex', 0);
 
-        var pausePlayElem =  document.createElement("div");
+        var pausePlayElem =  document.createElement('div');
         pausePlayElem.className = 'c-masthead__indicators__action__pause';
 
         actionElem.appendChild(pausePlayElem);
         indicator.appendChild(actionElem);
 
-        var sliderContainer = document.querySelector('#' + options.id + ' .c-masthead__slider');
+        var sliderId = options.id !== '' ? '#' + options.id : '';
+        var sliderContainer = document.querySelector(sliderId + ' .c-masthead__slider');
         
         for (var i = 0; i < sliderContainer.children.length; i++) {
-            var dotElem = document.createElement("li");
+            var dotElem = document.createElement('li');
             dotElem.className = 'c-masthead__indicators__dot';
             dotElem.setAttribute('data-slide-to', i +  1);
             dotElem.setAttribute('tabindex', 0);
@@ -244,8 +245,8 @@ var MastheadSlider = (function () {
             document.querySelector('.c-masthead').appendChild(indicator);
         }
 
-        var indicatorElem = document.querySelectorAll('#' + options.id + ' .c-masthead__indicators > li.c-masthead__indicators__dot');
-        var pauseResumeElem = document.querySelector('#' + options.id + ' .c-masthead__indicators .c-masthead__indicators__action__pause');
+        var indicatorElem = document.querySelectorAll(sliderId + ' .c-masthead__indicators > li.c-masthead__indicators__dot');
+        var pauseResumeElem = document.querySelector(sliderId + ' .c-masthead__indicators .c-masthead__indicators__action__pause');
        
         function indicatorsControlPause() {
             pauseResumeElem.classList.remove(indicatorPlay);
@@ -321,12 +322,13 @@ if (typeof document !== 'undefined') {
         return scripts[scripts.length - 1];
     })();
 
-    var componentId = document.currentScript.getAttribute('id');
-
+    var id = document.currentScript.getAttribute('id');
+    var mastheadComponentId = id !== '' ? '#' + id : '';
+    
     document.addEventListener('DOMContentLoaded', function () {
-        var sliderContainer = document.querySelector('#' + componentId + ' .c-masthead__slider');
+        var sliderContainer = document.querySelector(mastheadComponentId + ' .c-masthead__slider');
         var slider = new MastheadSlider({
-            id: componentId,
+            id: id,
             container: sliderContainer,
             init: 100,
             show: 0,

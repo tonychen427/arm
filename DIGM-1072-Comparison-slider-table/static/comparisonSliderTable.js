@@ -336,7 +336,7 @@ var comparisonSliderTable = (function () {
             select1.innerHTML = '';
             select2.innerHTML = '';
 
-            if ( this.headerTitleList.length < 3) {
+            if (this.headerTitleList.length < 3) {
                 var offsetElement = document.querySelectorAll('.c-comparison-slider-table__card');
                 for (var i = 0; i < offsetElement.length; i++) {
                     offsetElement[i].classList.add(CLASSNAME_OFFSET_TOP);
@@ -354,7 +354,7 @@ var comparisonSliderTable = (function () {
                         value: i
                     }, this.headerTitleList[i - 1].innerHTML));
                 }
-                
+
                 if (i !== parseInt(this.mobileSelectedIndex1)) {
                     select2.add(this.buildElement('option', i === parseInt(this.mobileSelectedIndex2) ? {
                         value: i,

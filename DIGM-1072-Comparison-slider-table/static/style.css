@@ -19,7 +19,12 @@
     left: 0;
     margin: 0 15px 35px;
     position: absolute;
-    right: 0; }
+    right: 0;
+    /* IE10 and IE11 (v11.0.1.15 or older) */ }
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      .c-comparison-slider-table__card__button {
+        margin: 50px 0;
+        position: relative; } }
   .c-comparison-slider-table__card__link {
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -135,18 +140,36 @@
         position: sticky;
         background-color: #fff;
         z-index: 3;
-        padding: 0; }
+        padding: 0;
+        /* IE10 and IE11 (v11.0.1.15 or older) */ }
         @media (max-width: 1024px) {
           .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__scrollbar {
             top: 95px; } }
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+          .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__scrollbar {
+            min-height: 28px;
+            padding: 0; } }
+        @supports (-ms-ime-align: auto) {
+          .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__scrollbar {
+            min-height: 28px;
+            padding: 0; } }
         .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__scrollbar__no-border {
           top: 0;
           position: sticky;
           background-color: #fff;
-          z-index: 3; }
+          z-index: 3;
+          /* IE10 and IE11 (v11.0.1.15 or older) */ }
           @media (max-width: 1024px) {
             .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__scrollbar__no-border {
               top: 95px; } }
+          @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+            .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__scrollbar__no-border {
+              min-height: 28px;
+              padding: 0; } }
+          @supports (-ms-ime-align: auto) {
+            .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__scrollbar__no-border {
+              min-height: 28px;
+              padding: 0; } }
       .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__separator {
         background: #e5eceb;
         color: #333e48;
@@ -158,7 +181,8 @@
         top: 0;
         position: sticky;
         background-color: #fff;
-        z-index: 3; }
+        z-index: 3;
+        background-clip: padding-box; }
         @media (max-width: 1024px) {
           .c-comparison-slider-table table tbody tr td.c-comparison-slider-table__card {
             top: 95px; } }
@@ -276,7 +300,17 @@ input[type=range] {
   border: 1px solid #E5ECEB;
   margin: -1px;
   position: absolute;
-  width: 100%; }
+  width: 100%;
+  /* IE10 and IE11 (v11.0.1.15 or older) */
+  /* Microsoft Edge Browser 12+ (All) - @supports method */ }
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    input[type=range] {
+      border: 0;
+      margin: -18px -1px; } }
+  @supports (-ms-ime-align: auto) {
+    input[type=range] {
+      border: 0;
+      margin: -6px -1px; } }
 
 input[type=range]:focus {
   outline: none; }
