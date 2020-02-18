@@ -1,0 +1,48 @@
+/**
+ * o-core - components - Comparison Slider Table
+ *
+ * @name _components.comparison-slider-table.scss
+ */
+
+
+/**
+ * TODO: add docs
+ */
+@mixin oCoreComponents {
+    .range {
+        height: 30px;
+        -webkit-appearance: none;
+        appearance: none;
+        border: none;
+    }
+
+    .range::-ms-track {
+        cursor: pointer;
+        height: 2px;
+    }
+
+    .range::-ms-thumb {
+        appearance: none;
+        border: none;
+        width: 20px;
+        height: 20px;
+        background-color: pink;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 1px #C0C0C0, 0 2px 4px rgba(0, 0, 0, .2);
+    }
+
+    .range::-ms-fill-lower {
+        background: blue;
+    }
+
+    .range::-ms-fill-upper {
+        background: gray;
+    }
+
+    .range::-webkit-slider-runnable-track {
+        background: pink;
+    }
+
+}
+
+@include oCoreComponents;

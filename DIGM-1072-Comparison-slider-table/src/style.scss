@@ -11,9 +11,13 @@
 */
 
 @mixin sticky {
-    top: 0;
-    position: sticky;
     background-color: #fff;
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -o-sticky;
+    position: -ms-sticky;
+    position: sticky;
+    top: 0;
     z-index: 3;
     
     @media (max-width: 1024px) {
@@ -94,6 +98,7 @@
                 align-items: center;
                 border-bottom: none;
                 color: #11809f;
+                cursor: pointer;
                 display: -webkit-inline-box;
                 display: -ms-inline-flexbox;
                 display: inline-flex;
@@ -157,7 +162,6 @@
         }
 
         &__mobile-separator {
-            border-top: 1px solid $comparison-table-default-border-color !important;
             display: none !important;
             font-size: 18px !important;
             font-weight: bold;
@@ -289,6 +293,7 @@
                     }
 
                     &.c-comparison-slider-table__card>div {
+                        // Deprecated for now; if need it, I will add those back and fix the vertical fade line 
                         // border-style: solid;
                         // border-width: 2px;
                         // -webkit-border-image: -webkit-gradient(linear, 0 100%, 0 0, from(#e5eceb), to(rgba(0, 0, 0, 0))) 1 100%;
@@ -314,14 +319,23 @@
         }
 
         select {
+            appearance: none;
             background-image: url('data:image/png;base64,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');
             font-size: 16px;
             height: auto;
             min-height: 36px;
             margin-bottom: 0;
             padding:0 30px 0 10px !important;
+            text-overflow:'';
+            text-indent: 0.01px; /* Removes default arrow from firefox*/
+            text-overflow: "";  /*Removes default arrow from firefox*/
+            -moz-appearance: none;
+            -webkit-appearance: none;
             -webkit-padding-end: 30px !important;
             -webkit-padding-start: 10px !important;
+        }
+        select::-ms-expand {
+            display: none;
         }
     }
     @supports (-moz-appearance:none) {
@@ -413,25 +427,27 @@
             table {
                 thead tr,
                 tbody tr {
-                    display: inherit !important;
-                }
-    
-                thead tr:not(:last-child),
-                tbody tr:not(:last-child) {
-                    display: block;
                     margin-bottom: inherit;
+                    flex-direction: initial;
+                    /* IE10 and IE11 (v11.0.1.15 or older) */
+                    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+                        display: inline;
+                    }
+                    &.c-comparison-slider-table_sticky {
+                        @include sticky()
+                    }
                 }
-    
+
                 tr th,
                 tr td {
-                    border-bottom: none;
-
+                    &.c-comparison-slider-table__mobile-separator {
+                        border-bottom: none;
+                    }
                     &:first-child {
-                        display: none;
+                       display: none;
                     }
                 }
             }
-
         }
     }
 
@@ -451,13 +467,14 @@
          /* Microsoft Edge Browser 12+ (All) - @supports method */
         @supports (-ms-ime-align:auto) {
             border: 0;
-            margin: -6px -1px;
+            margin: -8px -1px;
         }
     }
 
-    input[type=range]:focus {
-        outline: none;
-    }
+    // this will not work with IE 11 & Edge
+    // input[type=range]:focus {
+    //     outline: none;
+    // }
 
     input[type=range]::-webkit-slider-runnable-track {
         background: $comparison-table-track-range-bg-color;
@@ -536,5 +553,6 @@
         background: $comparison-table-trank-runnable-color;
     }
 }
+
 
 @include oCoreComponentsComparisonSliderTable;

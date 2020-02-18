@@ -4,6 +4,8 @@ var comparisonSliderTable = (function () {
     var CLASSNAME_IS_HIGHLIGHTED = 'is-highlighted';
     var CLASSNAME_IS_HIDDEN = 'is-hidden';
     var CLASSNAME_OFFSET_TOP = 'is-offset-top';
+    var CLASSNAME_SLIDER_TABLE = 'c-comparison-slider-table__slider';
+    var CLASSNAME_SLIDER_TABLE_CARD = 'c-comparison-slider-table__card';
     var CLASSNAME_GROUP_TITLE = 'c-comparison-slider-table__group-title';
     var CLASSNAME_NO_BORDER_ON_LAST_CELL = 'no-border-on-last-cell';
     var CLASSNAME_NO_BORDER = 'c-comparison-slider-table__no-border';
@@ -16,7 +18,7 @@ var comparisonSliderTable = (function () {
     function comparisonSliderTable(id, responsive) {
         if (id === null) return;
         this.id = '#' + id;
-        this.myTable = document.querySelector(this.id + ' .c-comparison-slider-table__slider table');
+        this.myTable = document.querySelector('.' + CLASSNAME_SLIDER_TABLE + ' table');
         this.headerTitleList = document.querySelectorAll('.c-comparison-slider-table__header-title');
         this.myClone = this.myTable.cloneNode(true);
         this.maxNumberColumn = 3;
@@ -24,7 +26,7 @@ var comparisonSliderTable = (function () {
         this.mobileSelectedIndex1 = 1;
         this.mobileSelectedIndex2 = 2;
 
-        this.numberTotalColumn = document.querySelectorAll(this.id + ' table')[0].rows[0].cells.length;
+        this.numberTotalColumn = document.querySelectorAll('.' + CLASSNAME_SLIDER_TABLE + ' table')[0].rows[0].cells.length;
         this.responsive = responsive.sort(function (a, b) {
             return b.breakpoint - a.breakpoint;
         });
@@ -59,7 +61,7 @@ var comparisonSliderTable = (function () {
             };
         },
         getColumnElementsByIndex: function (index) {
-            return document.querySelectorAll(this.id + ' td:nth-child(' + index + ')');
+            return document.querySelectorAll('.' + CLASSNAME_SLIDER_TABLE + ' td:nth-child(' + index + ')');
         },
         setColumnWidth: function (index, width) {
             var elements = this.getColumnElementsByIndex(index);
@@ -102,7 +104,7 @@ var comparisonSliderTable = (function () {
         },
         moveColumnTo: function (firstIndexFrom, firstIndexTo, secondIndexFrom, secondIndexTo) {
             this.myTable.innerHTML = this.myClone.innerHTML;
-            var table = document.querySelector(this.id + ' table');
+            var table = document.querySelector('.' + CLASSNAME_SLIDER_TABLE + ' table');
             var rows = table.rows;
             for (var i = 0; i < rows.length; i++) {
                 col = rows[i].children;
@@ -155,7 +157,7 @@ var comparisonSliderTable = (function () {
         },
         buildHoverListener: function () {
             var self = this;
-            var elements = document.querySelectorAll(this.id + ' td');
+            var elements = document.querySelectorAll('.' + CLASSNAME_SLIDER_TABLE + ' td');
 
             for (var i = 0; i < elements.length; i++) {
                 var element = elements[i];
@@ -250,12 +252,12 @@ var comparisonSliderTable = (function () {
             for (let i = 0; i < this.responsive.length; i++) {
                 const size = this.responsive[i];
                 if (width >= size.breakpoint) {
-                    this.setAttributeByClassName(CLASSNAME_SEPARATOR, 'colspan', size.settings.slidesToShow);
-                    this.setAttributeByClassName(CLASSNAME_SCROLLBAR, 'colspan', size.settings.slidesToShow);
+                    this.setAttributeByClassName(CLASSNAME_SEPARATOR, 'colspan',  (parseInt(size.settings.slidesToShow) - 1));
+                    this.setAttributeByClassName(CLASSNAME_SCROLLBAR, 'colspan',  (parseInt(size.settings.slidesToShow) - 1));
                     this.maxNumberColumn = size.settings.slidesToShow;
                     if ((this.numberTotalColumn < this.maxNumberColumn) || (width > 1570)) {
-                        this.setAttributeByClassName(CLASSNAME_SEPARATOR, 'colspan', this.numberTotalColumn);
-                        this.setAttributeByClassName(CLASSNAME_SCROLLBAR, 'colspan', size.settings.slidesToShow);
+                        this.setAttributeByClassName(CLASSNAME_SEPARATOR, 'colspan', (parseInt(this.numberTotalColumn) - 1));
+                        this.setAttributeByClassName(CLASSNAME_SCROLLBAR, 'colspan',  (parseInt(size.settings.slidesToShow) - 1));
                     }
 
                     this.buildColumn(size);
@@ -292,6 +294,7 @@ var comparisonSliderTable = (function () {
 
             var inputComparisonScrollBar = this.buildElement('input', {
                 id: 'comparisonTableScrollBar',
+                class: 'comparisonTableScrollBar',
                 max: numberOfScrollClick,
                 min: '1',
                 step: '1',
@@ -307,9 +310,14 @@ var comparisonSliderTable = (function () {
 
             scrollbarEl.appendChild(inputComparisonScrollBar);
 
-            var offsetHeight = document.querySelectorAll(this.id + ' table tr td')[0].offsetHeight
+            var offsetHeight = document.querySelectorAll('.' + CLASSNAME_SLIDER_TABLE + ' table tr td')[0].offsetHeight
             scrollbarEl.setAttribute('style', 'top: ' + offsetHeight + 'px');
             scrollbarNoBorder.setAttribute('style', 'top: ' + offsetHeight + 'px');
+
+            var colspanSize = this.maxNumberColumn - 1;
+            var scrollbarWidth = document.querySelector('.' +  CLASSNAME_SLIDER_TABLE_CARD).offsetWidth * colspanSize;
+            this.setAttributeByClassName('comparisonTableScrollBar', 'style', 'width: ' + scrollbarWidth + 'px');
+
         },
         buildScrollBarListener: function () {
             var self = this;
@@ -335,7 +343,8 @@ var comparisonSliderTable = (function () {
             var select2 = document.querySelector('#select2');
             select1.innerHTML = '';
             select2.innerHTML = '';
-
+            this.headerTitleList = document.querySelectorAll('.c-comparison-slider-table__header-title');
+            
             if (this.headerTitleList.length < 3) {
                 var offsetElement = document.querySelectorAll('.c-comparison-slider-table__card');
                 for (var i = 0; i < offsetElement.length; i++) {
