@@ -1,0 +1,58 @@
+/**
+ * o-core - components - Two column mobile tabs
+ *
+ * @name _components.two-column-mobile-tabs.scss
+ */
+/**
+ * TODO: add docs
+ */
+/* Tabs contents */
+.c-two-column-mobile-tabs__contents {
+  display: flex;
+  justify-content: center; }
+
+.c-two-column-mobile-tabs__content {
+  display: table-cell;
+  padding: 15px;
+  vertical-align: top;
+  width: 570px; }
+  .c-two-column-mobile-tabs__content.is-active {
+    display: block; }
+
+.c-two-column-mobile-tabs__nav {
+  display: none; }
+
+.c-two-column-mobile-tabs__link {
+  background-color: #66000000;
+  border-bottom: 1px solid #e7e7e7;
+  color: #11809F;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 10px 20px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%; }
+  .c-two-column-mobile-tabs__link:hover {
+    background-color: #66000000;
+    border-bottom: 3px solid #FF6B00;
+    color: #FF6B00; }
+  .c-two-column-mobile-tabs__link.is-active {
+    background-color: #66000000;
+    border-bottom: 3px solid #000;
+    color: #333E48; }
+  .c-two-column-mobile-tabs__link:last-child {
+    margin-right: 0; }
+
+@media screen and (max-width: 925px), screen and (max-device-width: 925px) {
+  .c-two-column-mobile-tabs__contents {
+    display: block; }
+  .c-two-column-mobile-tabs__content {
+    display: none;
+    width: 100%;
+    background-color: inherit; }
+    .c-two-column-mobile-tabs__content > div {
+      background-color: inherit; }
+  .c-two-column-mobile-tabs__nav {
+    display: flex;
+    margin: 0;
+    padding: 0; } }

@@ -1,0 +1,231 @@
+/**
+ * o-core - components - header lite
+ *
+ * @name _components.header-lite.scss
+ */
+
+
+/**
+ * TODO: add docs
+ */
+@mixin oCoreComponentsHeaderLite {
+    .c-header-lite {
+        background: #fff;
+        box-shadow: 0 0 2px 2px rgba(54, 54, 54, 0.15);
+        display: none;
+        height: 50px;
+        padding: 10px;
+        position: fixed;
+        width: 100%;
+        z-index: 9;
+
+        &__logo {
+            width: 90px;
+            margin: 0 auto;
+
+            a {
+                border-bottom-style: inherit;
+            }
+        }
+    }
+
+    @media screen and (max-width: 925px),
+    screen and (max-device-width: 925px) {
+        .c-header-lite {
+            display: block;
+        }
+    }
+}
+
+/**
+ * o-core - components - Two column mobile tabs
+ *
+ * @name _components.two-column-mobile-tabs.scss
+ */
+
+
+/**
+ * TODO: add docs
+ */
+ @mixin oCoreComponentsTwoColumnMobileTabs {
+
+    $c-two-column-mobile-tabs-column-width: 570px;
+
+    $c-two-column-mobile-tabs-background-color: #e7e7e7;
+    $c-two-column-mobile-tabs-border-default-color: #e7e7e7;
+    $c-two-column-mobile-tabs-border-active-color: #000;
+    $c-two-column-mobile-tabs-tablink-default-color: #11809F;
+    $c-two-column-mobile-tabs-tablink-default-background-color: #66000000;
+    $c-two-column-mobile-tabs-tablink-active-color: #333E48;
+    $c-two-column-mobile-tabs-tablink-active-background-color: #66000000;
+    $c-two-column-mobile-tabs-tablink-hover-color: #FF6B00;
+    $c-two-column-mobile-tabs-tablink-hover-background-color: #66000000;
+
+    /* Tabs contents */
+    .c-two-column-mobile-tabs {
+        &__contents {
+            display: flex;
+            justify-content: center;
+        }
+
+        &__content {
+            display: table-cell;
+            padding: 15px;
+            vertical-align: top;
+            width: $c-two-column-mobile-tabs-column-width;
+
+            form {
+                margin: 0 auto;
+            }
+            
+            &.is-active {
+                display: block;
+            }
+        }
+
+        &__nav {
+            display: none;
+        }
+
+        &__link {
+            background-color: $c-two-column-mobile-tabs-tablink-default-background-color;
+            border-bottom: 1px solid $c-two-column-mobile-tabs-border-default-color;
+            color: $c-two-column-mobile-tabs-tablink-default-color;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 10px 20px;
+            text-align: center;
+            text-transform: uppercase;
+            width: 100%;
+
+            &:hover {
+                background-color: $c-two-column-mobile-tabs-tablink-hover-background-color;
+                border-bottom: 3px solid $c-two-column-mobile-tabs-tablink-hover-color;
+                color: $c-two-column-mobile-tabs-tablink-hover-color;
+            }
+
+            &.is-active {
+                background-color: $c-two-column-mobile-tabs-tablink-active-background-color;
+                border-bottom: 3px solid $c-two-column-mobile-tabs-border-active-color;
+                color: $c-two-column-mobile-tabs-tablink-active-color;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    @media screen and (max-width: 925px),
+    screen and (max-device-width: 925px) {
+        .c-two-column-mobile-tabs {
+            &__contents {
+                display: block;
+            }
+
+            &__content {
+                display: none;
+                width: 100%;
+                background-color: inherit;
+
+                >div {
+                    background-color: inherit;
+                }
+            }
+
+            &__nav {
+                display: flex;
+                margin: 0;
+                padding: 0;
+            }
+        }
+    }
+}
+
+
+/**
+ * c-footer-lite - mixins
+ *
+ * @name _mixins.scss
+ */
+
+ @mixin oFooterLite {
+
+    $o-footer-background-color: #333e48;
+    $o-footer-hr-style: 1px solid #fff;
+    $o-footer-text-color: #a3a8ae;
+    $arm-white: #fff;
+
+    background-color: $o-footer-background-color;
+    color: $o-footer-text-color;
+    flex-shrink: 0;
+    font-size: 14px;
+    padding-bottom: 45px;
+    padding-top: 25px;
+    text-align: center;
+
+    .c-footer-lite__social-link,  .c-footer-lite__legal-link {
+        padding-left: 8px;
+        padding-right: 8px;
+
+        &:before {
+            content: none;
+        }
+
+        a {
+            border-bottom-style: none;
+        }
+
+    }
+
+
+    .c-footer-lite__social {
+        margin: 0;
+
+        &-link {
+            margin: 0;
+        }
+        .c-footer-lite__social-link {
+            color: $arm-white;
+            display: inline;
+            font-size: 25px;
+        }
+
+        .c-footer-lite__logo {
+            margin: 8px 0 0;
+            max-width: 90px;
+        }
+        i {
+            color: $arm-white;
+        }
+    }
+
+    .c-footer-lite__legal {
+        &-link {
+            border-right: 1px solid $o-footer-text-color;
+            display: inline;
+            font-size: 14px;
+            margin: 0;
+ 
+            a {
+                color: $o-footer-text-color;
+            }
+            
+            &:last-child {
+                border-right: inherit; 
+            }
+        }
+    }
+
+    .c-footer-lite__copyright .c-footer__section {
+        padding: 0;
+    }
+}
+
+@include oCoreComponentsHeaderLite;
+@include oCoreComponentsTwoColumnMobileTabs;
+
+
+.c-footer-lite {
+    @include oFooterLite;
+}

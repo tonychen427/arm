@@ -1,0 +1,23 @@
+{
+  "name": "digm-1430-two-column-mobile-tabs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha \"test/*.spec.js\"",
+    "sass:compile": "node-sass --include-path sass ./src/style.scss ./static/style.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "node-sass": "^4.13.0",
+    "chai": "^4.2.0",
+    "gulp": "^4.0.2",
+    "gulp-mocha": "^7.0.2",
+    "jsdom": "^15.2.0",
+    "mocha": "^6.2.2"
+  }
+}

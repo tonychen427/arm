@@ -1,0 +1,106 @@
+/**
+ * o-core - components - Two column mobile tabs
+ *
+ * @name _components.two-column-mobile-tabs.scss
+ */
+
+
+/**
+ * TODO: add docs
+ */
+ @mixin oCoreComponentsTwoColumnMobileTabs {
+
+    $c-two-column-mobile-tabs-column-width: 570px;
+
+    $c-two-column-mobile-tabs-background-color: #e7e7e7;
+    $c-two-column-mobile-tabs-border-default-color: #e7e7e7;
+    $c-two-column-mobile-tabs-border-active-color: #000;
+    $c-two-column-mobile-tabs-tablink-default-color: #11809F;
+    $c-two-column-mobile-tabs-tablink-default-background-color: #66000000;
+    $c-two-column-mobile-tabs-tablink-active-color: #333E48;
+    $c-two-column-mobile-tabs-tablink-active-background-color: #66000000;
+    $c-two-column-mobile-tabs-tablink-hover-color: #FF6B00;
+    $c-two-column-mobile-tabs-tablink-hover-background-color: #66000000;
+
+    /* Tabs contents */
+    .c-two-column-mobile-tabs {
+        &__contents {
+            display: flex;
+            justify-content: center;
+        }
+
+        &__content {
+            display: table-cell;
+            padding: 15px;
+            vertical-align: top;
+            width: $c-two-column-mobile-tabs-column-width;
+
+            form {
+                margin: 0 auto;
+            }
+            
+            &.is-active {
+                display: block;
+            }
+        }
+
+        &__nav {
+            display: none;
+        }
+
+        &__link {
+            background-color: $c-two-column-mobile-tabs-tablink-default-background-color;
+            border-bottom: 1px solid $c-two-column-mobile-tabs-border-default-color;
+            color: $c-two-column-mobile-tabs-tablink-default-color;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 10px 20px;
+            text-align: center;
+            text-transform: uppercase;
+            width: 100%;
+
+            &:hover {
+                background-color: $c-two-column-mobile-tabs-tablink-hover-background-color;
+                border-bottom: 3px solid $c-two-column-mobile-tabs-tablink-hover-color;
+                color: $c-two-column-mobile-tabs-tablink-hover-color;
+            }
+
+            &.is-active {
+                background-color: $c-two-column-mobile-tabs-tablink-active-background-color;
+                border-bottom: 3px solid $c-two-column-mobile-tabs-border-active-color;
+                color: $c-two-column-mobile-tabs-tablink-active-color;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    @media screen and (max-width: 925px),
+    screen and (max-device-width: 925px) {
+        .c-two-column-mobile-tabs {
+            &__contents {
+                display: block;
+            }
+
+            &__content {
+                display: none;
+                width: 100%;
+                background-color: inherit;
+
+                >div {
+                    background-color: inherit;
+                }
+            }
+
+            &__nav {
+                display: flex;
+                margin: 0;
+                padding: 0;
+            }
+        }
+    }
+}
+
+@include oCoreComponentsTwoColumnMobileTabs;

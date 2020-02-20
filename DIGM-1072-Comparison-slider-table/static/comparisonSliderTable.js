@@ -13,6 +13,7 @@ var comparisonSliderTable = (function () {
     var CLASSNAME_SCROLLBAR = 'c-comparison-slider-table__scrollbar';
     var CLASSNAME_MOBILE_SEPARATOR = 'c-comparison-slider-table__mobile-separator';
     var CLASSNAME_MOBILE_SEPARATOR_HIDDEN = 'c-comparison-slider-table__mobile-separator-hidden';
+    var CLASSNAME_STICKY = 'c-comparison-slider-table_sticky';
 
 
     function comparisonSliderTable(id, responsive) {
@@ -32,8 +33,6 @@ var comparisonSliderTable = (function () {
         });
 
         this.buildHoverListener();
-        this.buildNavigation();
-        this.buildNavigationListener();
         this.buildResponsive();
         this.buildResponsiveListener();
         this.buildScrollBar();
@@ -92,6 +91,15 @@ var comparisonSliderTable = (function () {
                 if (elements[i].className.includes(CLASSNAME_MOBILE_SEPARATOR_HIDDEN)) continue;
                 elements[i].classList.remove(className);
             }
+        },
+        resetSticky: function () {
+            var el = document.querySelector('.' + CLASSNAME_STICKY);
+            el.classList.remove(CLASSNAME_STICKY);
+            setTimeout(function() { el.classList.add(CLASSNAME_STICKY) }, 25);
+
+            var elCard = document.querySelector('.' + CLASSNAME_SLIDER_TABLE_CARD);
+            elCard.classList.remove(CLASSNAME_SLIDER_TABLE_CARD);
+            setTimeout(function() { elCard.classList.add(CLASSNAME_SLIDER_TABLE_CARD) }, 25);
         },
         getColumnIndex: function (element) {
             return parseInt(Array.prototype.indexOf.call(element.parentNode.children, element)) + 1
@@ -270,15 +278,15 @@ var comparisonSliderTable = (function () {
 
             window.addEventListener('resize', self.debounced(100, function () {
                 self.myTable.innerHTML = self.myClone.innerHTML;
-
+                self.mobileSelectedIndex1 = 1;
+                self.mobileSelectedIndex2 = 2;
                 self.buildHoverListener();
-                self.buildNavigation();
-                self.buildNavigationListener();
                 self.buildResponsive();
                 self.buildNavigation();
                 self.buildScrollBar();
                 self.buildScrollBarListener();
                 self.buildMobileDropdown();
+                self.resetSticky();
             }))
         },
         buildScrollBar: function () {
@@ -290,6 +298,9 @@ var comparisonSliderTable = (function () {
                 scrollbarEl.classList.add(CLASSNAME_IS_HIDDEN);
                 scrollbarNoBorder.classList.add(CLASSNAME_IS_HIDDEN);
                 return;
+            } else {
+                scrollbarEl.classList.remove(CLASSNAME_IS_HIDDEN);
+                scrollbarNoBorder.classList.remove(CLASSNAME_IS_HIDDEN);
             }
 
             var inputComparisonScrollBar = this.buildElement('input', {
@@ -343,7 +354,6 @@ var comparisonSliderTable = (function () {
             var select2 = document.querySelector('#select2');
             select1.innerHTML = '';
             select2.innerHTML = '';
-            this.headerTitleList = document.querySelectorAll('.c-comparison-slider-table__header-title');
             
             if (this.headerTitleList.length < 3) {
                 var offsetElement = document.querySelectorAll('.c-comparison-slider-table__card');
@@ -355,13 +365,14 @@ var comparisonSliderTable = (function () {
             }
 
             for (var i = 1; i <= this.headerTitleList.length; i++) {
+                var headerTitleList = this.myClone.querySelectorAll('.c-comparison-slider-table__header-title');
                 if (i !== parseInt(this.mobileSelectedIndex2)) {
                     select1.add(this.buildElement('option', i === parseInt(this.mobileSelectedIndex1) ? {
                         value: i,
                         selected: 'selected'
                     } : {
                         value: i
-                    }, this.headerTitleList[i - 1].innerHTML));
+                    }, headerTitleList[i - 1].innerHTML));
                 }
 
                 if (i !== parseInt(this.mobileSelectedIndex1)) {
@@ -370,7 +381,7 @@ var comparisonSliderTable = (function () {
                         selected: 'selected'
                     } : {
                         value: i
-                    }, this.headerTitleList[i - 1].innerHTML));
+                    }, headerTitleList[i - 1].innerHTML));
                 }
             }
         },
@@ -383,12 +394,14 @@ var comparisonSliderTable = (function () {
                 self.mobileSelectedIndex1 = this.value;
                 self.buildMobileDropdown();
                 self.moveColumnTo(self.mobileSelectedIndex1, 1, self.mobileSelectedIndex2, 2);
+                self.resetSticky();
             });
 
             select2.addEventListener('change', function () {
                 self.mobileSelectedIndex2 = this.value;
                 self.buildMobileDropdown();
                 self.moveColumnTo(self.mobileSelectedIndex1, 1, self.mobileSelectedIndex2, 2);
+                self.resetSticky();
             });
         }
     }
@@ -467,9 +480,6 @@ if (typeof document !== 'undefined') {
     document.addEventListener('DOMContentLoaded', function () {
         var id = comparisonSliderTableId
         var c = new comparisonSliderTable(id, responsive);
-
-        var elements = document.querySelectorAll('.c-comparison-slider-table__arrow-nav');
-        Stickyfill.add(elements);
     });
 
 }
