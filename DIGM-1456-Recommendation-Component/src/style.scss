@@ -1,0 +1,98 @@
+/**
+ * o-core - components - RecommendationList
+ *
+ * @name _components.RecommendationList.scss
+ */
+
+/**
+ * TODO: add docs
+ */
+
+$recommendations-primary-heading-color: #333e48;
+$recommendations-description-font-color: #11809f;
+$recommendations-font-family: "Lato", "Helvetica", "Arial", "sans-serif";
+
+@mixin normalize {
+  font-family: $recommendations-font-family;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin oCoreComponentsRecommendationsList {
+  .c-recommendations-list {
+    @include normalize();
+
+    &__primary-heading {
+      color: $recommendations-primary-heading-color;
+      font-size: 30;
+      margin-bottom: 16px;
+    }
+
+    &__container {
+      @include normalize();
+      list-style-type: none;
+    }
+
+    &__item {
+      @include normalize();
+      list-style-type: none;
+      margin-bottom: 35px;
+
+      > div {
+        display: table-cell;
+        vertical-align: top;
+      }
+
+      &__image img {
+        width: 150px;
+        height: 115px;
+      }
+
+      &__description {
+        color: $recommendations-description-font-color;
+        font-size: 20px;
+        padding: 15px 0 0 20px;
+      }
+
+      &::before {
+        content: none;
+      }
+    }
+  }
+}
+
+@include oCoreComponentsRecommendationsList;
+
+@mixin oCoreComponentsTwoColumnTwoSubComponent {
+    
+.card {
+    background-color: dodgerblue;
+    color: white;
+    padding: 1rem;
+    height: 4rem;
+  }
+  
+  .cards {
+    // max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 1rem;
+  }
+  
+  /* Screen larger than 600px? 2 column */
+//   @media (min-width: 600px) {
+//     .cards { grid-template-columns: repeat(2, 1fr); }
+//   }
+  
+  /* Screen larger than 900px? 3 columns */
+  @media (min-width: 992px) {
+    .cards { 
+        -ms-grid-columns: 1fr 1fr;  
+        grid-template-columns: repeat(2, 1fr); 
+    }
+  }
+   
+}
+
+@include oCoreComponentsTwoColumnTwoSubComponent();
