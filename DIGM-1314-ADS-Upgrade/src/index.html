@@ -6,50 +6,147 @@
     <link rel="stylesheet" type="text/css" href="static/_all.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="static/style.css" media="screen" />
 
-    <link rel="stylesheet" href="https://cdn.designsystem.arm.com/rel/2.24.0/arm-design-system.css"
+    <!-- <link rel="stylesheet" href="https://cdn.designsystem.arm.com/rel/2.24.0/arm-design-system.css"
         integrity="sha384-scXABB9BDy4FuyD0T8rml61dwB0oxJqLnrJvc5wD+Ke3zNcERqSjv2DWq6oQvQzY" crossorigin="anonymous">
     <script src="https://cdn.designsystem.arm.com/rel/2.24.0/arm-design-system.js"
         integrity="sha384-NuflhfPR8Lh6KWrFUNQlJIByQZ9OlJeMAK/XmsqPNnqLi7Enc/VaymwV2VYI/Dp7" crossorigin="anonymous">
-    </script>
+    </script> -->
+
+
+  <!-- <link rel="stylesheet" href="http://cdn.designsystem.arm.com/rel/2.26.4/arm-design-system-scoped.css" crossorigin="anonymous">
+  <script src="https://cdn.designsystem.arm.com/rel/2.26.4/arm-design-system.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.designsystem.arm.com/rel/2.26.4/arm-design-system/arm-design-system.x9piaz9e.js" type="module" crossorigin="true" data-resources-url="https://cdn.designsystem.arm.com/rel/2.26.4/arm-design-system/" data-namespace="arm-design-system"></script>
+  
+   -->
+
+   <link rel="stylesheet" href="//cdn.designsystem.arm.com/rel/2.27.0/arm-design-system-scoped.css" crossorigin="anonymous">
+   <script src="//cdn.designsystem.arm.com/rel/2.27.0/arm-design-system.js" crossorigin="anonymous"></script>
+   <script src="https://cdn.designsystem.arm.com/rel/2.27.0/arm-design-system/arm-design-system.wkf1y3fd.js" type="module" crossorigin="true" data-resources-url="https://cdn.designsystem.arm.com/rel/2.27.0/arm-design-system/" data-namespace="arm-design-system"></script>
 </head>
 
 <body>
-    <ads-dropdown id="footer-language-dropdown"></ads-dropdown>
-    <script src="./static/dropdown.js"></script>
+    <!-- <ads-dropdown id="footer-language-dropdown"></ads-dropdown>
+    <script src="./static/dropdown.js"></script> -->
     <ads-dropdown class="is-primary" id="primary"></ads-dropdown>
     <script>
-        (function () {
-            var data =  [
-        {
-          "label": "Japanese",
-          "value": "jp",
-          "icon": "far fa-globe-americas",
-        },
-        {
-          "label": "Chinese",
-          "value": "cn",
-          "icon": "far fa-globe-americas",
-          "selected": true // This is the new way of setting the default option
-        },
-        {
-          "label": "English",
-          "value": "en",
-          "icon": "far fa-globe-americas"
-        },
-        {
-          "label": "German",
-          "value": "de",
-          "icon": "far fa-globe-americas"
-        },
-        {
-          "label": "More...",
-          "icon": "far fa-globe-americas",
-          "href": "https://www.arm.com"
-        }
-      ];
+      //   (function () {
+      //       var data =  [
+      //   {
+      //     "label": "Japanese",
+      //     "value": "jp",
+      //     "selected": true, // This is the new way of setting the default option
+      //     // "icon": "far fa-globe-americas",
+      //   },
+      //   {
+      //     "label": "Chinese",
+      //     "value": "cn",
+      //     // "icon": "far fa-globe-americas",
+      //   },
+      //   {
+      //     "label": "English",
+      //     "value": "en",
+      //     // "icon": "far fa-globe-americas"
+      //   },
+      //   {
+      //     "label": "German",
+      //     "value": "de",
+      //     // "icon": "far fa-globe-americas"
+      //   },
+      //   {
+      //     "label": "More...",
+      //     "href": "https://www.arm.com",
+      //     // "icon": "far fa-globe-americas",
+      //   }
+      // ];
 
-            document.querySelector('#primary').data = data;
-        })();
+      //       document.querySelector('#primary').data = data;
+      //   })();
+
+
+
+      (function () {
+debugger;
+var position = 1;
+var dropdownType = "inverted";
+
+var isAlertBanner = !true;
+var viewModel = [{"Label":"English","Value":"en","Icon":"fas fa-globe","Selected":true},{"Label":"日本語","Value":"ja","Icon":null,"Selected":false}];
+
+var language = ConvertKeysToLowerCase(viewModel);
+var selectedData = language.default;
+
+function ConvertKeysToLowerCase(obj) {
+    var json = JSON.stringify(obj);
+    var newJson = json.replace(/"([\w]+)":/g,
+        function($0, $1) {
+            return ('"' + $1.toLowerCase() + '":');
+        });
+    return JSON.parse(newJson);
+};
+
+function buildLocalization(locale, url) {
+    var pathArray = url.split('/');
+    var secondLevelLocation = pathArray[position];
+    var found = false;
+    for (var i = 0; i < language.items.length; i++) {
+        if (language.items[i].value == secondLevelLocation) {
+            found = true;
+            break;
+        }
+    }
+    var urlPath = found ? '/' + pathArray.slice(position + 1, pathArray.length).join('/') : url;
+    return '/' + locale + urlPath;
+}
+
+function redirectPath(value) {
+    var url = new URL(window.location.href);
+    var redirectUrl = url.origin + buildLocalization(value, url.pathname);
+    return redirectUrl;
+}
+
+function setCookie(cname, cvalue) {
+    var expiryDate = new Date();
+    expiryDate.setTime(expiryDate.getTime() + (3650*24*60*60*1000));
+    var expires = "expires="+ expiryDate.toGMTString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+var dropdownId = isAlertBanner ? '#alert-language-dropdown' : '#footer-language-dropdown';
+var dropdown = document.querySelector(dropdownId);
+if (dropdown) {
+    dropdown.type = dropdownType;
+    dropdown.data = language;
+    dropdown.addEventListener('adsDropdownOnChanged',
+        function(evt) {
+            selectedData = evt.detail;
+            if (!isAlertBanner) {
+                document.cookie = setCookie('language-banner', selectedData.value);
+                window.location.href = redirectPath(selectedData.value);
+            }
+        });
+}
+
+if (isAlertBanner) {
+    var alertTop = document.querySelector('#alert-top');
+    if (alertTop) {
+        alertTop.addEventListener('adsCloseButtonClicked',
+            function() {
+                alertTop.close();
+            });
+    }
+
+    var confirmButton = document.querySelector('#c-language-switcher__alert__button_id');
+    if (confirmButton) {
+        confirmButton.addEventListener('click',
+            function () {
+                document.cookie = setCookie('language-banner', selectedData.value);
+                window.location.href = redirectPath(selectedData.value);
+            });
+    }
+}
+
+})();
+
     </script>
 
 

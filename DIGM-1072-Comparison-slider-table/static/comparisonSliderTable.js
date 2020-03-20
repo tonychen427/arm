@@ -249,6 +249,7 @@ var comparisonSliderTable = (function () {
             });
         },
         buildResponsive: function () {
+            debugger
             var width = window.innerWidth ||
                 document.documentElement.clientWidth ||
                 document.body.clientWidth;
@@ -436,6 +437,13 @@ var responsive = [{
     },
     {
         breakpoint: 370,
+        settings: {
+            slidesToShow: 3,
+        }
+    }
+    ,
+    {
+        breakpoint: 360,
         settings: {
             slidesToShow: 3,
         }
