@@ -38,30 +38,29 @@
     .c-recommendations-list__item::before {
       content: none; }
 
-/* Create two equal columns that next to each other */
-.columnx {
-  display: table-cell;
-  vertical-align: top;
-  padding: 60px 30px 15px 60px;
-  width: 50%; }
-  .columnx:last-child {
-    padding: 60px 60px 15px 30px; }
+.c-two-column-with-two-sub-component {
+  display: flex;
+  /* Create two equal columns that next to each other */
+  /* Clear floats after the columns */ }
+  .c-two-column-with-two-sub-component__column {
+    display: flex;
+    vertical-align: top;
+    padding: 60px 30px 15px 60px;
+    width: 50%; }
+    .c-two-column-with-two-sub-component__column:last-child {
+      padding: 60px 60px 15px 30px; }
+  .c-two-column-with-two-sub-component::after {
+    content: "";
+    display: table;
+    clear: both; }
 
-.rowx {
-  display: flex; }
-
-/* Clear floats after the columns */
-.rowx:after {
-  content: "";
-  display: table;
-  clear: both; }
-
-/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+/* Responsive layout:
+     makes the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 925px), screen and (max-device-width: 925px) {
-  .rowx {
+  .c-two-column-with-two-sub-component {
     display: inherit; }
-  .columnx {
-    display: inherit;
-    float: left;
-    padding: 20px !important;
-    width: 100%; } }
+    .c-two-column-with-two-sub-component__column {
+      display: inherit;
+      float: left;
+      padding: 20px !important;
+      width: 100%; } }
