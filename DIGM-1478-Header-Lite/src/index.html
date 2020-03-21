@@ -1,363 +1,62 @@
-<html>
+<script src="//app-lon02.marketo.com/js/forms2/js/forms2.min.js"></script>
+<form id="mktoForm_5425">
+</form>
+<script>MktoForms2.loadForm("//app-lon02.marketo.com", "312-SAX-488", 5425);</script>
+<script src="https://learn.arm.com/rs/714-XIJ-402/images/formsplus-alternateroute-1.1.0.js"></script>
+<script>
+   
+var altRouteUserConfig = {
+   instanceForms: {
+      primary: {
+         instanceHost: "app-lon02.marketo.com",
+         munchkinId: "312-SAX-488",
+         formId: 5425
+      },
+      alternate: {
+         instanceHost: "app-ab04.marketo.com",
+         munchkinId: "714-XIJ-402",
+         formId: 3576
+      }
+   },
+   instanceFieldMap: [
+      {
+         primary: "Source_Detail",
+         alternate: "Inquiry_Type__c"
+      },
+      {
+        primary: "messageSubject",
+         alternate: "topic"
+      },
+      {
+         primary: "messageBody",
+         alternate: "Notes__c"
+      },
+      {
+         primary: "lmarketingSalesConsent",
+         alternate: "Explicit_Opt_In__c"
+      },
+      {
+         primary: "formid"
+      },
+      {
+         primary: "munchkinId"
+      }
+   ],
+   formRoutingRules: [
+      {
+         when: "Source_Detail",
+         matches: /^Sales Enquiry for IoT &amp; Pelion$/,
+         routeTo: "alternate"
+      },
+      {
+         when: "Source_Detail",
+         matches: /.*/,
+         routeTo: "primary"
+      }
+   ]
+};
 
-<head>
-    <title>Two Column Mobile Tabs</title>
-    <script src="https://use.fontawesome.com/0d52a21cde.js"></script>
-    <link rel="stylesheet" type="text/css" href="static/_all.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="static/style.css" media="screen" />
-</head>
-
-<body>
-    <!-- <div class="c-navigation-wrapper u-layer-4">
-        <nav class="c-header-lite">
-            <div class="c-header-lite__logo">
-                <a href="/">
-                    <img src="http://www.arm.com/-/media/global/logos/Arm-logo-black-pms432.svg?revision=dfb81f02-b74e-45f6-8523-6d2037b838f1&amp;la=en&amp;hash=D7FBF600E4DB572D15E8E253977779E9FBB7E52C"
-                        alt="Arm">
-                </a>
-            </div>
-        </nav>
-    </div> -->
-
-
-    <div class="c-content-wrapper">
-        <nav class="c-header-lite">
-            <div class="c-header-lite__logo">
-                <a href="/">
-                    <img src="http://www.arm.com/-/media/global/logos/Arm-logo-black-pms432.svg?revision=dfb81f02-b74e-45f6-8523-6d2037b838f1&amp;la=en&amp;hash=D7FBF600E4DB572D15E8E253977779E9FBB7E52C"
-                        alt="Arm">
-                </a>
-            </div>
-        </nav>
-        <header class="o-widget c-header c-header--small" role="banner">
-
-            <link rel="stylesheet"
-                href="https://mar-uat-sitecore.arm.com/shared/arm.com-new/modules/c-header/style.css?v=3.2.0.0">
-
-
-
-
-
-            <div id="c-049ab686-e30d-431f-b645-2087588fc2e3" class="o-widget c-site-logo" data-widget="Logo">
-
-
-                <link rel="stylesheet"
-                    href="https://mar-uat-sitecore.arm.com/shared/arm.com-new/modules/c-logo/style.css?v=3.2.0.0">
-
-
-
-
-
-                <a href="/" class="c-site-logo__link" tabindex="0"><img
-                        src="https://mar-uat-sitecore.arm.com/-/media/global/logos/arm-logo-white-rgb.svg?revision=d98f22d3-09c8-4813-a9d8-434c89710774&amp;h=40&amp;la=en&amp;hash=D0FDBD895BD8524551E3CFAA80984DC9DB32BC74"
-                        height="40" class="c-site-logo__image" alt="Arm"></a></div>
-
-            <div class="o-widget c-masthead" id="c-20a0ff93-310d-4131-a1b9-9e39b325a9aa">
-
-                <div class="c-masthead__slider" style="position: relative; overflow: hidden; display: block;">
-
-
-                    <div id="c-d2314fc9-4d50-44da-bd33-6cade089246a" class="c-masthead__slider__item  "
-                        style="z-index: 1; position: absolute; left: 0%; top: 0px;">
-                        <div class="c-masthead__slider__item__content">
-
-                            <div class="c-masthead__slider__item__content__main">
-                                <div class="c-masthead__slider__item__content__main__subtitle">
-                                    <div tabindex="0" class="title">Power the new era of AI</div>
-                                    <div tabindex="0">
-                                        innovate with Arm AI<br>Where compute happens
-                                        <div class="c-masthead__hr c-masthead__hr--visible bg-color-arm-yellow"></div>
-                                    </div>
-                                </div>
-
-                                <div class="c-masthead__slider__item__content__fadebox" tabindex="0">
-                                    <div class="c-masthead__slider__item__content__fadebox__description" tabindex="0">
-                                        <p>Leverage the industry’s largest IP footprint for your AI projects</p>
-                                    </div>
-                                    <div class="c-masthead__cta" tabindex="0">
-                                        <a href="/solutions/artificial-intelligence" class="c-button c-button--cta"
-                                            title="Learn More about Arm Artificial Intelligence">Learn More</a>
-                                        <a href="/why-arm" class="c-button c-button--cta-invert">why-arm</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <style type="text/css">
-                            #c-d2314fc9-4d50-44da-bd33-6cade089246a .c-masthead__slider__item__content {
-                                background-image: url('http://mar-uat-sitecore.arm.com/-/media/masthead-tall-small-ml.jpg?revision=a087b122-3ab1-4b0a-9837-0bfc5c89819e');
-                            }
-
-                            @media (min-width: 1024px) {
-                                #c-d2314fc9-4d50-44da-bd33-6cade089246a .c-masthead__slider__item__content {
-                                    background-image: url('http://mar-uat-sitecore.arm.com/-/media/global/homepage/arm-homepage-hero-ai-1920x706.jpg?revision=0cb1f224-54f1-48c4-b5e0-4249bd1085a0');
-                                }
-                            }
-                        </style>
-                    </div>
-
-
-
-                </div>
-
-            </div>
-
-
-
-            <script src="/shared/arm.com-new/modules/c-masthead-slider/src/index.js"
-                id="c-20a0ff93-310d-4131-a1b9-9e39b325a9aa"></script>
-
-
-
-
-
-
-            <script type="text/javascript">
-                (function () {
-
-                    var header = document.getElementsByClassName('c-header')[0];
-                    var headerBar = header.getElementsByClassName('js-header-bar')[0];
-
-                    var mastheadHeadline = header.getElementsByClassName('c-masthead__headline')[0];
-
-                    var globalSearch = document.getElementsByClassName('js-header-bar-search')[0];
-                    var globalNavigation = document.getElementsByClassName('js-header-bar-navigation')[0];
-
-                    document.addEventListener('search.toggle', function (evt) {
-                        globalSearch.classList.toggle('c-bar__item--is-expanded');
-                        globalNavigation.classList.toggle('c-bar__item--is-collapsed');
-                    });
-
-                    /**
-                     * Define whether or not the sticky state needs to be ignored
-                     */
-                    function ignoreStickyState() {
-                        if (!header || !headerBar) return true;
-                        return !!(header.classList.contains('c-header--title-only') || header.classList.contains(
-                            'c-header--nav-only'));
-                    }
-
-                    /**
-                     * Handle window changes
-                     */
-                    function onWindowChange() {
-                        if (ignoreStickyState()) return;
-
-                        // Calculate the required offset before the top bar becomes sticky
-                        var offset = (mastheadHeadline) ? mastheadHeadline.offsetTop : 120;
-                        if (window.pageYOffset >= (offset - headerBar.clientHeight)) return headerBar.classList.add(
-                            'is-stuck');
-                        return headerBar.classList.remove('is-stuck');
-                    };
-
-                    window.addEventListener('scroll', onWindowChange);
-                    window.addEventListener('resize', onWindowChange);
-
-                })();
-            </script>
-        </header>
-
-        <main class="c-content" id="content" role="main">
-            <article id="c-c90a40e7-fc69-49c3-860c-5d8e6f2a46b8" data-component="twoColumnMobileTabs" class="o-widget">
-                <div class="c-two-column-mobile-tabs__contents no-js">
-                    <div class="c-two-column-mobile-tabs__nav">
-                        <div class="c-two-column-mobile-tabs__link is-active">Information</div>
-                        <div class="c-two-column-mobile-tabs__link">Sign up</div>
-                    </div>
-                    <div class="c-two-column-mobile-tabs__content is-active">
-                        <div style="font-size: 24px;"><b>Leverage IoT Device OS to Boost Digital
-                                Transformation</b><br><br>
-                        </div>
-                        <div style="font-size: 18px;"><b>Choose an IoT Device OS to bridge physical optionation</b><br>
-                        </div>
-                        <div style="font-size: 16px;">Download this new forrester report on IoT device OS consideration
-                            to
-                            get
-                            a thorough understanding of the landscape and then see how Arm Mbed OS
-                            can help you achieve your IoT goal.
-                        </div>
-                        <div>
-                            <ul>
-                                <li>Omnichannel retail: Capture physical in-store browsing data with connectioed
-                                    devices.
-                                    Integrate physical and digital data in one platform.
-                                </li>
-                                <li>Omnichannel retail: Capture physical in-store browsing data with connectioed
-                                    devices.
-                                    Integrate physical and digital data in one platform.
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="c-two-column-mobile-tabs__content bg-color-arm-gray">
-                        <div class="bg-color-arm-gray">
-                            <form id="mktoForm_5033"></form>
-                            <script src="//pages.arm.com/js/forms2/js/forms2.min.js"></script>
-                            <script>
-                                MktoForms2.loadForm("//app-lon02.marketo.com", "312-SAX-488", 5033);
-                            </script>
-
-                            <script src="https://learn.arm.com/rs/714-XIJ-402/images/formsplus-alternateroute-1.1.0.js">
-                            </script>
-
-                            <script>
-                                var altRouteUserConfig = {
-                                    instanceForms: {
-                                        primary: {
-                                            instanceHost: "app-lon02.marketo.com",
-                                            munchkinId: "312-SAX-488",
-                                            formId: 5033
-                                        },
-                                        alternate: {
-                                            instanceHost: "app-ab04.marketo.com",
-                                            munchkinId: "714-XIJ-402",
-                                            formId: 3576
-                                        }
-                                    },
-                                    instanceFieldMap: [{
-                                            primary: "Source_Detail",
-                                            alternate: "Inquiry_Type__c"
-                                        },
-                                        {
-                                            primary: "messageSubject",
-                                            alternate: "topic"
-                                        },
-                                        {
-                                            primary: "messageBody",
-                                            alternate: "Notes__c"
-                                        },
-                                        {
-                                            primary: "lmarketingSalesConsent",
-                                            alternate: "Explicit_Opt_In__c"
-                                        },
-                                        {
-                                            primary: "arm_mostrecentleadsource",
-                                            alternate: "Most_Recent_UTM_Source__c"
-                                        },
-                                        {
-                                            primary: "arm_mostrecentsourcemedium",
-                                            alternate: "Most_Recent_UTM_Medium__c"
-                                        },
-                                        {
-                                            primary: "arm_mostrecentsourcecontent",
-                                            alternate: "mostRecentUTMContent"
-                                        },
-                                        {
-                                            primary: "arm_mostrecentsourcecampaign",
-                                            alternate: "Most_Recent_UTM_Campaign__c"
-                                        },
-                                        {
-                                            primary: "arm_mostrecentsourceterm",
-                                            alternate: "mostRecentUTMTerm"
-                                        },
-                                        {
-                                            primary: "Source_Detail",
-                                            alternate: "mostRecentEntryTitle"
-                                        },
-                                        {
-                                            primary: "mostRecentWebReferrer",
-                                            alternate: "mostRecentReferrer"
-                                        },
-                                        {
-                                            primary: "formid"
-                                        },
-                                        {
-                                            primary: "munchkinId"
-                                        }
-                                    ],
-                                    formRoutingRules: [{
-                                            when: "Source_Detail",
-                                            matches: /^Sales Enquiry for IoT & Pelion$/,
-                                            routeTo: "alternate"
-                                        },
-                                        {
-                                            when: "Source_Detail",
-                                            matches: /.*/,
-                                            routeTo: "primary"
-                                        }
-                                    ]
-                                };
-
-                                FormsPlus.setAltRoutes(altRouteUserConfig);
-                            </script>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </main>
-
-        <footer class="c-footer-lite" role="contentinfo" data-widget="FooterLite">
-            <link href="static/css/all.css" rel="stylesheet">
-            <link rel="stylesheet"
-                href="https://mar-uat-sitecore.arm.com/shared/arm.com-new/modules/c-footer/style.css?v=3.2.0.0">
-
-            <div class="row">
-                <div class="column">
-
-
-                    <div class="c-footer-lite__social">
-                        <div class="c-footer-lite__section">
-                            <ul>
-                                <li class="c-footer-lite__social-link">
-                                    <a href="https://www.facebook.com/Arm" target="_blank"
-                                        title="Arm Facebook Account"><i class="fab fa-facebook-f"></i></a>
-                                </li>
-                                <li class="c-footer-lite__social-link">
-                                    <a href="http://www.linkedin.com/company/Arm" target="_blank"
-                                        title="Arm LinkedIn Account"><i class="fab fa-linkedin"></i></a>
-                                </li>
-                                <li class="c-footer-lite__social-link">
-                                    <a href="http://www.instagram.com/Arm" target="_blank"
-                                        title="Arm Instagram Account"><i class="fab fa-instagram"></i></a>
-                                </li>
-                                <li class="c-footer-lite__social-link">
-                                    <a href="http://www.twitter.com/Arm" target="_blank" title="Arm Twitter Account"><i
-                                            class="fab fa-twitter"></i></a>
-                                </li>
-                                <li class="c-footer-lite__social-link">
-                                    <a href="https://www.youtube.com/user/Armflix" target="_blank"
-                                        title="Arm YouTube Account"><i class="fab fa-youtube"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-
-                    <div class="c-footer-lite__legal">
-                        <div class="c-footer-lite__section">
-                            <ul>
-                                <li class="c-footer-lite__legal-link"><a href="/company/policies/cookies"
-                                        title="Footer link to Cookie Policy">Cookie Policy</a></li>
-                                <li class="c-footer-lite__legal-link"><a href="/company/policies/terms-and-conditions"
-                                        title="Footer link to Terms of Use">Terms of Use</a></li>
-                                <li class="c-footer-lite__legal-link"><a href="/company/policies/privacy"
-                                        title="Footer link to Privacy Policy">Privacy Policy</a></li>
-                                <li class="c-footer-lite__legal-link"><a href="/company/policies/accessibility"
-                                        title="Footer link to Accessibility">Accessibility</a></li>
-                                <li class="c-footer-lite__legal-link"><a href="https://login.arm.com/subscriptions.php"
-                                        target="_blank" title="Footer link to Subscription Center">Subscription
-                                        Center</a></li>
-                                <li class="c-footer-lite__legal-link"><a href="/company/policies/trademarks"
-                                        title="Trademarks Footer Link">Trademarks</a></li>
-                                <li class="c-footer-lite__legal-link"><a href="/glossary"
-                                        title="Footer Link to IoT Glossary">Glossary</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-
-                    <div class="c-footer-lite__copyright">
-                        <div class="c-footer__section column">
-                            Copyright © 1995-2019 Arm Limited (or its affiliates). All rights reserved.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-    </div>
-
-</body>
-<script src="./static/twoColumnMobileTabs.js" id="c-c90a40e7-fc69-49c3-860c-5d8e6f2a46b8"></script>
-
-</html>
+FormsPlus.setAltRoutes(altRouteUserConfig);
+   
+</script>
+<!-- /declare & initialize alt routing config -->

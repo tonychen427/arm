@@ -10,7 +10,7 @@
  */
  @mixin oCoreComponentsTwoColumnMobileTabs {
 
-    $c-two-column-mobile-tabs-column-width: 570px;
+    $c-two-column-mobile-tabs-column-width: 100%;
 
     $c-two-column-mobile-tabs-background-color: #e7e7e7;
     $c-two-column-mobile-tabs-border-default-color: #e7e7e7;
@@ -31,7 +31,7 @@
 
         &__content {
             display: table-cell;
-            padding: 15px;
+            padding: 60px 30px 15px 60px;
             vertical-align: top;
             width: $c-two-column-mobile-tabs-column-width;
 
@@ -40,7 +40,11 @@
             }
             
             &.is-active {
-                display: block;
+                display: block !important;
+            }
+
+            &:last-child {
+                padding: 60px 60px 15px 30px;
             }
         }
 
@@ -82,15 +86,16 @@
         .c-two-column-mobile-tabs {
             &__contents {
                 display: block;
-            }
 
-            &__content {
-                display: none;
-                width: 100%;
-                background-color: inherit;
-
-                >div {
-                    background-color: inherit;
+                .c-two-column-mobile-tabs__content {
+                    background-color: inherit !important;
+                    display: none;
+                    padding: 10px;
+                    width: 100%;
+                   
+                    >div {
+                        background-color: inherit !important;
+                    }
                 }
             }
 
@@ -102,5 +107,6 @@
         }
     }
 }
+
 
 @include oCoreComponentsTwoColumnMobileTabs;

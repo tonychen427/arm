@@ -53,7 +53,7 @@
  */
  @mixin oCoreComponentsTwoColumnMobileTabs {
 
-    $c-two-column-mobile-tabs-column-width: 570px;
+    $c-two-column-mobile-tabs-column-width: 50%;
 
     $c-two-column-mobile-tabs-background-color: #e7e7e7;
     $c-two-column-mobile-tabs-border-default-color: #e7e7e7;
@@ -74,7 +74,7 @@
 
         &__content {
             display: table-cell;
-            padding: 15px;
+            padding: 60px 30px 15px 60px;
             vertical-align: top;
             width: $c-two-column-mobile-tabs-column-width;
 
@@ -82,8 +82,8 @@
                 margin: 0 auto;
             }
             
-            &.is-active {
-                display: block;
+            &:last-child {
+                padding: 60px 60px 15px 30px;
             }
         }
 
@@ -120,20 +120,25 @@
         }
     }
 
-    @media screen and (max-width: 925px),
-    screen and (max-device-width: 925px) {
+    @media screen and (max-width: 992px),
+    screen and (max-device-width: 992px) {
         .c-two-column-mobile-tabs {
             &__contents {
                 display: block;
-            }
 
-            &__content {
-                display: none;
-                width: 100%;
-                background-color: inherit;
-
-                >div {
-                    background-color: inherit;
+                .c-two-column-mobile-tabs__content {
+                    background-color: inherit !important;
+                    display: none;
+                    padding: 30px 10px 0 10px;
+                    width: 100%;
+                   
+                    &.is-active {
+                        display: block !important;
+                    }
+                    
+                    >div {
+                        background-color: inherit !important;
+                    }
                 }
             }
 
@@ -144,92 +149,21 @@
             }
         }
     }
-}
 
+    /* c-full-width-rich-text overrides */
 
-/**
- * c-footer-lite - mixins
- *
- * @name _mixins.scss
- */
-
- @mixin oFooterLite {
-
-    $o-footer-background-color: #333e48;
-    $o-footer-hr-style: 1px solid #fff;
-    $o-footer-text-color: #a3a8ae;
-    $arm-white: #fff;
-
-    background-color: $o-footer-background-color;
-    color: $o-footer-text-color;
-    flex-shrink: 0;
-    font-size: 14px;
-    padding-bottom: 45px;
-    padding-top: 25px;
-    text-align: center;
-
-    .c-footer-lite__social-link,  .c-footer-lite__legal-link {
-        padding-left: 8px;
-        padding-right: 8px;
-
-        &:before {
-            content: none;
-        }
-
-        a {
-            border-bottom-style: none;
-        }
-
-    }
-
-
-    .c-footer-lite__social {
-        margin: 0;
-
-        &-link {
-            margin: 0;
-        }
-        .c-footer-lite__social-link {
-            color: $arm-white;
-            display: inline;
-            font-size: 25px;
-        }
-
-        .c-footer-lite__logo {
-            margin: 8px 0 0;
-            max-width: 90px;
-        }
-        i {
-            color: $arm-white;
+    .c-two-column-mobile-tabs {
+        .c-full-width-rich-text {
+            padding: 0;
         }
     }
 
-    .c-footer-lite__legal {
-        &-link {
-            border-right: 1px solid $o-footer-text-color;
-            display: inline;
-            font-size: 14px;
-            margin: 0;
- 
-            a {
-                color: $o-footer-text-color;
-            }
-            
-            &:last-child {
-                border-right: inherit; 
+    @media (min-width: 1024px) {
+        .c-two-column-mobile-tabs {
+            .c-full-width-rich-text {
+                padding: 0;
             }
         }
     }
 
-    .c-footer-lite__copyright .c-footer__section {
-        padding: 0;
-    }
-}
-
-@include oCoreComponentsHeaderLite;
-@include oCoreComponentsTwoColumnMobileTabs;
-
-
-.c-footer-lite {
-    @include oFooterLite;
 }

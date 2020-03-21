@@ -13,11 +13,15 @@
 
 .c-two-column-mobile-tabs__content {
   display: table-cell;
-  padding: 15px;
+  padding: 60px 30px 15px 60px;
   vertical-align: top;
-  width: 570px; }
+  width: 100%; }
+  .c-two-column-mobile-tabs__content form {
+    margin: 0 auto; }
   .c-two-column-mobile-tabs__content.is-active {
-    display: block; }
+    display: block !important; }
+  .c-two-column-mobile-tabs__content:last-child {
+    padding: 60px 60px 15px 30px; }
 
 .c-two-column-mobile-tabs__nav {
   display: none; }
@@ -46,12 +50,13 @@
 @media screen and (max-width: 925px), screen and (max-device-width: 925px) {
   .c-two-column-mobile-tabs__contents {
     display: block; }
-  .c-two-column-mobile-tabs__content {
-    display: none;
-    width: 100%;
-    background-color: inherit; }
-    .c-two-column-mobile-tabs__content > div {
-      background-color: inherit; }
+    .c-two-column-mobile-tabs__contents .c-two-column-mobile-tabs__content {
+      background-color: inherit !important;
+      display: none;
+      padding: 10px;
+      width: 100%; }
+      .c-two-column-mobile-tabs__contents .c-two-column-mobile-tabs__content > div {
+        background-color: inherit !important; }
   .c-two-column-mobile-tabs__nav {
     display: flex;
     margin: 0;

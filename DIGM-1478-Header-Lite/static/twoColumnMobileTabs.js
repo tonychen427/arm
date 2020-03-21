@@ -5,6 +5,7 @@
  * @param {Object} options The options hash
  */
 var twoColumnMobileTabs = (function (options) {
+    debugger;
     var id = options.id;
     var el = document.querySelector('#' + id + ' ' + options.tabContents);
     var tabNavigationLinks = el.querySelectorAll(options.tabNavigationLinks);
@@ -42,7 +43,17 @@ var twoColumnMobileTabs = (function (options) {
     var handleClick = function (link, index) {
         link.addEventListener('click', function (e) {
             e.preventDefault();
+            setAriaSelected(e);
             goToTab(index);
+        });
+        link.addEventListener
+
+        link.addEventListener('keydown', function (e) {
+            if (e.keyCode === 13 && e.target.nodeName === 'DIV') {
+                e.preventDefault();
+                setAriaSelected(e);
+                goToTab(index);
+            }
         });
     };
 
@@ -61,6 +72,22 @@ var twoColumnMobileTabs = (function (options) {
             activeIndex = index;
         }
     };
+
+     /**
+     * setAriaSelected
+     *
+     * @description set aria selected to true. Returns nothing.
+     * @param {Element} element The element of the tab selected
+     */
+    var setAriaSelected = function (element) {
+        var className = element.target.classList[0];
+        var elements = document.getElementsByClassName(className);
+        Array.prototype.forEach.call(elements, function (item) {
+            item.setAttribute('aria-selected', "false");
+        });
+
+        element.target.setAttribute('aria-selected',"true")
+    }
 
     /**
      * Returns init and goToTab
@@ -88,7 +115,7 @@ if (typeof document !== 'undefined') {
         var scripts = document.getElementsByTagName('script');
         return scripts[scripts.length - 1];
     })();
-
+debugger;
     var id = document.currentScript.getAttribute('id');
     var twoColumnMobileTabsId = id !== '' ? id : '';
 
