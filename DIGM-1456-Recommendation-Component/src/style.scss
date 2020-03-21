@@ -68,21 +68,21 @@ $recommendations-font-family: "Lato",
 
 @mixin oCoreComponentsTwoColumnTwoSubComponent {
 
-  /* Create two equal columns that floats next to each other */
+  /* Create two equal columns that next to each other */
   .columnx {
     display: table-cell;
-    // float: left;
     vertical-align: top;
     padding: 60px 30px 15px 60px;
     width: 50%;
-    // padding: 10px;
-    // height: 300px; /* Should be removed. Only for demonstration */
 
     &:last-child {
       padding: 60px 60px 15px 30px;
     }
   }
 
+  .rowx {
+    display: flex;
+  }
   /* Clear floats after the columns */
   .rowx:after {
     content: "";
@@ -93,6 +93,9 @@ $recommendations-font-family: "Lato",
   /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
   @media screen and (max-width: 925px),
   screen and (max-device-width: 925px) {
+    .rowx {
+      display: inherit;
+    }
     .columnx {
       display: inherit;
       float: left;
