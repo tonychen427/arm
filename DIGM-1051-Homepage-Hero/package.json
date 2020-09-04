@@ -13,7 +13,7 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "chai": "^4.2.0",
     "gulp": "^4.0.2",
     "gulp-mocha": "^7.0.2",
